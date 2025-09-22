@@ -1455,12 +1455,6 @@
 		(uuid "1f8ec5b7-408a-4dd5-beb2-6a949acf3d20")
 	)
 	(junction
-		(at 41.91 49.53)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "23e45efb-ea94-495c-b4a5-951713fbfd56")
-	)
-	(junction
 		(at 182.88 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1471,12 +1465,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4e63b80e-8c83-4b40-b183-a47978d6ebd1")
-	)
-	(junction
-		(at 30.48 46.99)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "69b92ece-6b9d-4043-b371-579ba1846c0a")
 	)
 	(junction
 		(at 194.31 52.07)
@@ -1702,7 +1690,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 40.64) (xy 30.48 46.99)
+			(xy 30.48 40.64) (xy 30.48 49.53)
 		)
 		(stroke
 			(width 0)
@@ -2002,16 +1990,6 @@
 	)
 	(wire
 		(pts
-			(xy 41.91 49.53) (xy 53.34 49.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "aad94efc-5909-4a90-a28a-decfa5066e86")
-	)
-	(wire
-		(pts
 			(xy 223.52 48.26) (xy 232.41 48.26)
 		)
 		(stroke
@@ -2072,16 +2050,6 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 46.99) (xy 30.48 49.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bd3303d4-03dc-469c-8110-6d1c6cadeca2")
-	)
-	(wire
-		(pts
 			(xy 194.31 63.5) (xy 194.31 66.04)
 		)
 		(stroke
@@ -2112,7 +2080,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 49.53) (xy 34.29 49.53)
+			(xy 30.48 49.53) (xy 53.34 49.53)
 		)
 		(stroke
 			(width 0)
@@ -2189,16 +2157,6 @@
 			(type default)
 		)
 		(uuid "f05c87ac-5961-41bc-a11c-66564e002262")
-	)
-	(wire
-		(pts
-			(xy 41.91 57.15) (xy 41.91 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f2c12eee-ee62-4b41-9a41-73fcb76c134c")
 	)
 	(global_label "TIM1_CH2"
 		(shape input)
@@ -2705,73 +2663,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 30.48 46.99 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "26e0d03d-6751-424f-bc51-9db547cfeaae")
-		(property "Reference" "#FLG02"
-			(at 28.575 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 26.67 46.9899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 30.48 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 30.48 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 30.48 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "9fcb8093-8669-43a6-82c7-cdd7644b94e7")
-		)
-		(instances
-			(project ""
-				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/c369f4f1-9415-4017-9294-312c11921a7a"
-					(reference "#FLG02")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 205.74 58.42 0)
 		(unit 1)
@@ -2996,92 +2887,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Diode:1N4148WT")
-		(at 38.1 49.53 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "441bab65-49c9-4b43-bd0b-385e9831b35c")
-		(property "Reference" "D6"
-			(at 38.1 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1N4148WT"
-			(at 38.1 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SOD-523"
-			(at 38.1 45.085 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds30396.pdf"
-			(at 38.1 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "75V 0.15A Fast switching Diode, SOD-523"
-			(at 38.1 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 38.1 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 38.1 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "cd04d1cd-6c70-4209-88ae-dd915e94c0e4")
-		)
-		(pin "1"
-			(uuid "ab3c1135-0006-428c-93fd-71e492492c4b")
-		)
-		(instances
-			(project "Projet_Robot"
-				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/c369f4f1-9415-4017-9294-312c11921a7a"
-					(reference "D6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 64.77 59.69 0)
 		(unit 1)
@@ -3213,72 +3018,6 @@
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/c369f4f1-9415-4017-9294-312c11921a7a"
 					(reference "R21")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 41.91 58.42 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "653a041c-f2f3-40c4-a4ff-2d3bc6b68234")
-		(property "Reference" "#PWR019"
-			(at 41.91 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 41.91 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 41.91 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 41.91 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 41.91 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "a3581aaa-0dc0-40d8-8a78-b6b15d103f84")
-		)
-		(instances
-			(project "Projet_Robot"
-				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/c369f4f1-9415-4017-9294-312c11921a7a"
-					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -3713,76 +3452,6 @@
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/c369f4f1-9415-4017-9294-312c11921a7a"
 					(reference "#PWR01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_Zener")
-		(at 41.91 53.34 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8d42e6cc-f386-40c8-b69d-81e91bba3935")
-		(property "Reference" "D7"
-			(at 44.45 52.0699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "D_Zener"
-			(at 44.45 54.6099 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 41.91 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 41.91 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Zener diode"
-			(at 41.91 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e26eb42f-4b6a-4f17-af07-6438a4ef3fc8")
-		)
-		(pin "2"
-			(uuid "a61d6ee6-11e6-4fbd-bdf4-788b800591c5")
-		)
-		(instances
-			(project "Projet_Robot"
-				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/c369f4f1-9415-4017-9294-312c11921a7a"
-					(reference "D7")
 					(unit 1)
 				)
 			)
