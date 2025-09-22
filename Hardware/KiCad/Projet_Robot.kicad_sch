@@ -1,0 +1,187 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "21a14c86-6900-4d4b-9d91-6c59051d0f41")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 21.59 20.32)
+		(size 78.74 71.12)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "31be01aa-b096-4901-8c4f-f2a7c3166097")
+		(property "Sheetname" "µcontrolleur"
+			(at 21.59 19.6084 0)
+			(effects
+				(font
+					(size 3.81 3.81)
+					(thickness 0.508)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "µcontrolleur.kicad_sch"
+			(at 21.59 92.0246 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Projet_Robot"
+				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 118.11 20.32)
+		(size 71.12 72.39)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "76b000bd-d8d0-4821-bef4-3e858ee71b1c")
+		(property "Sheetname" "Capteurs"
+			(at 118.11 19.6084 0)
+			(effects
+				(font
+					(size 3.81 3.81)
+					(thickness 0.4763)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "capteur.kicad_sch"
+			(at 118.11 93.2946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Projet_Robot"
+				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 205.74 20.32)
+		(size 72.39 73.66)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "9e9ae578-0fe2-489e-a2e9-26a89bc45f88")
+		(property "Sheetname" "Régulateurs"
+			(at 205.74 19.6084 0)
+			(effects
+				(font
+					(size 3.81 3.81)
+					(thickness 0.4763)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "regulateurs.kicad_sch"
+			(at 205.74 94.5646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Projet_Robot"
+				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 22.86 116.84)
+		(size 81.28 71.12)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "c369f4f1-9415-4017-9294-312c11921a7a")
+		(property "Sheetname" "Moteur"
+			(at 22.86 116.1284 0)
+			(effects
+				(font
+					(size 3.81 3.81)
+					(thickness 0.4763)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "moteur.kicad_sch"
+			(at 22.86 188.5446 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Projet_Robot"
+				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)
