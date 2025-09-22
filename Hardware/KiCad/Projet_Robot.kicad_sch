@@ -5,6 +5,46 @@
 	(uuid "21a14c86-6900-4d4b-9d91-6c59051d0f41")
 	(paper "A4")
 	(lib_symbols)
+	(wire
+		(pts
+			(xy 100.33 46.99) (xy 118.11 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4f3492aa-dd60-4ad0-a98f-b1dde8855445")
+	)
+	(wire
+		(pts
+			(xy 100.33 34.29) (xy 118.11 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6736148b-5077-4ce2-b187-99bd992f8a0d")
+	)
+	(wire
+		(pts
+			(xy 100.33 43.18) (xy 118.11 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "92117483-8041-4343-8648-d9319a8ed1d0")
+	)
+	(wire
+		(pts
+			(xy 100.33 30.48) (xy 118.11 30.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d6094679-ade5-4a02-9976-643230d3d680")
+	)
 	(sheet
 		(at 21.59 20.32)
 		(size 78.74 71.12)
@@ -39,6 +79,46 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "LIDAR_USART2_RX" input
+			(at 100.33 30.48 0)
+			(uuid "0aec8a1b-add3-4e93-a87c-e03b699cc08f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LIDAR_USART2_TX" input
+			(at 100.33 34.29 0)
+			(uuid "4c92a4e2-b2b8-4799-91a2-d3b7e8137c90")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Bluetooth_USART3_RX" input
+			(at 100.33 43.18 0)
+			(uuid "498d886e-1514-4c54-a3e6-72d853ed4f3d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Bluetooth_USART3_TX" input
+			(at 100.33 46.99 0)
+			(uuid "107edc44-9e15-48b0-af24-490385af7b60")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
@@ -82,6 +162,46 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "LIDAR_USART2_RX" input
+			(at 118.11 30.48 180)
+			(uuid "6f60a34f-1f92-42bb-9239-e3cc97b3d9c3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LIDAR_USART2_TX" input
+			(at 118.11 34.29 180)
+			(uuid "d00015c3-0b6f-43b4-ba52-35f925710067")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Bluetooth_USART3_RX" input
+			(at 118.11 43.18 180)
+			(uuid "c4bbe6d5-40a5-4950-b556-5c9c6872f769")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Bluetooth_USART3_TX" input
+			(at 118.11 46.99 180)
+			(uuid "005dc30c-a4ed-41a4-934d-ee9fa658a216")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(instances
