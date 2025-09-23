@@ -2910,7 +2910,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "049f268e-5af7-449e-b04c-922a895605d0")
-		(property "Reference" "R9"
+		(property "Reference" "R4"
 			(at 166.37 62.2299 0)
 			(effects
 				(font
@@ -2980,6 +2980,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "R4")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -2992,7 +2998,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "065755d8-81e2-40c6-be7d-b9928bcc88a1")
-		(property "Reference" "R10"
+		(property "Reference" "R5"
 			(at 220.98 48.26 90)
 			(effects
 				(font
@@ -3000,7 +3006,7 @@
 				)
 			)
 		)
-		(property "Value" "20R"
+		(property "Value" "20"
 			(at 220.98 50.8 90)
 			(effects
 				(font
@@ -3060,6 +3066,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "R5")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3072,7 +3084,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "09d5ba51-1c6d-4bd8-a7cf-972f731b5d25")
-		(property "Reference" "C20"
+		(property "Reference" "C5"
 			(at 257.81 59.6962 0)
 			(effects
 				(font
@@ -3081,7 +3093,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "22uF"
+		(property "Value" "22u"
 			(at 257.81 62.2362 0)
 			(effects
 				(font
@@ -3142,6 +3154,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "C5")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3153,7 +3171,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "152ce891-3d02-4463-bc39-1da0ba059536")
-		(property "Reference" "#PWR0140"
+		(property "Reference" "#PWR?"
 			(at 57.15 67.31 0)
 			(effects
 				(font
@@ -3214,6 +3232,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3225,7 +3249,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1a3263bc-724f-431c-8921-233f63835c66")
-		(property "Reference" "#PWR0132"
+		(property "Reference" "#PWR?"
 			(at 161.29 59.69 0)
 			(effects
 				(font
@@ -3291,6 +3315,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3302,7 +3332,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1b911c0a-3baf-4f1f-9503-51c00595a4f3")
-		(property "Reference" "#PWR0133"
+		(property "Reference" "#PWR?"
 			(at 170.18 59.69 0)
 			(effects
 				(font
@@ -3368,6 +3398,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3380,7 +3416,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "20e6405d-a364-4cfb-b35d-6fffcfe97170")
-		(property "Reference" "C13"
+		(property "Reference" "C?"
 			(at 101.6 73.6599 0)
 			(effects
 				(font
@@ -3444,6 +3480,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "C?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3456,7 +3498,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2513c2d4-3f2f-4731-b830-67130c0eba0a")
-		(property "Reference" "#PWR0137"
+		(property "Reference" "#PWR?"
 			(at 255.27 69.85 0)
 			(effects
 				(font
@@ -3522,6 +3564,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3534,7 +3582,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2729805c-5395-4330-b8b2-e9a439c2a69d")
-		(property "Reference" "#PWR0138"
+		(property "Reference" "#PWR?"
 			(at 269.24 62.23 0)
 			(effects
 				(font
@@ -3600,6 +3648,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3612,7 +3666,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "27b451dc-a7b8-40ac-a6b8-4eb56c970f10")
-		(property "Reference" "C19"
+		(property "Reference" "C7"
 			(at 251.4663 67.31 90)
 			(effects
 				(font
@@ -3680,6 +3734,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "C7")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3692,7 +3752,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2af17f67-7b87-4a28-bf0c-fa9c74a8b7df")
-		(property "Reference" "C17"
+		(property "Reference" "C6"
 			(at 229.87 54.6162 0)
 			(effects
 				(font
@@ -3762,6 +3822,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "C6")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3774,7 +3840,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3d2e83e8-0f2a-4b98-a389-5ec189eb6489")
-		(property "Reference" "SW2"
+		(property "Reference" "SW?"
 			(at 74.93 127 0)
 			(effects
 				(font
@@ -3833,6 +3899,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "SW?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3844,7 +3916,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "415cd3f4-7d0a-4809-a032-fedc7f68c981")
-		(property "Reference" "R7"
+		(property "Reference" "R1"
 			(at 145.034 61.214 0)
 			(effects
 				(font
@@ -3854,7 +3926,7 @@
 			)
 		)
 		(property "Value" "100K"
-			(at 140.208 63.754 0)
+			(at 142.748 63.754 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3914,6 +3986,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "R1")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3926,7 +4004,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "45367181-5aeb-4844-a00f-a5bba90b2b31")
-		(property "Reference" "L2"
+		(property "Reference" "L?"
 			(at 236.22 53.34 90)
 			(effects
 				(font
@@ -3934,7 +4012,7 @@
 				)
 			)
 		)
-		(property "Value" "4.7uH"
+		(property "Value" "4.7u"
 			(at 236.22 55.88 90)
 			(effects
 				(font
@@ -3994,6 +4072,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "L?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4006,7 +4090,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4cdc0d75-43a9-4a67-8c2e-3972c3032836")
-		(property "Reference" "PS1"
+		(property "Reference" "PS?"
 			(at 77.47 57.15 0)
 			(effects
 				(font
@@ -4149,6 +4233,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "PS?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4160,7 +4250,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5078ab2f-afe4-4e25-9866-1e377828bfcf")
-		(property "Reference" "R8"
+		(property "Reference" "R2"
 			(at 155.702 60.96 0)
 			(effects
 				(font
@@ -4169,7 +4259,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "100K"
 			(at 155.448 63.754 0)
 			(effects
 				(font
@@ -4230,6 +4320,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "R2")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4242,7 +4338,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "576f9ffb-fc9a-4d1c-8c2c-722f1c3e6dcf")
-		(property "Reference" "IC2"
+		(property "Reference" "IC?"
 			(at 203.2 45.72 0)
 			(effects
 				(font
@@ -4380,6 +4476,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "IC?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4392,7 +4494,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5c6bf21d-f72a-42e8-b32a-becc96f83d85")
-		(property "Reference" "C16"
+		(property "Reference" "C3"
 			(at 172.72 59.6962 0)
 			(effects
 				(font
@@ -4401,7 +4503,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF"
+		(property "Value" "0.1u"
 			(at 172.72 62.2362 0)
 			(effects
 				(font
@@ -4462,6 +4564,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "C3")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4474,7 +4582,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6ad56182-ab2a-4dc8-a754-7f21962f880d")
-		(property "Reference" "R12"
+		(property "Reference" "R7"
 			(at 246.38 85.0899 0)
 			(effects
 				(font
@@ -4483,7 +4591,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "7K68"
 			(at 246.38 87.6299 0)
 			(effects
 				(font
@@ -4544,6 +4652,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "R7")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4555,7 +4669,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "72a580f5-f4d3-4e03-8946-0d2ed53b797e")
-		(property "Reference" "C14"
+		(property "Reference" "C1"
 			(at 163.83 49.5362 0)
 			(effects
 				(font
@@ -4564,7 +4678,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "22uF"
+		(property "Value" "22u"
 			(at 162.56 52.578 0)
 			(effects
 				(font
@@ -4625,6 +4739,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "C1")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4637,7 +4757,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7947df48-0815-4de0-84a6-6e824096e702")
-		(property "Reference" "#PWR0135"
+		(property "Reference" "#PWR?"
 			(at 243.84 95.25 0)
 			(effects
 				(font
@@ -4703,6 +4823,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4715,7 +4841,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7a5cb258-ef95-4c5c-b5a7-d819674dd37a")
-		(property "Reference" "#PWR026"
+		(property "Reference" "#PWR?"
 			(at 105.41 143.51 0)
 			(effects
 				(font
@@ -4769,6 +4895,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4780,7 +4912,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "96acb4d3-cb72-40dd-abfa-e06ba760921d")
-		(property "Reference" "C15"
+		(property "Reference" "C2"
 			(at 172.72 49.5362 0)
 			(effects
 				(font
@@ -4789,7 +4921,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF"
+		(property "Value" "0.1u"
 			(at 172.72 52.578 0)
 			(effects
 				(font
@@ -4850,6 +4982,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "C2")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4862,7 +5000,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "96cdb135-e63b-4768-8e47-a60885628db9")
-		(property "Reference" "#PWR0136"
+		(property "Reference" "#PWR?"
 			(at 243.84 69.85 0)
 			(effects
 				(font
@@ -4928,6 +5066,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4939,7 +5083,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a3341c74-8939-4b6b-a0bd-2d26285eb9c8")
-		(property "Reference" "C12"
+		(property "Reference" "C?"
 			(at 47.752 66.548 0)
 			(effects
 				(font
@@ -5003,6 +5147,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "C?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5015,7 +5165,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "adcf38da-a79a-44a2-a084-c522d3ef4de2")
-		(property "Reference" "#PWR024"
+		(property "Reference" "#PWR?"
 			(at 87.63 130.81 0)
 			(effects
 				(font
@@ -5069,6 +5219,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5081,7 +5237,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b421b3ae-c5a8-48c1-b481-d275ceb33fa3")
-		(property "Reference" "#PWR0139"
+		(property "Reference" "#PWR?"
 			(at 54.61 64.77 0)
 			(effects
 				(font
@@ -5141,6 +5297,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5153,7 +5315,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b4dbbfae-edd7-440f-b473-6b108f2b9f55")
-		(property "Reference" "C18"
+		(property "Reference" "C4"
 			(at 246.38 59.6962 0)
 			(effects
 				(font
@@ -5162,7 +5324,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "22uF"
+		(property "Value" "22u"
 			(at 246.38 62.2362 0)
 			(effects
 				(font
@@ -5223,6 +5385,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "C4")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5235,7 +5403,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b65cc8a6-712a-4573-83e0-c22748e2c433")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR?"
 			(at 44.45 153.67 0)
 			(effects
 				(font
@@ -5289,6 +5457,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5301,7 +5475,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b963e30b-1022-4a5d-8186-767d6981cc26")
-		(property "Reference" "R13"
+		(property "Reference" "R6"
 			(at 251.46 76.2 90)
 			(effects
 				(font
@@ -5369,6 +5543,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "R6")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5381,7 +5561,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ba7a53cf-de27-41ad-b692-ec647a9dc57f")
-		(property "Reference" "#PWR0142"
+		(property "Reference" "#PWR?"
 			(at 96.52 67.31 0)
 			(effects
 				(font
@@ -5442,6 +5622,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5453,7 +5639,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cfcaa280-3e9a-40d4-8c2e-b8e2639c174a")
-		(property "Reference" "#PWR0143"
+		(property "Reference" "#PWR?"
 			(at 54.61 86.36 0)
 			(effects
 				(font
@@ -5514,6 +5700,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5526,7 +5718,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d01da34d-64cc-459d-9a06-423c793404e0")
-		(property "Reference" "#PWR0131"
+		(property "Reference" "#PWR?"
 			(at 203.2 76.2 0)
 			(effects
 				(font
@@ -5592,6 +5784,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5604,7 +5802,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d88cf082-5b94-45f2-b537-71fa5508d449")
-		(property "Reference" "#PWR0141"
+		(property "Reference" "#PWR?"
 			(at 149.86 46.99 0)
 			(effects
 				(font
@@ -5671,6 +5869,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5683,7 +5887,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e33926af-a09a-4ed3-961b-c988fc1d49a6")
-		(property "Reference" "R11"
+		(property "Reference" "R3"
 			(at 234.95 76.2 90)
 			(effects
 				(font
@@ -5751,6 +5955,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "R3")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5763,7 +5973,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ebb34add-9f9e-454b-ba9e-f8515dcc0976")
-		(property "Reference" "J8"
+		(property "Reference" "J?"
 			(at 101.6 124.4599 0)
 			(effects
 				(font
@@ -5821,6 +6031,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "J?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5833,7 +6049,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ec510d61-f97d-4e1e-abdf-04bb73e25605")
-		(property "Reference" "BT1"
+		(property "Reference" "BT?"
 			(at 48.26 141.6684 0)
 			(effects
 				(font
@@ -5891,6 +6107,12 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "BT?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5903,7 +6125,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ed8daf71-dfe1-4674-bbde-99e1e92cc59e")
-		(property "Reference" "#PWR0134"
+		(property "Reference" "#PWR?"
 			(at 170.18 69.85 0)
 			(effects
 				(font
@@ -5969,6 +6191,18 @@
 					(unit 1)
 				)
 			)
+			(project "regulateurs"
+				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
 )
