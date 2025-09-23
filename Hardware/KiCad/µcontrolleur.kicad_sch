@@ -4643,18 +4643,7 @@
 			)
 		)
 	)
-	(hierarchical_label "TIM1_CH2"
-		(shape input)
-		(at 116.84 102.87 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "0c222237-eb23-4d20-bb05-39fd869261c8")
-	)
-	(hierarchical_label "TIM2_CH1"
+	(hierarchical_label "PWM_Mot2_CH1"
 		(shape input)
 		(at 107.95 92.71 0)
 		(effects
@@ -4663,18 +4652,40 @@
 			)
 			(justify left)
 		)
-		(uuid "16f16b49-b682-4164-9160-e5801d735d17")
+		(uuid "07835028-883d-4035-a6fb-144da32452f1")
 	)
-	(hierarchical_label "TIM1_CH1"
+	(hierarchical_label "PWM_Mot2_CH2"
 		(shape input)
-		(at 116.84 100.33 0)
+		(at 115.57 82.55 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left)
 		)
-		(uuid "1a5c2bfe-eeb7-4f03-b05a-da49eac0bbce")
+		(uuid "1f0ec9f1-81cb-438c-b0a1-3d94e3c7ec52")
+	)
+	(hierarchical_label "PWM_Mot1_CH2"
+		(shape input)
+		(at 116.84 102.87 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "29536353-935e-4bac-ae52-b91a1b27d813")
+	)
+	(hierarchical_label "ENC1_PH2"
+		(shape input)
+		(at 129.54 148.59 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2e2e4a06-99c3-468c-bc52-8e188c4c7ef1")
 	)
 	(hierarchical_label "I2C1_SCL"
 		(shape input)
@@ -4698,16 +4709,27 @@
 		)
 		(uuid "3cf6ac30-5f60-45fa-91ba-c6a9a86fd956")
 	)
-	(hierarchical_label "TIM2_CH1"
+	(hierarchical_label "ENC2_PH2"
 		(shape input)
-		(at 115.57 82.55 0)
+		(at 129.54 166.37 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
-		(uuid "88ba49e6-eb7c-4f88-8b9e-13c603f78dd4")
+		(uuid "75d7df8d-b18a-431a-80d2-a6e9eeec41f9")
+	)
+	(hierarchical_label "ENC1_PH1"
+		(shape input)
+		(at 129.54 151.13 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ad802a1d-8d73-4ed2-9ea9-2d3f649a98d0")
 	)
 	(hierarchical_label "I2C1_SDA"
 		(shape input)
@@ -4731,6 +4753,17 @@
 		)
 		(uuid "ce2a269e-f4be-4c8b-a1dc-79156b3d290c")
 	)
+	(hierarchical_label "ENC2_PH1"
+		(shape input)
+		(at 129.54 168.91 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d12f4552-370c-45d7-a089-b1a682093e34")
+	)
 	(hierarchical_label "LIDAR_USART2_TX"
 		(shape input)
 		(at 109.22 85.09 0)
@@ -4752,6 +4785,17 @@
 			(justify right)
 		)
 		(uuid "dc10b32d-bf4f-4821-b4fa-02dfd6745a29")
+	)
+	(hierarchical_label "PWM_Mot1_CH1"
+		(shape input)
+		(at 116.84 100.33 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dfeb67e3-4325-4d5d-8ba1-ba977232a5f5")
 	)
 	(symbol
 		(lib_id "Device:C_Small")
