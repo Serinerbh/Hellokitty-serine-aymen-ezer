@@ -3464,12 +3464,6 @@
 		(uuid "18ae2905-eae1-4f0a-a9bd-529a2d09d6e5")
 	)
 	(junction
-		(at 250.19 107.95)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "25d71ce3-706a-466f-ba5a-7e91962b5643")
-	)
-	(junction
 		(at 50.8 54.61)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3743,16 +3737,6 @@
 	)
 	(wire
 		(pts
-			(xy 250.19 107.95) (xy 251.46 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1d59d49f-c68d-4fe9-90cd-ff2f5d93eda7")
-	)
-	(wire
-		(pts
 			(xy 189.23 110.49) (xy 189.23 118.11)
 		)
 		(stroke
@@ -4000,16 +3984,6 @@
 			(type default)
 		)
 		(uuid "55bc678e-4e5e-4bb8-b14a-4fead87f36f8")
-	)
-	(wire
-		(pts
-			(xy 250.19 105.41) (xy 250.19 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "561e8a10-476c-461f-9ba6-07a1357d5677")
 	)
 	(wire
 		(pts
@@ -4283,16 +4257,6 @@
 	)
 	(wire
 		(pts
-			(xy 237.49 107.95) (xy 240.03 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "83c61b19-1f9b-4c4d-9016-fdf1f197c7f7")
-	)
-	(wire
-		(pts
 			(xy 82.55 163.83) (xy 82.55 166.37)
 		)
 		(stroke
@@ -4300,16 +4264,6 @@
 			(type default)
 		)
 		(uuid "8783180c-fc57-4d09-b66d-1fa15b659a43")
-	)
-	(wire
-		(pts
-			(xy 247.65 107.95) (xy 250.19 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8896609e-0738-4e3c-b75f-569942cd8651")
 	)
 	(wire
 		(pts
@@ -4490,6 +4444,16 @@
 			(type default)
 		)
 		(uuid "a9523469-760c-4c16-be97-4463b0202ba0")
+	)
+	(wire
+		(pts
+			(xy 237.49 107.95) (xy 251.46 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aab572db-4548-403c-88fa-f87b7a170060")
 	)
 	(wire
 		(pts
@@ -5022,16 +4986,6 @@
 		(uuid "55552270-f370-4222-a9f2-72a95b85d7cd")
 	)
 	(label "NRST"
-		(at 250.19 105.41 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "56e8fbfa-48ed-43c6-b2bb-0a1fb4207804")
-	)
-	(label "NRST"
 		(at 25.4 73.66 0)
 		(effects
 			(font
@@ -5120,6 +5074,16 @@
 			(justify right bottom)
 		)
 		(uuid "f83e8350-7393-45e3-bfe7-54d54c3e34d2")
+	)
+	(label "NRST"
+		(at 237.49 107.95 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "fd44f317-e007-432f-b5bf-5c0c3eba590e")
 	)
 	(hierarchical_label "TOF1_XSHUT"
 		(shape input)
@@ -7200,74 +7164,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/34b8700b-c6ff-47d8-8eb6-69c52a76f872"
 					(reference "#PWR0108")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 243.84 107.95 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "7dc4201f-44c3-4f38-b9bf-ff1b657bedc5")
-		(property "Reference" "R15"
-			(at 243.84 101.6 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "R"
-			(at 243.84 104.14 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 243.84 109.728 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 243.84 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 243.84 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "55f13c0a-d9ca-432c-80af-0261be50c50a")
-		)
-		(pin "2"
-			(uuid "f2f7e4e1-831a-4ab4-895a-bf120133ce7a")
-		)
-		(instances
-			(project ""
-				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/31be01aa-b096-4901-8c4f-f2a7c3166097"
-					(reference "R15")
 					(unit 1)
 				)
 			)
@@ -9666,72 +9562,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/34b8700b-c6ff-47d8-8eb6-69c52a76f872"
 					(reference "#PWR0107")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3.3V")
-		(at 237.49 107.95 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "fd01d526-131a-4d2a-ae8a-e7a52e27d244")
-		(property "Reference" "#PWR014"
-			(at 241.3 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 236.22 106.172 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 237.49 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 237.49 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 237.49 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2b49f4b9-5134-4bce-9ea2-28ea54b21d4e")
-		)
-		(instances
-			(project ""
-				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/31be01aa-b096-4901-8c4f-f2a7c3166097"
-					(reference "#PWR014")
 					(unit 1)
 				)
 			)
