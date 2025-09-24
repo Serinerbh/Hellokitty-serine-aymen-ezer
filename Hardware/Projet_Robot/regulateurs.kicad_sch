@@ -2164,107 +2164,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:PWR_FLAG"
-			(power)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#FLG"
-				(at 0 1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Value" "PWR_FLAG"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Special symbol for telling ERC where power comes from"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "flag power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "PWR_FLAG_0_0"
-				(pin power_out line
-					(at 0 0 90)
-					(length 0)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "PWR_FLAG_0_1"
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 	)
 	(text "Régulateur 5V\n"
 		(exclude_from_sim no)
@@ -2303,12 +2202,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "14b079ec-6a90-46e0-ac16-d7ff2e6e8c13")
-	)
-	(junction
-		(at 99.06 67.31)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "32964860-26f4-40af-a127-0c7421584e9a")
 	)
 	(junction
 		(at 243.84 81.28)
@@ -2381,12 +2274,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f1b2dbe6-bd87-4256-bafc-b384eec43dca")
-	)
-	(junction
-		(at 267.97 58.42)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "f57e86ba-4842-4992-9915-adf596c4e74a")
 	)
 	(junction
 		(at 153.67 48.26)
@@ -2476,16 +2363,6 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 67.31) (xy 97.79 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "227555f9-8352-416a-b4bb-56a9e97635ff")
-	)
-	(wire
-		(pts
 			(xy 80.01 138.43) (xy 92.71 138.43)
 		)
 		(stroke
@@ -2536,7 +2413,7 @@
 	)
 	(bus
 		(pts
-			(xy 135.89 12.7) (xy 135.89 92.71)
+			(xy 135.89 16.51) (xy 135.89 96.52)
 		)
 		(stroke
 			(width 0)
@@ -2576,7 +2453,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 67.31) (xy 99.06 67.31)
+			(xy 100.33 67.31) (xy 97.79 67.31)
 		)
 		(stroke
 			(width 0)
@@ -2746,7 +2623,7 @@
 	)
 	(bus
 		(pts
-			(xy 12.7 92.71) (xy 135.89 92.71)
+			(xy 12.7 96.52) (xy 135.89 96.52)
 		)
 		(stroke
 			(width 0)
@@ -2856,16 +2733,6 @@
 	)
 	(wire
 		(pts
-			(xy 267.97 58.42) (xy 269.24 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c2cfa379-e268-4ddc-8632-8fe9e2705467")
-	)
-	(wire
-		(pts
 			(xy 243.84 58.42) (xy 255.27 58.42)
 		)
 		(stroke
@@ -2936,7 +2803,7 @@
 	)
 	(wire
 		(pts
-			(xy 265.43 58.42) (xy 267.97 58.42)
+			(xy 265.43 58.42) (xy 269.24 58.42)
 		)
 		(stroke
 			(width 0)
@@ -3113,12 +2980,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "R4")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -3139,7 +3000,7 @@
 				)
 			)
 		)
-		(property "Value" "20"
+		(property "Value" "20R"
 			(at 220.98 50.8 90)
 			(effects
 				(font
@@ -3199,12 +3060,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "R5")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -3226,7 +3081,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "22u"
+		(property "Value" "22uF"
 			(at 257.81 62.2362 0)
 			(effects
 				(font
@@ -3284,12 +3139,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/e2d0a223-2588-4552-8b74-bae61965aad2"
 					(reference "C20")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -3362,12 +3211,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/e2d0a223-2588-4552-8b74-bae61965aad2"
 					(reference "#PWR02")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
 					(unit 1)
 				)
 			)
@@ -3448,12 +3291,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -3531,12 +3368,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -3610,12 +3441,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/e2d0a223-2588-4552-8b74-bae61965aad2"
 					(reference "C4")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "C?")
 					(unit 1)
 				)
 			)
@@ -3697,12 +3522,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -3778,12 +3597,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/e2d0a223-2588-4552-8b74-bae61965aad2"
 					(reference "#PWR0127")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
 					(unit 1)
 				)
 			)
@@ -3864,12 +3677,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/e2d0a223-2588-4552-8b74-bae61965aad2"
 					(reference "C19")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "C7")
 					(unit 1)
 				)
 			)
@@ -3955,12 +3762,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "C6")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -4032,12 +3833,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "SW?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -4059,7 +3854,7 @@
 			)
 		)
 		(property "Value" "100K"
-			(at 142.748 63.754 0)
+			(at 140.208 63.754 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4119,12 +3914,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "R1")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -4145,7 +3934,7 @@
 				)
 			)
 		)
-		(property "Value" "4.7u"
+		(property "Value" "4.7uH"
 			(at 236.22 55.88 90)
 			(effects
 				(font
@@ -4202,12 +3991,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/e2d0a223-2588-4552-8b74-bae61965aad2"
 					(reference "L2")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "L?")
 					(unit 1)
 				)
 			)
@@ -4366,12 +4149,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "PS?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -4392,7 +4169,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100K"
+		(property "Value" "R_Small"
 			(at 155.448 63.754 0)
 			(effects
 				(font
@@ -4450,12 +4227,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/e2d0a223-2588-4552-8b74-bae61965aad2"
 					(reference "R10")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -4609,12 +4380,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "IC?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -4636,7 +4401,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1u"
+		(property "Value" "0.1uF"
 			(at 172.72 62.2362 0)
 			(effects
 				(font
@@ -4697,12 +4462,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "C3")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -4724,7 +4483,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "7K68"
+		(property "Value" "R_Small"
 			(at 246.38 87.6299 0)
 			(effects
 				(font
@@ -4785,12 +4544,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "R7")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -4811,7 +4564,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "22u"
+		(property "Value" "22uF"
 			(at 162.56 52.578 0)
 			(effects
 				(font
@@ -4869,12 +4622,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/e2d0a223-2588-4552-8b74-bae61965aad2"
 					(reference "C14")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -4956,12 +4703,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -5028,78 +4769,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 267.97 58.42 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "96006c49-3978-435b-96c5-eda5825f9481")
-		(property "Reference" "#FLG08"
-			(at 267.97 60.325 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 267.97 62.7495 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 267.97 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 267.97 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 267.97 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "7d5512c6-c3fc-4b19-9095-2eb826ad82a0")
-		)
-		(instances
-			(project "Projet_Robot"
-				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/9e9ae578-0fe2-489e-a2e9-26a89bc45f88"
-					(reference "#FLG08")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -5120,7 +4789,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1u"
+		(property "Value" "0.1uF"
 			(at 172.72 52.578 0)
 			(effects
 				(font
@@ -5178,12 +4847,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/e2d0a223-2588-4552-8b74-bae61965aad2"
 					(reference "C15")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "C2")
 					(unit 1)
 				)
 			)
@@ -5265,12 +4928,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -5346,12 +5003,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "C?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -5415,12 +5066,6 @@
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/9e9ae578-0fe2-489e-a2e9-26a89bc45f88"
 					(reference "#PWR024")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
 					(unit 1)
 				)
 			)
@@ -5496,12 +5141,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -5523,7 +5162,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "22u"
+		(property "Value" "22uF"
 			(at 246.38 62.2362 0)
 			(effects
 				(font
@@ -5581,12 +5220,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/e2d0a223-2588-4552-8b74-bae61965aad2"
 					(reference "C18")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "C4")
 					(unit 1)
 				)
 			)
@@ -5653,12 +5286,6 @@
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/9e9ae578-0fe2-489e-a2e9-26a89bc45f88"
 					(reference "#PWR025")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
 					(unit 1)
 				)
 			)
@@ -5742,12 +5369,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "R6")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -5821,12 +5442,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -5896,12 +5511,6 @@
 			(project "Projet micro"
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/e2d0a223-2588-4552-8b74-bae61965aad2"
 					(reference "#PWR03")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
 					(unit 1)
 				)
 			)
@@ -5983,12 +5592,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -6065,12 +5668,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/e2d0a223-2588-4552-8b74-bae61965aad2"
 					(reference "#PWR0120")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
 					(unit 1)
 				)
 			)
@@ -6154,78 +5751,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "R3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 99.06 67.31 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "eb27ff9a-39aa-4e0d-9fba-dbae47a288a3")
-		(property "Reference" "#FLG09"
-			(at 99.06 65.405 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 99.06 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 99.06 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 99.06 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 99.06 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0b9382e5-1d1e-448f-ac11-780504fd53f1")
-		)
-		(instances
-			(project "Projet_Robot"
-				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/9e9ae578-0fe2-489e-a2e9-26a89bc45f88"
-					(reference "#FLG09")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -6296,12 +5821,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "J?")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -6369,12 +5888,6 @@
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/9e9ae578-0fe2-489e-a2e9-26a89bc45f88"
 					(reference "BT1")
-					(unit 1)
-				)
-			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "BT?")
 					(unit 1)
 				)
 			)
@@ -6456,18 +5969,6 @@
 					(unit 1)
 				)
 			)
-			(project "regulateurs"
-				(path "/f59dd815-4ba9-415e-b839-e2d0d5228d08"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
 		)
 	)
-	(sheet_instances
-		(path "/"
-			(page "1")
-		)
-	)
-	(embedded_fonts no)
 )

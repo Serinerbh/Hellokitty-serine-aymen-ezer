@@ -1,0 +1,184 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "710b58ca-42d0-4d47-b767-37dfdeba880b")
+	(paper "A4")
+	(lib_symbols)
+	(text "Driver+conn moteur\n"
+		(exclude_from_sim no)
+		(at 149.098 23.114 0)
+		(effects
+			(font
+				(size 5.08 5.08)
+				(thickness 1.016)
+				(bold yes)
+			)
+		)
+		(uuid "d4ed9170-d7c3-49eb-9891-0469e6dffa3a")
+	)
+	(sheet
+		(at 138.43 63.5)
+		(size 26.67 10.16)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "01d05654-5912-4bcb-a5f5-2162637c79a2")
+		(property "Sheetname" "driver_moteur_2"
+			(at 138.43 62.7884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "driver_moteur.kicad_sch"
+			(at 138.43 74.2446 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "Enc_A1" input
+			(at 165.1 67.31 0)
+			(uuid "5dd68de9-3c5e-4a6c-b735-f8304e543791")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Enc_B1" input
+			(at 165.1 69.85 0)
+			(uuid "a0a4cb9b-1e00-4f01-9a68-cc0f7fa79ff9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Mot_FWD" input
+			(at 138.43 67.31 180)
+			(uuid "678a5a95-fa4a-4249-a29b-86442a80c640")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Mot_REV" input
+			(at 138.43 69.85 180)
+			(uuid "01d945bd-abc1-45ce-aef8-7bbbd00c3871")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "Projet_Robot"
+				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/c369f4f1-9415-4017-9294-312c11921a7a"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 138.43 43.18)
+		(size 26.67 10.16)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "62173d32-03e9-437b-8b8c-bf60b6b6a071")
+		(property "Sheetname" "driver_moteur_1"
+			(at 138.43 42.4684 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "driver_moteur.kicad_sch"
+			(at 138.43 53.9246 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "Enc_A1" input
+			(at 165.1 46.99 0)
+			(uuid "67e0a8c1-cfd9-47ca-9985-77c5e79f98e3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Enc_B1" input
+			(at 165.1 49.53 0)
+			(uuid "90ed7599-ebe3-4fd1-ac5f-9f7b35946c31")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Mot_FWD" input
+			(at 138.43 46.99 180)
+			(uuid "63236905-b893-4772-8e3c-19db248cc251")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Mot_REV" input
+			(at 138.43 49.53 180)
+			(uuid "ad069399-4d83-4c5f-aac4-ffedd3b2c1c5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "Projet_Robot"
+				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/c369f4f1-9415-4017-9294-312c11921a7a"
+					(page "6")
+				)
+			)
+		)
+	)
+)
