@@ -3494,12 +3494,6 @@
 		(uuid "4dcd9659-ca3e-46c6-9904-8a77a320b897")
 	)
 	(junction
-		(at 20.32 95.25)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5407ec94-bb2c-45c4-b4f2-96fda0e0c027")
-	)
-	(junction
 		(at 44.45 135.89)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3534,12 +3528,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7eeb186e-1a67-479d-b84a-6149f43053ed")
-	)
-	(junction
-		(at 25.4 95.25)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "92e64af4-1164-46a5-9061-fb3c254d9e40")
 	)
 	(junction
 		(at 90.17 46.99)
@@ -3582,10 +3570,6 @@
 		(uuid "01f37b2d-c527-4dcb-8332-1f17966f69c9")
 	)
 	(no_connect
-		(at 64.77 133.35)
-		(uuid "1378360e-a9cc-4029-8de7-45f206b933fd")
-	)
-	(no_connect
 		(at 64.77 153.67)
 		(uuid "1d5eebe4-d5ab-4c4a-ba39-74d6b82408ab")
 	)
@@ -3598,12 +3582,8 @@
 		(uuid "339d24c8-0830-40e1-9a6c-66891bab4c54")
 	)
 	(no_connect
-		(at 64.77 130.81)
-		(uuid "34510a62-7ff4-457c-8aef-4e4268d51cfd")
-	)
-	(no_connect
 		(at 64.77 107.95)
-		(uuid "3a8bead8-be4d-44b1-a002-5c07305ec269")
+		(uuid "4179f065-a473-4bd8-a59c-724b2faefaa7")
 	)
 	(no_connect
 		(at 64.77 140.97)
@@ -3626,10 +3606,6 @@
 		(uuid "6335fef6-2cce-4ddd-9b2c-7fe1e858c36f")
 	)
 	(no_connect
-		(at 64.77 128.27)
-		(uuid "7abfb78c-2abe-43c7-b5de-e3bf92c23d22")
-	)
-	(no_connect
 		(at 224.79 49.53)
 		(uuid "95cea7d3-2e91-4309-8589-a966a30be4c6")
 	)
@@ -3640,10 +3616,6 @@
 	(no_connect
 		(at 222.25 52.07)
 		(uuid "a198d631-25c9-45ec-b28f-4c0f0d78a3a2")
-	)
-	(no_connect
-		(at 64.77 125.73)
-		(uuid "b8e9887f-ddbe-4b15-9ac9-54d16b19c6bd")
 	)
 	(no_connect
 		(at 64.77 123.19)
@@ -3666,16 +3638,6 @@
 			(type default)
 		)
 		(uuid "015c63a1-d9a4-4f5b-8456-c6b0a6de807f")
-	)
-	(wire
-		(pts
-			(xy 20.32 95.25) (xy 25.4 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0447579a-4f51-4a4e-81f5-aeea15a5a929")
 	)
 	(wire
 		(pts
@@ -5078,6 +5040,17 @@
 		)
 		(uuid "07835028-883d-4035-a6fb-144da32452f1")
 	)
+	(hierarchical_label "tof2_GPIO"
+		(shape input)
+		(at 64.77 128.27 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "143c542c-8061-426f-acf7-5bcd8f49010b")
+	)
 	(hierarchical_label "PWM_Mot2_CH2"
 		(shape input)
 		(at 109.22 82.55 0)
@@ -5132,6 +5105,28 @@
 			(justify right)
 		)
 		(uuid "3cf6ac30-5f60-45fa-91ba-c6a9a86fd956")
+	)
+	(hierarchical_label "tof4_GPIO"
+		(shape input)
+		(at 64.77 133.35 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "5c49ccfd-38b4-43fb-986b-631dd664cba7")
+	)
+	(hierarchical_label "tof1_GPIO"
+		(shape input)
+		(at 64.77 125.73 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "72dde653-494c-4727-87ec-bbc40add78de")
 	)
 	(hierarchical_label "ENC2_PH2"
 		(shape input)
@@ -5220,6 +5215,17 @@
 			(justify right)
 		)
 		(uuid "dc10b32d-bf4f-4821-b4fa-02dfd6745a29")
+	)
+	(hierarchical_label "tof3_GPIO"
+		(shape input)
+		(at 64.77 130.81 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "dd361936-7a85-4bac-a141-80a976fa9d89")
 	)
 	(hierarchical_label "PWM_Mot1_CH1"
 		(shape input)
