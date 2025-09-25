@@ -3061,7 +3061,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 163.83 63.5 0)
 			(effects
 				(font
@@ -3147,7 +3147,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 220.98 53.34 0)
 			(effects
 				(font
@@ -3235,7 +3235,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 255.27 60.96 0)
 			(effects
 				(font
@@ -3815,7 +3815,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 251.46 73.66 0)
 			(effects
 				(font
@@ -3903,7 +3903,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 227.33 55.88 0)
 			(effects
 				(font
@@ -4067,7 +4067,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 149.86 62.23 0)
 			(effects
 				(font
@@ -4401,7 +4401,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 153.67 62.23 0)
 			(effects
 				(font
@@ -4487,7 +4487,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SOT65P280X100-8N"
+		(property "Footprint" ""
 			(at 214.63 148.26 0)
 			(effects
 				(font
@@ -4645,7 +4645,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 170.18 60.96 0)
 			(effects
 				(font
@@ -4733,7 +4733,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 243.84 86.36 0)
 			(effects
 				(font
@@ -4820,7 +4820,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 161.29 50.8 0)
 			(effects
 				(font
@@ -5129,7 +5129,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 170.18 50.8 0)
 			(effects
 				(font
@@ -5532,7 +5532,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 243.84 60.96 0)
 			(effects
 				(font
@@ -5690,7 +5690,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 251.46 81.28 0)
 			(effects
 				(font
@@ -6102,7 +6102,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 234.95 81.28 0)
 			(effects
 				(font

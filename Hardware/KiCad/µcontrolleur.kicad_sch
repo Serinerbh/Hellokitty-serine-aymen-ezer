@@ -5634,7 +5634,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "KiCad:SW Push 1P1T NO 6x6mm H9.5mm"
 			(at 256.54 102.87 0)
 			(effects
 				(font
@@ -6820,7 +6820,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "2k3"
 			(at 163.83 132.0799 0)
 			(effects
 				(font
@@ -7210,7 +7210,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "4k5"
 			(at 149.86 132.0799 0)
 			(effects
 				(font
@@ -7455,7 +7455,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.we-online.com/en/components/products/datasheet/150060SS75003.pdf"
 			(at 208.28 120.65 90)
 			(effects
 				(font
@@ -7758,7 +7758,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.we-online.com/en/components/products/datasheet/150060GS55040.pdf"
 			(at 161.29 120.65 90)
 			(effects
 				(font
@@ -7962,7 +7962,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "600"
 			(at 179.07 132.0799 0)
 			(effects
 				(font
@@ -8449,7 +8449,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.we-online.com/en/components/products/datasheet/150060GS55040.pdf"
 			(at 189.23 120.65 90)
 			(effects
 				(font
@@ -8625,7 +8625,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.we-online.com/en/components/products/datasheet/150060GS55040.pdf"
 			(at 147.32 120.65 90)
 			(effects
 				(font
@@ -8843,7 +8843,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "KiCad:SW Push 1P1T NO 6x6mm H9.5mm"
 			(at 264.16 144.78 0)
 			(effects
 				(font
@@ -9215,7 +9215,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.we-online.com/en/components/products/datasheet/150060GS55040.pdf"
 			(at 176.53 120.65 90)
 			(effects
 				(font
