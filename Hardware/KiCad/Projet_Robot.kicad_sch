@@ -207,16 +207,6 @@
 	)
 	(wire
 		(pts
-			(xy 165.1 71.12) (xy 220.98 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e4084582-90df-4a81-b005-b3dc2e92a574")
-	)
-	(wire
-		(pts
 			(xy 165.1 68.58) (xy 220.98 68.58)
 		)
 		(stroke
@@ -247,7 +237,7 @@
 	)
 	(wire
 		(pts
-			(xy 165.1 73.66) (xy 220.98 73.66)
+			(xy 165.1 71.12) (xy 220.98 71.12)
 		)
 		(stroke
 			(width 0)
@@ -383,16 +373,6 @@
 				(justify right)
 			)
 		)
-		(pin "LIDAR_USART2_TX" input
-			(at 165.1 71.12 0)
-			(uuid "4c92a4e2-b2b8-4799-91a2-d3b7e8137c90")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "Bluetooth_USART3_RX" input
 			(at 165.1 80.01 0)
 			(uuid "498d886e-1514-4c54-a3e6-72d853ed4f3d")
@@ -514,7 +494,7 @@
 			)
 		)
 		(pin "M_CTR" input
-			(at 165.1 73.66 0)
+			(at 165.1 71.12 0)
 			(uuid "61202281-a60b-4c8c-a66f-c99c80a13dd5")
 			(effects
 				(font
@@ -676,16 +656,6 @@
 				(justify left)
 			)
 		)
-		(pin "LIDAR_USART2_TX" input
-			(at 220.98 71.12 180)
-			(uuid "d00015c3-0b6f-43b4-ba52-35f925710067")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "Bluetooth_USART3_RX" input
 			(at 220.98 80.01 180)
 			(uuid "c4bbe6d5-40a5-4950-b556-5c9c6872f769")
@@ -727,7 +697,7 @@
 			)
 		)
 		(pin "M_CTR" input
-			(at 220.98 73.66 180)
+			(at 220.98 71.12 180)
 			(uuid "abac4411-6cab-403a-a3d3-40f343c3adc9")
 			(effects
 				(font
