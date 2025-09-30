@@ -1759,7 +1759,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "40325dbf-14b9-4554-bbf3-81cf019504a9")
-		(property "Reference" "U2"
+		(property "Reference" "M2"
 			(at 129.1433 88.9 0)
 			(effects
 				(font
@@ -1834,11 +1834,11 @@
 		(instances
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/1388fddc-2e50-4e98-ba2d-1c17e87787d8"
-					(reference "U3")
+					(reference "M1")
 					(unit 1)
 				)
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/aa5a4c0f-7d13-4543-a78f-f39351de5880"
-					(reference "U2")
+					(reference "M2")
 					(unit 1)
 				)
 			)

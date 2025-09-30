@@ -4035,7 +4035,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3d2e83e8-0f2a-4b98-a389-5ec189eb6489")
-		(property "Reference" "batterie"
+		(property "Reference" "batterie1"
 			(at 74.93 127 0)
 			(effects
 				(font
@@ -4090,7 +4090,7 @@
 		(instances
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/9e9ae578-0fe2-489e-a2e9-26a89bc45f88"
-					(reference "batterie")
+					(reference "batterie1")
 					(unit 1)
 				)
 			)
@@ -6299,7 +6299,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ebb34add-9f9e-454b-ba9e-f8515dcc0976")
-		(property "Reference" "alim_batt"
+		(property "Reference" "alim_batt1"
 			(at 101.6 124.4599 0)
 			(effects
 				(font
@@ -6353,7 +6353,7 @@
 		(instances
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/9e9ae578-0fe2-489e-a2e9-26a89bc45f88"
-					(reference "alim_batt")
+					(reference "alim_batt1")
 					(unit 1)
 				)
 			)
