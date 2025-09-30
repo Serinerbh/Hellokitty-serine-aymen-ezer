@@ -2498,8 +2498,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9c67239b-c45e-4c4a-885c-1f67b72adb2a")
-		(property "Reference" "J2"
-			(at 201.93 82.55 0)
+		(property "Reference" "Motor2"
+			(at 201.93 83.8199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2565,11 +2565,11 @@
 		(instances
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/1388fddc-2e50-4e98-ba2d-1c17e87787d8"
-					(reference "J201")
+					(reference "Motor1")
 					(unit 1)
 				)
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/aa5a4c0f-7d13-4543-a78f-f39351de5880"
-					(reference "J2")
+					(reference "Motor2")
 					(unit 1)
 				)
 			)

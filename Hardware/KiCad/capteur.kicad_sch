@@ -3010,7 +3010,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0a887ee1-7f94-4d41-9565-60cb6594e04b")
-		(property "Reference" "J7"
+		(property "Reference" "TOF4"
 			(at 273.05 40.6399 0)
 			(effects
 				(font
@@ -3076,7 +3076,7 @@
 		(instances
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/76b000bd-d8d0-4821-bef4-3e858ee71b1c"
-					(reference "J7")
+					(reference "TOF4")
 					(unit 1)
 				)
 			)
@@ -3837,7 +3837,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "55bf4cd1-8709-456d-949a-3f9358dc6efd")
-		(property "Reference" "J4"
+		(property "Reference" "TOF2"
 			(at 198.12 40.6399 0)
 			(effects
 				(font
@@ -3903,7 +3903,7 @@
 		(instances
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/76b000bd-d8d0-4821-bef4-3e858ee71b1c"
-					(reference "J4")
+					(reference "TOF2")
 					(unit 1)
 				)
 			)
@@ -4055,7 +4055,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5e3d8606-2d9d-47ce-8c41-3cd3adf89a7a")
-		(property "Reference" "J3"
+		(property "Reference" "TOF1"
 			(at 161.29 40.6399 0)
 			(effects
 				(font
@@ -4121,7 +4121,7 @@
 		(instances
 			(project ""
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/76b000bd-d8d0-4821-bef4-3e858ee71b1c"
-					(reference "J3")
+					(reference "TOF1")
 					(unit 1)
 				)
 			)
@@ -4766,7 +4766,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "926033d9-c89d-4c70-bdaa-7875b68b84eb")
-		(property "Reference" "J9"
+		(property "Reference" "Bluetooth1"
 			(at 208.28 92.7099 0)
 			(effects
 				(font
@@ -4832,7 +4832,7 @@
 		(instances
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/76b000bd-d8d0-4821-bef4-3e858ee71b1c"
-					(reference "J9")
+					(reference "Bluetooth1")
 					(unit 1)
 				)
 			)
@@ -5059,7 +5059,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a3d6cb7e-cafc-4ba5-bb01-36db38330600")
-		(property "Reference" "J6"
+		(property "Reference" "TOF3"
 			(at 238.76 40.6399 0)
 			(effects
 				(font
@@ -5125,7 +5125,7 @@
 		(instances
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/76b000bd-d8d0-4821-bef4-3e858ee71b1c"
-					(reference "J6")
+					(reference "TOF3")
 					(unit 1)
 				)
 			)
@@ -5281,7 +5281,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ab799534-03cc-43ae-9a3a-1f5c58aeb254")
-		(property "Reference" "J1"
+		(property "Reference" "Lidar1"
 			(at 73.66 152.3999 0)
 			(effects
 				(font
@@ -5344,7 +5344,7 @@
 		(instances
 			(project ""
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/76b000bd-d8d0-4821-bef4-3e858ee71b1c"
-					(reference "J1")
+					(reference "Lidar1")
 					(unit 1)
 				)
 			)

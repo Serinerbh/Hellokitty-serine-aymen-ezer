@@ -6061,7 +6061,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_ISO7380_Pad"
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via"
 			(at 87.63 182.88 0)
 			(effects
 				(font
@@ -6110,7 +6110,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1ef2a6f1-c1bf-458f-8a86-f67bdc138a66")
-		(property "Reference" "SW1"
+		(property "Reference" "B-Res"
 			(at 256.54 100.33 0)
 			(effects
 				(font
@@ -6162,7 +6162,7 @@
 		(instances
 			(project ""
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/31be01aa-b096-4901-8c4f-f2a7c3166097"
-					(reference "SW1")
+					(reference "B-Res")
 					(unit 1)
 				)
 			)
@@ -6565,7 +6565,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_ISO7380_Pad"
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via"
 			(at 95.25 182.88 0)
 			(effects
 				(font
@@ -9381,7 +9381,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_ISO7380_Pad"
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via"
 			(at 80.01 182.88 0)
 			(effects
 				(font
@@ -9659,7 +9659,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cf2dd5d2-e670-49c3-a954-b4326e259e7b")
-		(property "Reference" "SW3"
+		(property "Reference" "ch/sou"
 			(at 264.16 142.24 0)
 			(effects
 				(font
@@ -9711,7 +9711,7 @@
 		(instances
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/31be01aa-b096-4901-8c4f-f2a7c3166097"
-					(reference "SW3")
+					(reference "ch/sou")
 					(unit 1)
 				)
 			)
@@ -10040,7 +10040,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_ISO7380_Pad"
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via"
 			(at 72.39 182.88 0)
 			(effects
 				(font
