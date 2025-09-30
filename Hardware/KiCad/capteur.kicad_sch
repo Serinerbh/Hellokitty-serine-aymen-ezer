@@ -4156,7 +4156,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Battery:SOT65P280X100-8N"
 			(at 71.12 153.67 0)
 			(effects
 				(font
@@ -4514,7 +4514,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "adx:ADXL343BCCZRL"
+		(property "Footprint" "Package_LGA:LGA-14_3x5mm_P0.8mm_LayoutBorder1x6y"
 			(at 92.71 145.72 0)
 			(effects
 				(font
