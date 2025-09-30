@@ -1490,6 +1490,107 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:PWR_FLAG"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#FLG"
+				(at 0 1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "flag power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(text "Lidar\n"
 		(exclude_from_sim no)
@@ -1546,6 +1647,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "303ce245-3044-4d7f-b80d-f9497e0b3003")
+	)
+	(junction
+		(at 144.78 45.72)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "77f98dee-af1f-4625-a1ec-2c3442f06576")
 	)
 	(junction
 		(at 30.48 76.2)
@@ -1605,7 +1712,7 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 48.26) (xy 153.67 48.26)
+			(xy 152.4 49.53) (xy 153.67 49.53)
 		)
 		(stroke
 			(width 0)
@@ -1825,7 +1932,7 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 45.72) (xy 153.67 45.72)
+			(xy 143.51 45.72) (xy 144.78 45.72)
 		)
 		(stroke
 			(width 0)
@@ -1993,6 +2100,16 @@
 		)
 		(uuid "bc6f2b33-fa92-4b06-b6a5-5d990e0640e5")
 	)
+	(wire
+		(pts
+			(xy 144.78 45.72) (xy 153.67 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c6b14f14-3d9a-4c76-9be8-fac5e6547ff2")
+	)
 	(bus
 		(pts
 			(xy 134.62 121.92) (xy 134.62 198.12)
@@ -2052,6 +2169,16 @@
 			(type default)
 		)
 		(uuid "de8b5679-2a92-4de8-9df3-3df4560c9eba")
+	)
+	(wire
+		(pts
+			(xy 153.67 49.53) (xy 153.67 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e6f28018-9680-48ce-a74b-dbe883406cfd")
 	)
 	(wire
 		(pts
@@ -2203,7 +2330,7 @@
 	)
 	(hierarchical_label "TOF1_XSHUT"
 		(shape input)
-		(at 152.4 48.26 180)
+		(at 152.4 49.53 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4645,6 +4772,73 @@
 			(project "Projet micro"
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/9d7bac01-e44b-4a45-81de-ba55682990be"
 					(reference "IC1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 144.78 45.72 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ed65309d-d647-4ce0-ac2f-7853cd7da6e6")
+		(property "Reference" "#FLG03"
+			(at 144.78 47.625 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 144.78 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 144.78 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 144.78 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 144.78 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dbce4e4e-34d3-4f5a-969c-0444b6905fb9")
+		)
+		(instances
+			(project ""
+				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/76b000bd-d8d0-4821-bef4-3e858ee71b1c"
+					(reference "#FLG03")
 					(unit 1)
 				)
 			)
