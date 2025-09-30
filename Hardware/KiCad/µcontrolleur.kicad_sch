@@ -3576,6 +3576,10 @@
 		(uuid "4179f065-a473-4bd8-a59c-724b2faefaa7")
 	)
 	(no_connect
+		(at 64.77 97.79)
+		(uuid "5520cf46-b710-4359-a0f4-9d21f2d45765")
+	)
+	(no_connect
 		(at 100.33 87.63)
 		(uuid "68e241d4-45de-462f-87db-fd0eea8376da")
 	)
@@ -3598,6 +3602,10 @@
 	(no_connect
 		(at 222.25 52.07)
 		(uuid "a198d631-25c9-45ec-b28f-4c0f0d78a3a2")
+	)
+	(no_connect
+		(at 64.77 123.19)
+		(uuid "cad5f54f-4bc9-40b6-a079-8359237b0680")
 	)
 	(no_connect
 		(at 64.77 153.67)
@@ -4946,16 +4954,6 @@
 			(type default)
 		)
 		(uuid "fd2d4adc-4dda-4382-941d-986291b63f50")
-	)
-	(wire
-		(pts
-			(xy 59.69 123.19) (xy 64.77 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ff9e49f9-5006-42a3-aaa5-23ca9e654bb5")
 	)
 	(label "VCP_TX"
 		(at 226.06 64.77 0)
