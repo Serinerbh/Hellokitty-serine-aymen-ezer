@@ -4215,7 +4215,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Inductor_SMD:L_APV_ANR5040"
 			(at 236.22 58.42 0)
 			(effects
 				(font
@@ -4301,7 +4301,7 @@
 				)
 			)
 		)
-		(property "Footprint" "adx:SOT95P280X125-5N"
+		(property "Footprint" "Package_SO:TSOP-5_1.65x3.05mm_P0.95mm"
 			(at 87.63 159.69 0)
 			(effects
 				(font
