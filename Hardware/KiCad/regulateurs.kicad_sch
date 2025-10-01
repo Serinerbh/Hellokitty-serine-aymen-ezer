@@ -4549,7 +4549,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:TSOT-23"
+		(property "Footprint" "Package_TO_SOT_SMD:TSOT-23-8_HandSoldering"
 			(at 214.63 148.26 0)
 			(effects
 				(font
