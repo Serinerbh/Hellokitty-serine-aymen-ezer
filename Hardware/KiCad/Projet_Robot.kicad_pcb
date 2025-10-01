@@ -12864,7 +12864,7 @@
 			)
 		)
 		(property "Value" "MountingHole_Pad"
-			(at 0 4.15 0)
+			(at 3.5 2.5 0)
 			(layer "F.Fab")
 			(uuid "a152cb49-e6d5-4a80-bd4d-e0a56e6f6819")
 			(effects
