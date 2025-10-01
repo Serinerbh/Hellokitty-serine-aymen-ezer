@@ -1756,12 +1756,6 @@
 		(uuid "303ce245-3044-4d7f-b80d-f9497e0b3003")
 	)
 	(junction
-		(at 71.12 92.71)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4bbb810e-9758-488e-ab3c-252a3baaf291")
-	)
-	(junction
 		(at 71.12 40.64)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1772,12 +1766,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "77f98dee-af1f-4625-a1ec-2c3442f06576")
-	)
-	(junction
-		(at 105.41 63.5)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9e6885c6-3de2-4970-8278-6c74d0f0fce0")
 	)
 	(junction
 		(at 30.48 76.2)
@@ -1989,7 +1977,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 93.98) (xy 71.12 92.71)
+			(xy 71.12 91.44) (xy 71.12 93.98)
 		)
 		(stroke
 			(width 0)
@@ -2019,17 +2007,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 92.71) (xy 71.12 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5fc06e1b-d7b4-424a-ab36-ca87f8cea33d")
-	)
-	(wire
-		(pts
-			(xy 96.52 63.5) (xy 105.41 63.5)
+			(xy 96.52 63.5) (xy 110.49 63.5)
 		)
 		(stroke
 			(width 0)
@@ -2136,16 +2114,6 @@
 			(type default)
 		)
 		(uuid "89e7f8c7-e85a-4fb4-9e33-755b72cfb507")
-	)
-	(wire
-		(pts
-			(xy 105.41 63.5) (xy 110.49 63.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8abb490d-ae69-445e-8c53-ef0f7cd211fe")
 	)
 	(wire
 		(pts
@@ -3690,138 +3658,6 @@
 			(project ""
 				(path "/bd05b7a9-402f-4660-98a3-5b54bc637b02/9d7bac01-e44b-4a45-81de-ba55682990be"
 					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 105.41 63.5 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "49896549-c815-4789-b595-589366e9c88c")
-		(property "Reference" "TP5"
-			(at 107.95 58.9279 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 107.95 61.4679 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
-			(at 110.49 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 110.49 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 105.41 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "13bd9f98-18f2-4ca3-be14-396da481ac6c")
-		)
-		(instances
-			(project ""
-				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/76b000bd-d8d0-4821-bef4-3e858ee71b1c"
-					(reference "TP5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 71.12 92.71 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "4a538f39-d72f-4938-8ed5-2de2a8b69465")
-		(property "Reference" "TP9"
-			(at 67.818 87.63 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 67.818 90.17 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
-			(at 71.12 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 71.12 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 71.12 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ca288a72-4352-40c7-9585-2fcb24bbc83f")
-		)
-		(instances
-			(project ""
-				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41/76b000bd-d8d0-4821-bef4-3e858ee71b1c"
-					(reference "TP9")
 					(unit 1)
 				)
 			)
