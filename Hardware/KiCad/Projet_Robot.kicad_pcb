@@ -7631,6 +7631,7 @@
 		(property "Reference" "D4"
 			(at 0 -1.43 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "f4d5a7f0-9f29-4c7f-9a40-ed20315bbf21")
 			(effects
 				(font
@@ -7642,6 +7643,7 @@
 		(property "Value" "LED_Small"
 			(at 0 1.43 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "8647dc46-46aa-48ff-a93e-487c1320f00f")
 			(effects
 				(font
@@ -8225,6 +8227,7 @@
 		(property "Reference" "C23"
 			(at 0 -1.05 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "ad87339f-cd15-4d09-99b2-4fa00853072d")
 			(effects
 				(font
@@ -8234,8 +8237,9 @@
 			)
 		)
 		(property "Value" "1 uF"
-			(at 0 1.05 0)
+			(at -0.025 1.06 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "fada7b62-7fc2-4108-b287-de377411b121")
 			(effects
 				(font
@@ -8354,7 +8358,7 @@
 			(uuid "5087f6bd-5afe-4250-b661-e1b9eb4b72af")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 -0.68 0)
+			(at 0.045 -0.33 0)
 			(layer "F.Fab")
 			(uuid "a2c3c66e-4e86-41ef-a2c5-06cc99a879bb")
 			(effects
@@ -15054,6 +15058,7 @@
 		(property "Reference" "C24"
 			(at 0 -1.05 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "997fd779-8a3e-47cf-9fd6-a370e00c241b")
 			(effects
 				(font
@@ -15065,6 +15070,7 @@
 		(property "Value" "1 uF"
 			(at 0 1.05 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "85ac6607-13ca-4d73-885a-0d2e02f579fb")
 			(effects
 				(font
@@ -15183,7 +15189,7 @@
 			(uuid "f0fd7a9d-44f5-4241-977c-9c41473b87d5")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 -0.68 0)
+			(at 0 -0.37 0)
 			(layer "F.Fab")
 			(uuid "ef9030d5-fdec-4cc0-a5e9-63ef858971d8")
 			(effects
@@ -17960,12 +17966,13 @@
 	(footprint "Resistor_SMD:R_0603_1608Metric"
 		(layer "F.Cu")
 		(uuid "b58cad51-4933-4a44-9cac-e6092d8657a8")
-		(at 240.21 78.21)
+		(at 186.74 94.27)
 		(descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R7"
 			(at 0 -1.5 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "c144722f-9afd-408b-bac8-1a4145964337")
 			(effects
 				(font
@@ -17977,6 +17984,7 @@
 		(property "Value" "100K"
 			(at 0 1.43 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "009fd518-f4c0-4ddc-b311-87eaf7aaf7af")
 			(effects
 				(font
@@ -18115,7 +18123,7 @@
 			(uuid "a62c083e-8943-4b83-bbd8-7fbfe114cf02")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 1.475 5.8 0)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "ea340b9d-af0f-420e-92d2-681815d64613")
 			(effects
@@ -21775,6 +21783,7 @@
 		(property "Reference" "R6"
 			(at 0 -1.43 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "7bfd1e68-ceb2-4101-bcd8-f9f914e2dd88")
 			(effects
 				(font
@@ -21786,6 +21795,7 @@
 		(property "Value" "4k5"
 			(at 0 1.43 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "87ccd726-7e73-4baa-9fb6-122a913e4a53")
 			(effects
 				(font
