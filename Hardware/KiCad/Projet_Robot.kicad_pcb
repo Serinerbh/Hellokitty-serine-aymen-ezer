@@ -2325,11 +2325,19 @@
 		(layer "F.Cu")
 		(uuid "18bb5599-cf9a-42e3-9f9c-28a208b793d2")
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		(at 219.685 85.9)
 		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C15"
 			(at -2.025 2.62 0)
+=======
+		(at 210 67.165 -90)
+		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
+		(tags "capacitor")
+		(property "Reference" "C15"
+			(at 0 -1.05 90)
+>>>>>>> Stashed changes
 =======
 		(at 210 67.165 -90)
 		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
@@ -2470,7 +2478,11 @@
 		)
 		(fp_text user "${REFERENCE}"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 			(at 0 -0.32 0)
+=======
+			(at 0 0 90)
+>>>>>>> Stashed changes
 =======
 			(at 0 0 90)
 >>>>>>> Stashed changes
@@ -21080,7 +21092,11 @@
 		(layer "F.Cu")
 		(uuid "d952d81c-c573-4bbb-afd0-db2662f35e9a")
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		(at 193.43 64.27)
+=======
+		(at 193 63.05 90)
+>>>>>>> Stashed changes
 =======
 		(at 193 63.05 90)
 >>>>>>> Stashed changes
@@ -23232,6 +23248,14 @@
 		(end 196.66 61.89)
 		(width 0.2)
 =======
+		(start 219.835 78)
+		(end 219.994 78)
+		(width 0.1)
+		(layer "F.Cu")
+		(net 2)
+		(uuid "4b8ef99f-97f5-47eb-a254-3c533b872604")
+	)
+	(segment
 		(start 219.835 78)
 		(end 219.994 78)
 		(width 0.1)
