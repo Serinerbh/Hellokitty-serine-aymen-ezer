@@ -5551,39 +5551,6 @@
 		)
 		(uuid "fd44f317-e007-432f-b5bf-5c0c3eba590e")
 	)
-	(hierarchical_label "ENC2_PH1"
-		(shape input)
-		(at 59.69 118.11 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "032b01cb-5ebf-4db4-8812-67164db9e80f")
-	)
-	(hierarchical_label "PWM_Mot2_CH2"
-		(shape input)
-		(at 109.22 110.49 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "05c29f9a-993e-409d-9f92-5add4e89c353")
-	)
-	(hierarchical_label "ENC1_PH2"
-		(shape input)
-		(at 114.3 97.79 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "09f6e140-f2c7-4a04-92aa-904899e564e6")
-	)
 	(hierarchical_label "ACC_INT1"
 		(shape input)
 		(at 59.69 151.13 180)
@@ -5639,17 +5606,6 @@
 		)
 		(uuid "2bca4158-b07a-47b4-8076-dbfe5e9c934a")
 	)
-	(hierarchical_label "ENC1_PH1"
-		(shape input)
-		(at 114.3 95.25 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "2f50ac0c-7e28-43e1-a8f1-385ce67da2ed")
-	)
 	(hierarchical_label "tof3_GPIO"
 		(shape input)
 		(at 63.5 133.35 180)
@@ -5683,7 +5639,18 @@
 		)
 		(uuid "3cf6ac30-5f60-45fa-91ba-c6a9a86fd956")
 	)
-	(hierarchical_label "ENC2_PH2"
+	(hierarchical_label "ENC1_PH1"
+		(shape input)
+		(at 109.22 80.01 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "44c339ce-fc13-47df-8b2a-4457bb98fddc")
+	)
+	(hierarchical_label "PWM_Mot2_CH2"
 		(shape input)
 		(at 59.69 120.65 180)
 		(effects
@@ -5692,18 +5659,7 @@
 			)
 			(justify right)
 		)
-		(uuid "46ed0558-94e2-4f20-a89a-15640218de1d")
-	)
-	(hierarchical_label "PWM_Mot1_CH2"
-		(shape input)
-		(at 109.22 82.55 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "4f3d532d-7763-4e1c-9643-89bbbec7e95b")
+		(uuid "536a61a9-6ce7-420f-bf54-ffc805d7b2a9")
 	)
 	(hierarchical_label "TOF4_XSHUT"
 		(shape input)
@@ -5716,28 +5672,6 @@
 		)
 		(uuid "618c7fe6-dcbf-4d03-85a5-bb27a5d1bdf2")
 	)
-	(hierarchical_label "PWM_Mot1_CH1"
-		(shape input)
-		(at 109.22 80.01 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "637c7c2e-ea39-496b-8a22-67ef175ed847")
-	)
-	(hierarchical_label "PWM_Mot2_CH1"
-		(shape input)
-		(at 109.22 107.95 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "71cb992c-be2b-45e5-b1b2-f1014167df5a")
-	)
 	(hierarchical_label "ACC_INT2"
 		(shape input)
 		(at 59.69 148.59 180)
@@ -5748,6 +5682,28 @@
 			(justify right)
 		)
 		(uuid "7d5ff8db-0090-4525-b7ba-b0acc8f6ab13")
+	)
+	(hierarchical_label "PWM_Mot1_CH2"
+		(shape input)
+		(at 114.3 97.79 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "80bbfe36-276f-4904-9075-d2f9b37979f6")
+	)
+	(hierarchical_label "ENC2_PH1"
+		(shape input)
+		(at 109.22 107.95 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "820e6ada-b5b5-4f75-a37a-75a9b1853ee9")
 	)
 	(hierarchical_label "I2C1_SDA"
 		(shape input)
@@ -5782,6 +5738,17 @@
 		)
 		(uuid "d47397c9-6291-457a-be79-eee3c259c47b")
 	)
+	(hierarchical_label "ENC2_PH2"
+		(shape input)
+		(at 109.22 110.49 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d6d91625-c6a6-4d6b-a311-4d5e023bd3c2")
+	)
 	(hierarchical_label "TOF2_XSHUT"
 		(shape input)
 		(at 57.15 102.87 180)
@@ -5804,6 +5771,17 @@
 		)
 		(uuid "dc10b32d-bf4f-4821-b4fa-02dfd6745a29")
 	)
+	(hierarchical_label "ENC1_PH2"
+		(shape input)
+		(at 109.22 82.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "df871f9f-79f0-4d6a-a775-91f5d69333a5")
+	)
 	(hierarchical_label "M_CTR"
 		(shape input)
 		(at 114.3 100.33 0)
@@ -5814,6 +5792,28 @@
 			(justify left)
 		)
 		(uuid "dfc8a085-335c-439d-8a6a-176783893594")
+	)
+	(hierarchical_label "PWM_Mot2_CH1"
+		(shape input)
+		(at 59.69 118.11 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e66ec3fc-8c9e-4c5c-895d-ebdf00f76cc2")
+	)
+	(hierarchical_label "PWM_Mot1_CH1"
+		(shape input)
+		(at 114.3 95.25 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "fd1aa201-b45e-4138-9089-5c8febc48cba")
 	)
 	(symbol
 		(lib_id "power:GND")

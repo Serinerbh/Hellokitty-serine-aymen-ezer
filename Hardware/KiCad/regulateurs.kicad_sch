@@ -3603,16 +3603,16 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 97.79 74.93 180)
+		(at 97.79 74.93 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "20e6405d-a364-4cfb-b35d-6fffcfe97170")
 		(property "Reference" "C13"
-			(at 101.6 73.6599 0)
+			(at 93.98 73.6599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3621,7 +3621,7 @@
 			)
 		)
 		(property "Value" "1u"
-			(at 101.6 76.1999 0)
+			(at 93.98 76.1999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3630,7 +3630,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 96.8248 71.12 0)
+			(at 98.7552 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
