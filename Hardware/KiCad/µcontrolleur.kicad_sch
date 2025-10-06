@@ -3860,10 +3860,6 @@
 		(uuid "68e241d4-45de-462f-87db-fd0eea8376da")
 	)
 	(no_connect
-		(at 100.33 90.17)
-		(uuid "775bf0c4-f04c-454f-8684-fc222241ec98")
-	)
-	(no_connect
 		(at 64.77 156.21)
 		(uuid "8d634ee2-9ba0-41d5-b5e4-e788bed6037f")
 	)
@@ -4823,6 +4819,16 @@
 	)
 	(wire
 		(pts
+			(xy 100.33 90.17) (xy 105.41 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9c1b9d8a-adb2-40be-98a5-29692c2e4220")
+	)
+	(wire
+		(pts
 			(xy 63.5 128.27) (xy 64.77 128.27)
 		)
 		(stroke
@@ -5704,6 +5710,17 @@
 			(justify left)
 		)
 		(uuid "820e6ada-b5b5-4f75-a37a-75a9b1853ee9")
+	)
+	(hierarchical_label "Bluetooth_En"
+		(shape input)
+		(at 105.41 90.17 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "893ba898-8c90-474e-bdff-a654e81c9961")
 	)
 	(hierarchical_label "I2C1_SDA"
 		(shape input)
