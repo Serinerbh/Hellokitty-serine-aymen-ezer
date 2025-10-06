@@ -107,6 +107,16 @@
 	)
 	(wire
 		(pts
+			(xy 165.1 85.09) (xy 220.98 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b67cb16-d8c6-491a-a317-fef9969f1729")
+	)
+	(wire
+		(pts
 			(xy 73.66 115.57) (xy 87.63 115.57)
 		)
 		(stroke
@@ -603,6 +613,16 @@
 				(justify right)
 			)
 		)
+		(pin "Bluetooth_En" input
+			(at 165.1 85.09 0)
+			(uuid "7e238ffd-060c-4f27-b488-8e4313e9cd7b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "Projet_Robot"
 				(path "/21a14c86-6900-4d4b-9d91-6c59051d0f41"
@@ -799,6 +819,16 @@
 		(pin "TOF4_XSHUT" input
 			(at 220.98 133.35 180)
 			(uuid "04174af3-47e2-4661-b0b8-b539068f2961")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Bluetooth_En" input
+			(at 220.98 85.09 180)
+			(uuid "f93243f7-34be-4e60-9584-17eba46dea60")
 			(effects
 				(font
 					(size 1.27 1.27)
