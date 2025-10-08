@@ -4099,6 +4099,7 @@
 	(symbol
 		(lib_id "Device:R_Small")
 		(at 149.86 62.23 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4106,7 +4107,7 @@
 		(dnp no)
 		(uuid "415cd3f4-7d0a-4809-a032-fedc7f68c981")
 		(property "Reference" "R7"
-			(at 145.034 61.214 0)
+			(at 154.686 61.214 0)
 			(effects
 				(font
 					(size 1.016 1.016)
@@ -4115,7 +4116,7 @@
 			)
 		)
 		(property "Value" "100K"
-			(at 142.748 63.754 0)
+			(at 156.972 63.754 0)
 			(effects
 				(font
 					(size 1.27 1.27)
