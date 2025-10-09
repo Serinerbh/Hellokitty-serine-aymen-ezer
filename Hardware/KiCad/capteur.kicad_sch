@@ -3814,15 +3814,15 @@
 	(symbol
 		(lib_id "Device:C_Small")
 		(at 92.71 152.4 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "5cae49a5-1879-44e2-9995-56ea0dc4f078")
 		(property "Reference" "C26"
-			(at 95.25 151.1362 0)
+			(at 90.17 151.1362 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3831,7 +3831,7 @@
 			)
 		)
 		(property "Value" "1u"
-			(at 95.25 153.6762 0)
+			(at 90.17 153.6762 0)
 			(effects
 				(font
 					(size 1.27 1.27)

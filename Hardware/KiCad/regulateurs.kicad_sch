@@ -5162,6 +5162,7 @@
 	(symbol
 		(lib_id "Device:C_Small")
 		(at 170.18 50.8 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5169,7 +5170,7 @@
 		(dnp no)
 		(uuid "96acb4d3-cb72-40dd-abfa-e06ba760921d")
 		(property "Reference" "C15"
-			(at 172.72 49.5362 0)
+			(at 167.64 49.5362 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5178,7 +5179,7 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 172.72 52.578 0)
+			(at 167.64 52.578 0)
 			(effects
 				(font
 					(size 1.27 1.27)
