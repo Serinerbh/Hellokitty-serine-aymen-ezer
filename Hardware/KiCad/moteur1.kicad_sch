@@ -1525,13 +1525,12 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "3754589c-88d9-4ec0-89de-95a3ca91606a")
 		(property "Reference" "TP3"
-			(at 106.68 93.2179 0)
+			(at 104.14 92.202 0)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)

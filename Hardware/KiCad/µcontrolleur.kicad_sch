@@ -4,6 +4,13 @@
 	(generator_version "9.0")
 	(uuid "f7d845cf-a202-4c6c-9ba1-3808edce506d")
 	(paper "A4")
+	(title_block
+		(title "Hello_kitty")
+		(date "2025-10-13")
+		(comment 1 "Aymen_BEN_JEMAA")
+		(comment 2 "Ezer_SOLTANI")
+		(comment 3 "Serine_ROUABAH")
+	)
 	(lib_symbols
 		(symbol "Connector:Conn_ST_STDC14"
 			(exclude_from_sim no)
@@ -9162,16 +9169,16 @@
 		(fields_autoplaced yes)
 		(uuid "c0f5b804-6736-4e3d-b010-e57dcd007b9b")
 		(property "Reference" "C2"
-			(at 53.34 49.5235 0)
+			(at 53.34 49.5236 0)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(size 0.508 0.508)
 				)
 				(justify right)
 			)
 		)
 		(property "Value" "4u7"
-			(at 53.34 52.0635 0)
+			(at 53.34 51.4285 0)
 			(effects
 				(font
 					(size 1.27 1.27)
