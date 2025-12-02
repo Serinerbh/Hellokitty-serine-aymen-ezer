@@ -1,6 +1,0 @@
-../Core/Src/driver_YLIDARX2.c:27:10:lidar_checksum	2
-../Core/Src/driver_YLIDARX2.c:37:6:decode_sample	1
-../Core/Src/driver_YLIDARX2.c:49:6:YLIDARX2_PrintData	3
-../Core/Src/driver_YLIDARX2.c:75:10:YLIDARX2_CalculateChecksum	2
-../Core/Src/driver_YLIDARX2.c:92:6:YLIDARX2_ParseData	8
-../Core/Src/driver_YLIDARX2.c:173:6:YLIDARX2_UART_irq	7

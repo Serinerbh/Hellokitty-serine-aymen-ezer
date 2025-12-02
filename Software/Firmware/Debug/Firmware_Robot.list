@@ -35,17 +35,17 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  15 .debug_rnglists 00000f10  00000000  00000000  0001e9b8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0001e829  00000000  00000000  0001f8c8  2**0
+ 16 .debug_macro  0001dd51  00000000  00000000  0001f8c8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00017a0f  00000000  00000000  0003e0f1  2**0
+ 17 .debug_line   00017a0f  00000000  00000000  0003d619  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000c580c  00000000  00000000  00055b00  2**0
+ 18 .debug_str    000c580c  00000000  00000000  00055028  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  0011b30c  2**0
+ 19 .comment      00000043  00000000  00000000  0011a834  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000515c  00000000  00000000  0011b350  2**2
+ 20 .debug_frame  0000515c  00000000  00000000  0011a878  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000006d  00000000  00000000  001204ac  2**0
+ 21 .debug_line_str 0000006d  00000000  00000000  0011f9d4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -844,10 +844,10 @@ int main(void)
  8000810:	f000 f91c 	bl	8000a4c <MX_TIM3_Init>
   MX_TIM4_Init();
  8000814:	f000 f996 	bl	8000b44 <MX_TIM4_Init>
-  /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
 	HAL_GPIO_TogglePin(GPIOC, STATUS_SOURIS_LED_Pin|STATUS_CHAT_LED_Pin);
  8000818:	f44f 4140 	mov.w	r1, #49152	@ 0xc000
