@@ -94,7 +94,8 @@ int main(void)
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2); //PA7 TIM3 CH2
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3); //PB0 TIM3 CH1
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4); //PB1 TIM3 CH2
-
+  __HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_1, 0);
+  __HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_4, 0);
 
 //  __HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_2, 500);
   /* USER CODE END 2 */
@@ -103,15 +104,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  for (int i = 0 ; i < 1000 ; i+=10)
+	  {
+		  __HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_2, 1000);
+		  __HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_3, 1000);
 
-		 __HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_2, 1000);
-		 __HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_3, 1000);
-		 __HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_1, 0);
-		 __HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_4, 0);
-
-	     HAL_Delay(50);
-
-
+	     HAL_Delay(10);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
