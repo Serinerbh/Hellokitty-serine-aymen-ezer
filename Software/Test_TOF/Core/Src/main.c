@@ -18,12 +18,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-uint16_t distance;
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "VL53L0X.h"
 #include "stdio.h"
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -44,20 +44,31 @@ uint16_t distance;
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c1;
 
-/* USER CODE BEGIN PV */
+UART_HandleTypeDef huart1;
 
+/* USER CODE BEGIN PV */
+VL53L0X_Dev_t tof1, tof2, tof3, tof4;
+statInfo_t_VL53L0X measure1, measure2, measure3, measure4;
+uint16_t dist1, dist2, dist3, dist4;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int __io_putchar(int ch)
+{
+	HAL_UART_Transmit(&huart1, (uint8_t*)&ch, 1, HAL_MAX_DELAY);
+
+	return ch;
+}
 
 /* USER CODE END 0 */
 
@@ -91,34 +102,71 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  // Initialise a message buffer.
-  	char msgBuffer[52];
-  	for (uint8_t i = 0; i < 52; i++) {
-  		msgBuffer[i] = ' ';
-  	}
+  // Reset all sensors
+  HAL_GPIO_WritePin(TOF1_XSHUT_GPIO_Port, TOF1_XSHUT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(TOF2_XSHUT_GPIO_Port, TOF2_XSHUT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(TOF3_XSHUT_GPIO_Port, TOF3_XSHUT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(TOF4_XSHUT_GPIO_Port, TOF4_XSHUT_Pin, GPIO_PIN_RESET);
+  HAL_Delay(20);
 
-  	// Initialise the VL53L0X
-  	statInfo_t_VL53L0X distanceStr;
-  	initVL53L0X(1, &hi2c1);
+  // --- TOF 1 ---
+  HAL_GPIO_WritePin(TOF1_XSHUT_GPIO_Port, TOF1_XSHUT_Pin, GPIO_PIN_SET);
+  HAL_Delay(20);
+  initVL53L0X(&tof1, 1, &hi2c1);
+  setAddress_VL53L0X(&tof1, 0x54); // 0x2A << 1
+  setSignalRateLimit(&tof1, 0.1);
+  setVcselPulsePeriod(&tof1, VcselPeriodPreRange, 18);
+  setVcselPulsePeriod(&tof1, VcselPeriodFinalRange, 14);
+  setMeasurementTimingBudget(&tof1, 200000);
 
-  	// Configure the sensor for high accuracy and speed in 20 cm.
-  	setSignalRateLimit(200);
-  	setVcselPulsePeriod(VcselPeriodPreRange, 10);
-  	setVcselPulsePeriod(VcselPeriodFinalRange, 14);
-  	setMeasurementTimingBudget(300 * 1000UL);
-  	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_15);
+  // --- TOF 2 ---
+  HAL_GPIO_WritePin(TOF2_XSHUT_GPIO_Port, TOF2_XSHUT_Pin, GPIO_PIN_SET);
+  HAL_Delay(20);
+  initVL53L0X(&tof2, 1, &hi2c1);
+  setAddress_VL53L0X(&tof2, 0x56); // 0x2B << 1
+  setSignalRateLimit(&tof2, 0.1);
+  setVcselPulsePeriod(&tof2, VcselPeriodPreRange, 18);
+  setVcselPulsePeriod(&tof2, VcselPeriodFinalRange, 14);
+  setMeasurementTimingBudget(&tof2, 200000);
+
+  // --- TOF 3 ---
+  HAL_GPIO_WritePin(TOF3_XSHUT_GPIO_Port, TOF3_XSHUT_Pin, GPIO_PIN_SET);
+  HAL_Delay(20);
+  initVL53L0X(&tof3, 1, &hi2c1);
+  setAddress_VL53L0X(&tof3, 0x58); // 0x2C << 1
+  setSignalRateLimit(&tof3, 0.1);
+  setVcselPulsePeriod(&tof3, VcselPeriodPreRange, 18);
+  setVcselPulsePeriod(&tof3, VcselPeriodFinalRange, 14);
+  setMeasurementTimingBudget(&tof3, 200000);
+
+  // --- TOF 4 ---
+  HAL_GPIO_WritePin(TOF4_XSHUT_GPIO_Port, TOF4_XSHUT_Pin, GPIO_PIN_SET);
+  HAL_Delay(20);
+  initVL53L0X(&tof4, 1, &hi2c1);
+  setAddress_VL53L0X(&tof4, 0x5A); // 0x2D << 1
+  setSignalRateLimit(&tof4, 0.1);
+  setVcselPulsePeriod(&tof4, VcselPeriodPreRange, 18);
+  setVcselPulsePeriod(&tof4, VcselPeriodFinalRange, 14);
+  setMeasurementTimingBudget(&tof4, 200000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-        distance = readRangeSingleMillimeters(&distanceStr);
-        HAL_Delay(1000);
+    dist1 = readRangeSingleMillimeters(&tof1, &measure1);
+    dist2 = readRangeSingleMillimeters(&tof2, &measure2);
+    dist3 = readRangeSingleMillimeters(&tof3, &measure3);
+    dist4 = readRangeSingleMillimeters(&tof4, &measure4);
 
+    // Optional: Print to UART for debugging
+    char debugStr[64];
+    sprintf(debugStr, "D1:%d D2:%d D3:%d D4:%d\r\n", dist1, dist2, dist3, dist4);
+    HAL_UART_Transmit(&huart1, (uint8_t*)debugStr, strlen(debugStr), 100);
 
-
+    HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -221,6 +269,54 @@ static void MX_I2C1_Init(void)
 }
 
 /**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart1.Init.ClockPrescaler = UART_PRESCALER_DIV1;
+  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetTxFifoThreshold(&huart1, UART_TXFIFO_THRESHOLD_1_8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetRxFifoThreshold(&huart1, UART_RXFIFO_THRESHOLD_1_8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_DisableFifoMode(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -234,17 +330,41 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(TOF1_XSHUT_GPIO_Port, TOF1_XSHUT_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : PA15 */
-  GPIO_InitStruct.Pin = GPIO_PIN_15;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, TOF2_XSHUT_Pin|TOF3_XSHUT_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, TOF4_XSHUT_Pin|TOF1_GPIO_Pin|TOF2_GPIO_Pin|TOF3_GPIO_Pin
+                          |TOF4_GPIO_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : TOF1_XSHUT_Pin */
+  GPIO_InitStruct.Pin = TOF1_XSHUT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(TOF1_XSHUT_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : TOF2_XSHUT_Pin TOF3_XSHUT_Pin */
+  GPIO_InitStruct.Pin = TOF2_XSHUT_Pin|TOF3_XSHUT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : TOF4_XSHUT_Pin TOF1_GPIO_Pin TOF2_GPIO_Pin TOF3_GPIO_Pin
+                           TOF4_GPIO_Pin */
+  GPIO_InitStruct.Pin = TOF4_XSHUT_Pin|TOF1_GPIO_Pin|TOF2_GPIO_Pin|TOF3_GPIO_Pin
+                          |TOF4_GPIO_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 

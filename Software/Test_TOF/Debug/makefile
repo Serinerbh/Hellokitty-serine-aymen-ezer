@@ -60,8 +60,8 @@ all: main-build
 main-build: TOF.elf secondary-outputs
 
 # Tool invocations
-TOF.elf TOF.map: $(OBJS) $(USER_OBJS) C:\Users\Aymen\STM32CubeIDE\workspace_1.19.0\TOF\STM32G431CBUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "TOF.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Aymen\STM32CubeIDE\workspace_1.19.0\TOF\STM32G431CBUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TOF.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+TOF.elf TOF.map: $(OBJS) $(USER_OBJS) D:\ENSEA\hellkitty_project\Hellokitty-serine-aymen-ezer\Software\Test_TOF\STM32G431CBUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "TOF.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\ENSEA\hellkitty_project\Hellokitty-serine-aymen-ezer\Software\Test_TOF\STM32G431CBUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TOF.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

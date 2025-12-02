@@ -57,6 +57,22 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define TOF1_XSHUT_Pin GPIO_PIN_15
+#define TOF1_XSHUT_GPIO_Port GPIOA
+#define TOF2_XSHUT_Pin GPIO_PIN_10
+#define TOF2_XSHUT_GPIO_Port GPIOC
+#define TOF3_XSHUT_Pin GPIO_PIN_11
+#define TOF3_XSHUT_GPIO_Port GPIOC
+#define TOF4_XSHUT_Pin GPIO_PIN_3
+#define TOF4_XSHUT_GPIO_Port GPIOB
+#define TOF1_GPIO_Pin GPIO_PIN_4
+#define TOF1_GPIO_GPIO_Port GPIOB
+#define TOF2_GPIO_Pin GPIO_PIN_5
+#define TOF2_GPIO_GPIO_Port GPIOB
+#define TOF3_GPIO_Pin GPIO_PIN_6
+#define TOF3_GPIO_GPIO_Port GPIOB
+#define TOF4_GPIO_Pin GPIO_PIN_7
+#define TOF4_GPIO_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
