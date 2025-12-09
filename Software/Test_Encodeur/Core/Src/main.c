@@ -21,8 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "VL53L0X.h"
-#include "stdio.h"
+#include "motor.h"
+#include "encoder.h"
 
 /* USER CODE END Includes */
 
@@ -43,37 +43,11 @@
 
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim6;
 
 /* USER CODE BEGIN PV */
-/* Paramètres de l'encodeur */
-#define ENCODER_PPR     2048.0f     // Ticks (impulsions) par Révolution complète
-#define DELTA_T         0.01f       // Période d'échantillonnage en secondes (10 ms)
-
-
-//vA
-uint16_t enc1;
-uint16_t enc2;
-volatile float rpm_motor1 = 0.0f;
-volatile float rad_s_motor1 = 0.0f;
-
-volatile float rpm_motor2 = 0.0f;
-volatile float rad_s_motor2 = 0.0f;
-
-
-
-
-
-/* Variables pour l'Encodeur 1 (TIM4 - 16-bit) */
-volatile uint16_t prev_count_4 = 0;
-volatile int16_t delta_ticks_4 = 0;
-
-
-/* Variables pour l'Encodeur 2 (TIM2 - 32-bit) */
-// prev_count et delta_ticks doivent être 32-bit pour TIM2
-volatile uint32_t prev_count_2 = 0;
-volatile int32_t delta_ticks_2 = 0; // Delta doit être 32-bit pour gérer la différence
 
 /* USER CODE END PV */
 
@@ -83,46 +57,19 @@ static void MX_GPIO_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM6_Init(void);
+static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    if (htim->Instance == TIM6)
-    {
-        /* --- MOTEUR 1 (TIM4 - 16-bit) --- */
-        uint16_t current_count_4 = __HAL_TIM_GET_COUNTER(&htim4);
-
-        // La soustraction 16-bit (cast en int16_t) gère le débordement 16-bit.
-        delta_ticks_4 = (int16_t)(current_count_4 - prev_count_4);
-        prev_count_4 = current_count_4;
-
-        // Calcul du RPM (MOTEUR 1)
-        rpm_motor1 = ((float)delta_ticks_4 / ENCODER_PPR) / DELTA_T * 60.0f;
-
-        // Calcul des Radians par seconde (MOTEUR 1)
-        // Constante de conversion: (2*Pi / 60) ≈ 0.10472
-        rad_s_motor1 = rpm_motor1 * 0.10472f;
-
-
-        /* --- MOTEUR 2 (TIM2 - 32-bit) --- */
-        uint32_t current_count_2 = __HAL_TIM_GET_COUNTER(&htim2);
-
-        // La soustraction 32-bit (cast en int32_t) gère le débordement 32-bit.
-        delta_ticks_2 = (int32_t)(current_count_2 - prev_count_2);
-        prev_count_2 = current_count_2;
-
-        // Calcul du RPM (MOTEUR 2)
-        rpm_motor2 = ((float)delta_ticks_2 / ENCODER_PPR) / DELTA_T * 60.0f;
-
-        // Calcul des Radians par seconde (MOTEUR 2)
-        rad_s_motor2 = rpm_motor2 * 0.10472f;
-    }
+    // Délégation du calcul de vitesse au module encoder.c
+    ENCODER_Speed_Calculation(htim);
 }
-
 /* USER CODE END 0 */
 
 /**
@@ -157,45 +104,46 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM2_Init();
   MX_TIM6_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
+   //Initialisation des modules
+ MOTOR_Init();   // Initialise et démarre le PWM (TIM3)
+ ENCODER_Init(); // Initialise et démarre les encodeurs (TIM2, TIM4) et la base de temps (TIM6)
 
-  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
-  __HAL_TIM_SET_COUNTER(&htim4, 0);
-
-  HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
-    __HAL_TIM_SET_COUNTER(&htim2, 0);
-
-    HAL_TIM_Base_Start_IT(&htim6);
-
-/*  // Initialise a message buffer.
-  	char msgBuffer[52];
-  	for (uint8_t i = 0; i < 52; i++) {
-  		msgBuffer[i] = ' ';
-  	}
-
-  	// Initialise the VL53L0X
-  	statInfo_t_VL53L0X distanceStr;
-  	initVL53L0X(1, &hi2c1);
-
-  	// Configure the sensor for high accuracy and speed in 20 cm.
-  	setSignalRateLimit(200);
-  	setVcselPulsePeriod(VcselPeriodPreRange, 10);
-  	setVcselPulsePeriod(VcselPeriodFinalRange, 14);
-  	setMeasurementTimingBudget(300 * 1000UL);
-  	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_15);*/
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
-  {
-        /*distance = readRangeSingleMillimeters(&distanceStr);
-        HAL_Delay(1000);*/
-	  enc1 = __HAL_TIM_GET_COUNTER(&htim4);
-	  HAL_Delay(10);
+  {// Contrôle moteur dans la boucle principale
+	    // Exemple de mouvement : Vitesse progressive de 0 à 1000
+	    for (int i = 0 ; i <= 1000 ; i+=50)
+	    {
+	        MOTOR_Set_Speed_A(i);
+	        MOTOR_Set_Speed_B(i);
+	        HAL_Delay(50);
+	    }
 
-	  enc2 = __HAL_TIM_GET_COUNTER(&htim2);
-	  HAL_Delay(10);
+	    // Arrêt
+	    MOTOR_Set_Speed_A(0);
+	    MOTOR_Set_Speed_B(0);
+	    HAL_Delay(1000);
+
+	    // Mouvement inverse : Vitesse progressive de 0 à -1000
+	    for (int i = 0 ; i >= -1000 ; i-=50)
+	    {
+	        MOTOR_Set_Speed_A(i);
+	        MOTOR_Set_Speed_B(i);
+	        HAL_Delay(50);
+	    }
+
+	    // Arrêt
+	    MOTOR_Set_Speed_A(0);
+	    MOTOR_Set_Speed_B(0);
+	    HAL_Delay(1000);
+
+
+
 
 
     /* USER CODE END WHILE */
@@ -297,6 +245,67 @@ static void MX_TIM2_Init(void)
   /* USER CODE BEGIN TIM2_Init 2 */
 
   /* USER CODE END TIM2_Init 2 */
+
+}
+
+/**
+  * @brief TIM3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  TIM_OC_InitTypeDef sConfigOC = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 7;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 1000;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_PWM_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.Pulse = 0;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
+  HAL_TIM_MspPostInit(&htim3);
 
 }
 

@@ -1,0 +1,3 @@
+../Core/Src/hc05_usart.c:18:6:HC05_Init	1
+../Core/Src/hc05_usart.c:36:6:HC05_SendString	1
+../Core/Src/hc05_usart.c:53:19:HC05_ReceiveString	2

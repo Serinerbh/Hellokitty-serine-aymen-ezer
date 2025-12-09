@@ -1,0 +1,2 @@
+../Core/Src/encoder.c:34:6:ENCODER_Init	8	static
+../Core/Src/encoder.c:58:6:ENCODER_Speed_Calculation	24	static
