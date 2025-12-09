@@ -1,0 +1,7 @@
+../Core/Drivers/imu.c:10:26:adxl_write	1
+../Core/Drivers/imu.c:22:26:adxl_read	1
+../Core/Drivers/imu.c:34:19:ADXL343_Init	5
+../Core/Drivers/imu.c:60:19:ADXL343_ReadAxes	2
+../Core/Drivers/imu.c:76:19:ADXL343_ConfigShock	7
+../Core/Drivers/imu.c:113:9:ADXL343_CheckShock	2
+../Core/Drivers/imu.c:124:7:ADXL343_ComputeTotalG	1

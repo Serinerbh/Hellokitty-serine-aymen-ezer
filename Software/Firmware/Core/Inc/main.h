@@ -87,6 +87,8 @@ void Error_Handler(void);
 #define ACC_INT1_GPIO_Port GPIOB
 #define BOUTON_Chat_Souris_Pin GPIO_PIN_6
 #define BOUTON_Chat_Souris_GPIO_Port GPIOC
+#define LIDAR_M_CTR_Pin GPIO_PIN_8
+#define LIDAR_M_CTR_GPIO_Port GPIOA
 #define VCP_TX_Pin GPIO_PIN_9
 #define VCP_TX_GPIO_Port GPIOA
 #define VCP_RX_Pin GPIO_PIN_10

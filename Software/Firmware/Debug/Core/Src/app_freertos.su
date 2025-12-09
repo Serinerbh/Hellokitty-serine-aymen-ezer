@@ -1,2 +1,4 @@
-../Core/Src/app_freertos.c:66:6:MX_FREERTOS_Init	40	static
-../Core/Src/app_freertos.c:105:6:StartDefaultTask	16	static
+../Core/Src/app_freertos.c:80:6:MX_FREERTOS_Init	16	static
+../Core/Src/app_freertos.c:107:6:vLidarTask	264	static
+../Core/Src/app_freertos.c:165:6:vImuTask	24	static
+../Core/Src/app_freertos.c:213:6:vDefaultTask	16	static

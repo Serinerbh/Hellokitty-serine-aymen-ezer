@@ -1,0 +1,7 @@
+../Core/Drivers/imu.c:10:26:adxl_write	32	static
+../Core/Drivers/imu.c:22:26:adxl_read	40	static
+../Core/Drivers/imu.c:34:19:ADXL343_Init	24	static
+../Core/Drivers/imu.c:60:19:ADXL343_ReadAxes	40	static
+../Core/Drivers/imu.c:76:19:ADXL343_ConfigShock	48	static
+../Core/Drivers/imu.c:113:9:ADXL343_CheckShock	24	static
+../Core/Drivers/imu.c:124:7:ADXL343_ComputeTotalG	24	static

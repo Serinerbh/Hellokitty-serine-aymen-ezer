@@ -55,7 +55,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin|STATUS_CHAT_LED_Pin|TOF2_XSHUT_Pin|TOF3_XSHUT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(TOF1_XSHUT_GPIO_Port, TOF1_XSHUT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, LIDAR_M_CTR_Pin|TOF1_XSHUT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, TOF4_XSHUT_Pin|TOF1_GPIO_Pin|TOF2_GPIO_Pin|TOF3_GPIO_Pin
@@ -86,12 +86,12 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(BOUTON_Chat_Souris_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : TOF1_XSHUT_Pin */
-  GPIO_InitStruct.Pin = TOF1_XSHUT_Pin;
+  /*Configure GPIO pins : LIDAR_M_CTR_Pin TOF1_XSHUT_Pin */
+  GPIO_InitStruct.Pin = LIDAR_M_CTR_Pin|TOF1_XSHUT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(TOF1_XSHUT_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : TOF4_XSHUT_Pin TOF1_GPIO_Pin TOF2_GPIO_Pin TOF3_GPIO_Pin
                            TOF4_GPIO_Pin */
