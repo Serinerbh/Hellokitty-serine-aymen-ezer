@@ -114,7 +114,7 @@ int main(void)
       ydlidar_detect_objects(detected_objects, &object_count);
       // For testing, we call detect_objects every 100ms.
       // In a FreeRTOS context, this would be a task with a specific frequency.
-      HAL_Delay(100);
+      HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -182,6 +182,15 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   if(huart->Instance == USART2)
   {
 	ydlidar_process_data(dma_rx_buffer + (DMA_RX_BUFFER_SIZE / 2), DMA_RX_BUFFER_SIZE / 2);
+  }
+}
+
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+  if(huart->Instance == USART2)
+  {
+      // Restart reception on error (commonly Overrun)
+      HAL_UART_Receive_DMA(&huart2, dma_rx_buffer, DMA_RX_BUFFER_SIZE);
   }
 }
 /* USER CODE END 4 */

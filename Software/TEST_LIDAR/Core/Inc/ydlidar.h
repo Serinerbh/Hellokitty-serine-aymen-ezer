@@ -26,6 +26,7 @@ typedef struct {
 #define NB_DEGRES 360
 #define MAX_LIDAR_OBJECTS 20
 #define DETECT_THRESHOLD 50 // Seuil de discontinuité en mm
+#define MAX_DETECTION_DISTANCE_MM 2000 // Objets au-delà de 2 mètres seront ignorés
 
 typedef struct {
     float angle;        // Angle moyen de l'objet (degrés)

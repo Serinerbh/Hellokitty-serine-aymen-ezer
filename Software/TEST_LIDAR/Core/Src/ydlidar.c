@@ -192,8 +192,12 @@ void ydlidar_detect_objects(LidarObject_t* objects, uint8_t* object_count) {
                 objects[*object_count].distance = sum_dist / points_in_object;
                 objects[*object_count].angle = sum_angle / points_in_object;
                 objects[*object_count].size = points_in_object;
-                LIDAR_LOG("Detected Object %d: Angle=%.2f, Dist=%.2f, Size=%d\r\n", *object_count, objects[*object_count].angle, objects[*object_count].distance, objects[*object_count].size);
-                (*object_count)++;
+                
+                // Filter by distance
+                if (objects[*object_count].distance <= MAX_DETECTION_DISTANCE_MM) {
+                    LIDAR_LOG("Detected Object %d: Angle=%.2f, Dist=%.2f, Size=%d\r\n", *object_count, objects[*object_count].angle, objects[*object_count].distance, objects[*object_count].size);
+                    (*object_count)++;
+                }
             }
             
             // Start new object
@@ -213,8 +217,12 @@ void ydlidar_detect_objects(LidarObject_t* objects, uint8_t* object_count) {
          objects[*object_count].distance = sum_dist / points_in_object;
          objects[*object_count].angle = sum_angle / points_in_object;
          objects[*object_count].size = points_in_object;
-         LIDAR_LOG("Detected Object %d: Angle=%.2f, Dist=%.2f, Size=%d\r\n", *object_count, objects[*object_count].angle, objects[*object_count].distance, objects[*object_count].size);
-         (*object_count)++;
+         
+         // Filter by distance
+         if (objects[*object_count].distance <= MAX_DETECTION_DISTANCE_MM) {
+            LIDAR_LOG("Detected Object %d: Angle=%.2f, Dist=%.2f, Size=%d\r\n", *object_count, objects[*object_count].angle, objects[*object_count].distance, objects[*object_count].size);
+            (*object_count)++;
+         }
     }
     LIDAR_LOG("Total Objects Detected: %d\r\n", *object_count);
 }
