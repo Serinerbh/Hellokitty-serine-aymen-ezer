@@ -1,6 +1,6 @@
 ../Core/Src/main.c:62:5:__io_putchar	1
 ../Core/Src/main.c:73:5:main	1
-../Core/Src/main.c:125:6:SystemClock_Config	3
-../Core/Src/main.c:168:6:HAL_UART_RxHalfCpltCallback	2
-../Core/Src/main.c:176:6:HAL_UART_RxCpltCallback	2
-../Core/Src/main.c:189:6:Error_Handler	1
+../Core/Src/main.c:129:6:SystemClock_Config	3
+../Core/Src/main.c:172:6:HAL_UART_RxHalfCpltCallback	2
+../Core/Src/main.c:180:6:HAL_UART_RxCpltCallback	2
+../Core/Src/main.c:193:6:Error_Handler	1

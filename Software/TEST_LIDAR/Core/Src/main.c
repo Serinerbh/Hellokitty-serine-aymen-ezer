@@ -100,17 +100,21 @@ int main(void)
   MX_USART1_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  //ydlidar_init();
-  //HAL_UART_Receive_DMA(&huart2, dma_rx_buffer, DMA_RX_BUFFER_SIZE);
+  ydlidar_init();
+  HAL_UART_Receive_DMA(&huart2, dma_rx_buffer, DMA_RX_BUFFER_SIZE);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  LidarObject_t detected_objects[MAX_LIDAR_OBJECTS];
+  uint8_t object_count = 0;
+
   while (1)
   {
-    uint8_t test_data = 0xAA;
-    HAL_I2C_Master_Transmit(&hi2c1, 0x10 << 1, &test_data, 1, 100);
-
+      ydlidar_detect_objects(detected_objects, &object_count);
+      // For testing, we call detect_objects every 100ms.
+      // In a FreeRTOS context, this would be a task with a specific frequency.
+      HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

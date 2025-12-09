@@ -26,6 +26,7 @@
 /* USER CODE BEGIN Includes */
 #include "ADXL343_driver.h"
 #include <stdio.h>
+#include <math.h> // Nécessaire pour fabsf
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,19 +96,22 @@ int main(void)
   printf("\r\nTest Accéléromètre ADXL343\r\n");
 
   // 1. Initialisation du capteur
-  if (ADXL343_Init(&hi2c1) != 1) {
+  if (ADXL343_Init(&hi2c1) != HAL_OK) {
       printf("Erreur Init ADXL343 !\r\n");
       while(1); // Bloquer en cas d'erreur
   } else {
       printf("ADXL343 Init OK\r\n");
   }
 
-  // 2. Configuration de la détection de choc (Seuil 0.3g, Durée 50ms)0
+  // 2. Configuration de la détection de choc (Seuil 0.3g, Durée 50ms)
   if (ADXL343_ConfigShock(&hi2c1, 0.3f, 50.0f) != HAL_OK) {
       printf("Erreur Config Shock !\r\n");
   } else {
       printf("Config Shock OK\r\n");
   }
+
+  static float prevA = 1.0f; // Pour le calcul du delta
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -129,8 +133,21 @@ int main(void)
           HAL_GPIO_WritePin(GPIOC, LED1_Pin | LED2_Pin, GPIO_PIN_RESET);
       }
 
-      // 4. Afficher les données d'accélération
-      ADXL343_PrintAxes(&hi2c1);
+      // 4. Afficher les données d'accélération (Logique déplacée ici)
+      adxl343_axes_t axes;
+      if (ADXL343_ReadAxes(&hi2c1, &axes) == HAL_OK) {
+          float xg = ADXL343_RawTo_g(axes.x);
+          float yg = ADXL343_RawTo_g(axes.y);
+          float zg = ADXL343_RawTo_g(axes.z);
+
+          float Atot = ADXL343_ComputeTotalG(xg, yg, zg);
+          float deltaA = fabsf(Atot - prevA);
+          prevA = Atot;
+
+          printf("X=%.3f g  Y=%.3f g  Z=%.3f g  |  A=%.3f g  |  dA=%.3f g\r\n", xg, yg, zg, Atot, deltaA);
+      } else {
+          printf("Erreur lecture I2C\r\n");
+      }
 
       HAL_Delay(100);
   }

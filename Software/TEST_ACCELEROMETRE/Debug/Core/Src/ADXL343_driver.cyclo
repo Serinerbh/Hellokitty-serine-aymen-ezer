@@ -1,9 +1,7 @@
-../Core/Src/ADXL343_driver.c:12:26:adxl_write	1
-../Core/Src/ADXL343_driver.c:23:26:adxl_read	1
-../Core/Src/ADXL343_driver.c:36:9:ADXL343_Init	6
-../Core/Src/ADXL343_driver.c:59:9:ADXL343_ReadAxes	2
-../Core/Src/ADXL343_driver.c:75:19:ADXL343_ConfigShock	8
-../Core/Src/ADXL343_driver.c:110:9:ADXL343_CheckShock	1
-../Core/Src/ADXL343_driver.c:119:7:ADXL343_ComputeTotalG	1
-../Core/Src/ADXL343_driver.c:124:7:ADXL343_RawTo_g	1
-../Core/Src/ADXL343_driver.c:131:6:ADXL343_PrintAxes	2
+../Core/Src/ADXL343_driver.c:10:26:adxl_write	1
+../Core/Src/ADXL343_driver.c:22:26:adxl_read	1
+../Core/Src/ADXL343_driver.c:34:19:ADXL343_Init	5
+../Core/Src/ADXL343_driver.c:60:19:ADXL343_ReadAxes	2
+../Core/Src/ADXL343_driver.c:76:19:ADXL343_ConfigShock	7
+../Core/Src/ADXL343_driver.c:113:9:ADXL343_CheckShock	2
+../Core/Src/ADXL343_driver.c:124:7:ADXL343_ComputeTotalG	1

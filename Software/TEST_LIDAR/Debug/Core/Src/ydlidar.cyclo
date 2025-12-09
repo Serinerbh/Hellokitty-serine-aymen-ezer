@@ -1,3 +1,5 @@
-../Core/Src/ydlidar.c:24:6:ydlidar_init	1
-../Core/Src/ydlidar.c:31:6:ydlidar_process_data	11
-../Core/Src/ydlidar.c:88:13:decode_packet	15
+../Core/Src/ydlidar.c:32:6:ydlidar_init	1
+../Core/Src/ydlidar.c:42:6:ydlidar_process_data	11
+../Core/Src/ydlidar.c:91:13:decode_packet	16
+../Core/Src/ydlidar.c:164:10:ydlidar_get_distance	2
+../Core/Src/ydlidar.c:169:6:ydlidar_detect_objects	9
