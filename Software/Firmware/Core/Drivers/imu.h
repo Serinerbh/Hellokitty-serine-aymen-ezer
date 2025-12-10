@@ -10,7 +10,7 @@
 #include "main.h"
 #include <stdint.h>
 
-// Adresse I2C de l'ADXL343 (ALT ADDRESS pin à la masse)
+// Adresse I2C de l'ADXL343
 #define ADXL343_ADDR            (0x53 << 1)
 
 // Registres ADXL343
@@ -41,7 +41,7 @@
 #define ADXL_INT_DATA_READY     (1 << 7)
 #define ADXL_INT_SINGLE_TAP     (1 << 6)
 
-// Timeout I2C (éviter le blocage infini)
+// Timeout I2C
 #define ADXL_I2C_TIMEOUT        100 // ms
 
 typedef struct
@@ -52,15 +52,11 @@ typedef struct
 } adxl343_axes_t;
 
 // Prototypes des fonctions
-// Retournent HAL_StatusTypeDef pour une gestion d'erreur uniforme
 HAL_StatusTypeDef ADXL343_Init(I2C_HandleTypeDef *hi2c);
 HAL_StatusTypeDef ADXL343_ReadAxes(I2C_HandleTypeDef *hi2c, adxl343_axes_t *axes);
 HAL_StatusTypeDef ADXL343_ConfigShock(I2C_HandleTypeDef *hi2c, float thresh_g, float dur_ms);
 uint8_t ADXL343_CheckShock(I2C_HandleTypeDef *hi2c); // Retourne 1 si choc, 0 sinon
 float ADXL343_ComputeTotalG(float xg, float yg, float zg);
-
-// Conversion inline Valeur Brute -> g (pour ±2g Full Res, facteur ~3.9 mg/LSB)
-// Definie ici pour être inlinée par le compilateur
 static inline float ADXL343_RawTo_g(int16_t raw_value)
 {
 	return ((float)raw_value) * 0.0039f;

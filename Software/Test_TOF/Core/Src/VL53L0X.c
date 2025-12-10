@@ -9,8 +9,6 @@
 #include "VL53L0X.h"
 
 //---------------------------------------------------------
-// Local variables within this file (private)
-//---------------------------------------------------------
 // Global variables removed in favor of VL53L0X_Dev_t struct
 
 #define I2C_TIMEOUT 100 // I2C timeout in ms

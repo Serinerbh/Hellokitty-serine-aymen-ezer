@@ -39,7 +39,9 @@ typedef struct {
     int size;           // Largeur angulaire (nombre de points)
 } LidarObject_t;
 
-void ydlidar_init(void);
+#define LIDAR_DMA_BUFFER_SIZE 1024
+
+void ydlidar_init(uint8_t *buffer, uint16_t size);
 
 void ydlidar_process_data(const uint8_t* data, size_t len);
 

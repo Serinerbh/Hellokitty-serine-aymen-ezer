@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define ENABLE_LIDAR_DEBUG // Uncomment to enable debug output via printf
+#define ENABLE_LIDAR_DEBUG
 
 #ifdef ENABLE_LIDAR_DEBUG
     #define LIDAR_LOG(...) printf(__VA_ARGS__)
@@ -29,20 +29,28 @@ static parsing_state_t current_parsing_state = STATE_WAIT_HEADER;
 static uint8_t current_packet_buffer[MAX_PACKET_SIZE];
 static uint16_t current_packet_idx = 0;
 static uint16_t expected_packet_len = 0;
-static uint16_t g_scan_distances_mm[NB_DEGRES] = {0}; // Buffer circulaire 360 deg
+static uint16_t g_scan_distances_mm[NB_DEGRES] = {0};
 
 
 static void decode_packet(const uint8_t* packet_data, uint16_t packet_len);
 
-void ydlidar_init(void) {
+void ydlidar_init(uint8_t *buffer, uint16_t size) {
     current_parsing_state = STATE_WAIT_HEADER;
     current_packet_idx = 0;
     expected_packet_len = 0;
     memset(g_scan_distances_mm, 0, sizeof(g_scan_distances_mm));
+    
+    __HAL_UART_CLEAR_OREFLAG(&huart2);
+    __HAL_UART_CLEAR_NEFLAG(&huart2);
+    __HAL_UART_CLEAR_FEFLAG(&huart2);
+
+    if (HAL_UART_Receive_DMA(&huart2, buffer, size) != HAL_OK) {
+      printf("LIDAR DMA Error\r\n");
+    }
     LIDAR_LOG("YDLIDAR driver initialized.\r\n");
 }
 
-static uint8_t last_byte = 0; // Stores the previously received byte
+static uint8_t last_byte = 0;
 
 void ydlidar_process_data(const uint8_t* data, size_t len) {
     for (size_t i = 0; i < len; ++i) {
@@ -156,7 +164,7 @@ static void decode_packet(const uint8_t* packet_data, uint16_t packet_len) {
             else if (current_angle_deg < 0.0f) current_angle_deg += 360.0f;
 
             // Store in 360-degree buffer
-            int index = (int)(current_angle_deg + 0.5f); // Round to nearest int
+            int index = (int)(current_angle_deg + 0.5f);
             if (index >= NB_DEGRES) index = 0;
 
             if (distance_mm > 0) {
@@ -181,7 +189,6 @@ void ydlidar_detect_objects(LidarObject_t* objects, uint8_t* object_count) {
         uint16_t dist_prev = g_scan_distances_mm[i - 1];
         uint16_t dist_curr = g_scan_distances_mm[i];
 
-        // Ignorer les points nuls (non mesurés)
         if (dist_curr == 0) continue;
         if (dist_prev == 0) {
             sum_dist = dist_curr;

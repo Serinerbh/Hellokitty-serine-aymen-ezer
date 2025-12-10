@@ -1,5 +1,5 @@
-../Core/Drivers/lidar.c:37:6:ydlidar_init	8	static
-../Core/Drivers/lidar.c:47:6:ydlidar_process_data	24	static
-../Core/Drivers/lidar.c:96:13:decode_packet	72	static
-../Core/Drivers/lidar.c:169:10:ydlidar_get_distance	16	static
-../Core/Drivers/lidar.c:174:6:ydlidar_detect_objects	72	static
+../Core/Drivers/lidar.c:37:6:ydlidar_init	16	static
+../Core/Drivers/lidar.c:55:6:ydlidar_process_data	24	static
+../Core/Drivers/lidar.c:104:13:decode_packet	72	static
+../Core/Drivers/lidar.c:177:10:ydlidar_get_distance	16	static
+../Core/Drivers/lidar.c:182:6:ydlidar_detect_objects	72	static
