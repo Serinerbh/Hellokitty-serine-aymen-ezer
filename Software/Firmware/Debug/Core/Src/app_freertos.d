@@ -47,8 +47,12 @@ Core/Src/app_freertos.o: ../Core/Src/app_freertos.c \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
- ../Core/Src/../Drivers/lidar.h ../Core/Src/../Drivers/imu.h \
- ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/i2c.h
+ ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/i2c.h \
+ ../Core/Inc/tim.h \
+ D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/lidar.h \
+ D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/imu.h \
+ D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/tof.h \
+ D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/motor.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -98,8 +102,11 @@ Core/Src/app_freertos.o: ../Core/Src/app_freertos.c \
 ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
-../Core/Src/../Drivers/lidar.h:
-../Core/Src/../Drivers/imu.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/main.h:
 ../Core/Inc/i2c.h:
+../Core/Inc/tim.h:
+D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/lidar.h:
+D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/imu.h:
+D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/tof.h:
+D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/motor.h:

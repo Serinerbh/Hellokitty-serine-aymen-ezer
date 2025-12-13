@@ -1,3 +1,6 @@
-../Core/Src/app_freertos.c:79:6:MX_FREERTOS_Init	3
-../Core/Src/app_freertos.c:109:6:vLidarTask	6
-../Core/Src/app_freertos.c:161:6:vImuTask	9
+../Core/Src/app_freertos.c:89:6:MX_FREERTOS_Init	5
+../Core/Src/app_freertos.c:130:6:MX_Motor_Init	1
+../Core/Src/app_freertos.c:150:6:vControlTask	1
+../Core/Src/app_freertos.c:169:6:vLidarTask	6
+../Core/Src/app_freertos.c:213:6:vImuTask	9
+../Core/Src/app_freertos.c:272:6:vSafetyTask	10

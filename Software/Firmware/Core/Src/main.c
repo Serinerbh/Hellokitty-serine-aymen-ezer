@@ -27,7 +27,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "../Drivers/tof.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -105,7 +106,9 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
-
+  printf("Starting System...\r\n");
+  TOF_Init_All();
+  printf("TOF Init Done.\r\n");
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
