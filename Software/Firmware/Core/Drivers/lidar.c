@@ -9,14 +9,6 @@
 #include <stdio.h>
 #include <math.h>
 
-#define ENABLE_LIDAR_DEBUG
-
-#ifdef ENABLE_LIDAR_DEBUG
-    #define LIDAR_LOG(...) printf(__VA_ARGS__)
-#else
-    #define LIDAR_LOG(...) ((void)0)
-#endif
-
 #define MAX_PACKET_SIZE 515
 
 typedef enum {
@@ -47,7 +39,7 @@ void ydlidar_init(uint8_t *buffer, uint16_t size) {
     if (HAL_UART_Receive_DMA(&huart2, buffer, size) != HAL_OK) {
       printf("LIDAR DMA Error\r\n");
     }
-    LIDAR_LOG("YDLIDAR driver initialized.\r\n");
+    printf("YDLIDAR driver initialized.\r\n");
 }
 
 static uint8_t last_byte = 0;
@@ -74,7 +66,7 @@ void ydlidar_process_data(const uint8_t* data, size_t len) {
                     expected_packet_len = 10 + (lsn * 2);
 
                     if (expected_packet_len > MAX_PACKET_SIZE) {
-                        LIDAR_LOG("Error: Packet too large (%d bytes). Resetting.\r\n", expected_packet_len);
+                    	printf("Error: Packet too large (%d bytes). Resetting.\r\n", expected_packet_len);
                         current_parsing_state = STATE_WAIT_HEADER;
                         current_packet_idx = 0;
                         expected_packet_len = 0;
@@ -120,7 +112,7 @@ static void decode_packet(const uint8_t* packet_data, uint16_t packet_len) {
     uint16_t received_checksum = response->check_code;
 
     if (calculated_checksum != received_checksum) {
-        LIDAR_LOG("Checksum error: Calculated 0x%04X, Received 0x%04X. Packet discarded.\r\n", calculated_checksum, received_checksum);
+    	printf("Checksum error: Calculated 0x%04X, Received 0x%04X. Packet discarded.\r\n", calculated_checksum, received_checksum);
         return; // Discard packet
     }
 
@@ -207,7 +199,7 @@ void ydlidar_detect_objects(LidarObject_t* objects, uint8_t* object_count) {
 
                 // Filter by distance
                 if (objects[*object_count].distance <= MAX_DETECTION_DISTANCE_MM) {
-                    LIDAR_LOG("Detected Object %d: Angle=%.2f, Dist=%.2f, Size=%d\r\n", *object_count, objects[*object_count].angle, objects[*object_count].distance, objects[*object_count].size);
+                	printf("Detected Object %d: Angle=%.2f, Dist=%.2f, Size=%d\r\n", *object_count, objects[*object_count].angle, objects[*object_count].distance, objects[*object_count].size);
                     (*object_count)++;
                 }
             }
@@ -232,9 +224,9 @@ void ydlidar_detect_objects(LidarObject_t* objects, uint8_t* object_count) {
 
          // Filter by distance
          if (objects[*object_count].distance <= MAX_DETECTION_DISTANCE_MM) {
-            LIDAR_LOG("Detected Object %d: Angle=%.2f, Dist=%.2f, Size=%d\r\n", *object_count, objects[*object_count].angle, objects[*object_count].distance, objects[*object_count].size);
+        	 printf("Detected Object %d: Angle=%.2f, Dist=%.2f, Size=%d\r\n", *object_count, objects[*object_count].angle, objects[*object_count].distance, objects[*object_count].size);
             (*object_count)++;
          }
     }
-    LIDAR_LOG("Total Objects Detected: %d\r\n", *object_count);
+    printf("Total Objects Detected: %d\r\n", *object_count);
 }

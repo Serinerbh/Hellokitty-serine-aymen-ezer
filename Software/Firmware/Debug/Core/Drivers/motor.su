@@ -1,0 +1,4 @@
+../Core/Drivers/motor.c:5:6:Motor_Init	16	static
+../Core/Drivers/motor.c:27:6:Motor_SetSpeed	16	static
+../Core/Drivers/motor.c:37:6:Motor_UpdatePWM	40	static
+../Core/Drivers/motor.c:67:6:Motor_UpdateSpeed	32	static

@@ -26,11 +26,14 @@
 
 /* Private includes ---------------------------------------------------------- */
 /* USER CODE BEGIN Includes */
-#include "../Drivers/lidar.h"
-#include "../Drivers/imu.h"
 #include "usart.h"
 #include "i2c.h"
+#include "tim.h"
 #include <stdio.h>
+#include "lidar.h"
+#include "imu.h"
+#include "tof.h"
+#include "motor.h"
 /* USER CODE END Includes */
 
 /* Private typedef ----------------------------------------------------------- */
@@ -52,7 +55,8 @@
 // Task Handles
 TaskHandle_t xLidarTaskHandle = NULL;
 TaskHandle_t xImuTaskHandle = NULL;
-
+TaskHandle_t xSafetyTaskHandle = NULL;
+TaskHandle_t xControlTaskHandle = NULL;
 
 // Mutex Handles
 SemaphoreHandle_t xI2C1Mutex = NULL;
@@ -60,13 +64,19 @@ SemaphoreHandle_t xUARTMutex = NULL;
 
 // Lidar Buffer
 uint8_t lidar_dma_buffer[LIDAR_DMA_BUFFER_SIZE];
+
+// Motor Handles
+Motor_Handle_t hMotor1;
+Motor_Handle_t hMotor2;
 /* USER CODE END Variables */
 
 /* Private function prototypes ----------------------------------------------- */
 /* USER CODE BEGIN FunctionPrototypes */
 void vLidarTask(void *pvParameters);
 void vImuTask(void *pvParameters);
-
+void vSafetyTask(void *pvParameters);
+void vControlTask(void *pvParameters);
+void MX_Motor_Init(void);
 /* USER CODE END FunctionPrototypes */
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -83,6 +93,8 @@ void MX_FREERTOS_Init(void) {
   xI2C1Mutex = xSemaphoreCreateMutex();
   xUARTMutex = xSemaphoreCreateMutex();
 
+  MX_Motor_Init();
+
   /* Create Tasks */
   if (xTaskCreate(vImuTask, "ImuTask", 256, NULL, 1, &xImuTaskHandle) != pdPASS)
   {
@@ -96,16 +108,64 @@ void MX_FREERTOS_Init(void) {
 	  Error_Handler();
   }
 
+  if (xTaskCreate(vSafetyTask, "SafetyTask", 256, NULL, 3, &xSafetyTaskHandle) != pdPASS)
+  {
+	  printf("Safety Task Creation Failed\r\n");
+	  Error_Handler();
+  }
+
+  // Create Control Task (High Priority for Motor Control)
+  if (xTaskCreate(vControlTask, "ControlTask", 256, NULL, 4, &xControlTaskHandle) != pdPASS)
+  {
+      printf("Control Task Creation Failed\r\n");
+      Error_Handler();
+  }
+
   /* USER CODE END Init */
 }
 
-/* USER CODE BEGIN Header_vLidarTask */
-/**
-* @brief Function implementing the LidarTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_vLidarTask */
+/* Private application code -------------------------------------------------- */
+/* USER CODE BEGIN Application */
+
+void MX_Motor_Init(void)
+{
+  /* Initialize Motors */
+  // Motor 1 (Right): TIM3 CH1/CH2, Encoder TIM2
+  hMotor1.pwm_timer = &htim3;
+  hMotor1.channel_fwd = TIM_CHANNEL_1;
+  hMotor1.channel_rev = TIM_CHANNEL_2;
+  hMotor1.enc_timer = &htim2;
+  hMotor1.enc_resolution = 2000;
+  Motor_Init(&hMotor1);
+
+  // Motor 2 (Left): TIM3 CH3/CH4, Encoder TIM4
+  hMotor2.pwm_timer = &htim3;
+  hMotor2.channel_fwd = TIM_CHANNEL_3;
+  hMotor2.channel_rev = TIM_CHANNEL_4;
+  hMotor2.enc_timer = &htim4;
+  hMotor2.enc_resolution = 2000;
+  Motor_Init(&hMotor2);
+}
+
+void vControlTask(void *pvParameters)
+{
+    const float dt = 0.01f; // 10ms loop time
+
+    for(;;)
+    {
+        // 1. Update Encoders (Speed Calculation)
+        Motor_UpdateSpeed(&hMotor1, dt);
+        Motor_UpdateSpeed(&hMotor2, dt);
+
+        // 2. Update PWM (Ramping Logic)
+        Motor_UpdatePWM(&hMotor1);
+        Motor_UpdatePWM(&hMotor2);
+
+        // 3. Loop Delay (100Hz)
+        vTaskDelay(pdMS_TO_TICKS(10));
+    }
+}
+
 void vLidarTask(void *pvParameters)
 {
   /* USER CODE BEGIN vLidarTask */
@@ -148,20 +208,10 @@ void vLidarTask(void *pvParameters)
     // Yield
     vTaskDelay(pdMS_TO_TICKS(10));
   }
-  /* USER CODE END vLidarTask */
 }
 
-/* USER CODE BEGIN Header_vImuTask */
-/**
-* @brief Function implementing the ImuTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_vImuTask */
 void vImuTask(void *pvParameters)
 {
-  /* USER CODE BEGIN vImuTask */
-  // Initialization with Mutex Protection
   if (xSemaphoreTake(xI2C1Mutex, portMAX_DELAY) == pdTRUE) {
       if (ADXL343_Init(&hi2c1) != HAL_OK) {
           printf("IMU Init Failed\r\n");
@@ -178,13 +228,13 @@ void vImuTask(void *pvParameters)
   for(;;)
   {
     if (xSemaphoreTake(xI2C1Mutex, portMAX_DELAY) == pdTRUE) {
-        
+
         uint8_t shock_detected = 0;
         HAL_StatusTypeDef status_read;
 
         // Read Axes
         status_read = ADXL343_ReadAxes(&hi2c1, &accel_data);
-        
+
         if (status_read != HAL_OK) {
             error_count++;
         } else {
@@ -194,7 +244,7 @@ void vImuTask(void *pvParameters)
                 shock_detected = 1;
             }
         }
-        
+
         if (error_count > 5) {
             printf("IMU I2C Error. Resetting...\r\n");
             HAL_I2C_DeInit(&hi2c1);
@@ -215,14 +265,64 @@ void vImuTask(void *pvParameters)
             HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin | STATUS_CHAT_LED_Pin, GPIO_PIN_RESET);
         }
     }
-    vTaskDelay(pdMS_TO_TICKS(100)); // 10Hz
+    vTaskDelay(pdMS_TO_TICKS(100));
   }
-  /* USER CODE END vImuTask */
 }
 
+void vSafetyTask(void *pvParameters)
+{
+  /* USER CODE BEGIN vSafetyTask */
+  uint16_t distances[4];
+  const uint16_t VOID_THRESHOLD = 200; // mm
 
+  for(;;)
+  {
+      if (xSemaphoreTake(xI2C1Mutex, portMAX_DELAY) == pdTRUE) {
+          TOF_Read_All(distances);
+          xSemaphoreGive(xI2C1Mutex);
 
-/* Private application code -------------------------------------------------- */
-/* USER CODE BEGIN Application */
+          // TOF Placement (Motor Axis = 0°):
+          // 0: TOF1 (Front-Right, 45°)
+          // 1: TOF2 (Rear-Right, 135°)
+          // 2: TOF3 (Rear-Left, 225°)
+          // 3: TOF4 (Front-Left, 315°)
 
+          int void_fwd_right = (distances[0] > VOID_THRESHOLD);
+          int void_rear_right = (distances[1] > VOID_THRESHOLD);
+          int void_rear_left = (distances[2] > VOID_THRESHOLD);
+          int void_fwd_left = (distances[3] > VOID_THRESHOLD);
+
+          if (void_fwd_right || void_fwd_left || void_rear_right || void_rear_left) {
+              printf("VOID DETECTED! AVOIDING...\r\n");
+              HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin, GPIO_PIN_SET); // LED ON indicating reflex
+
+              // Reflex Logic
+              if (void_fwd_right) {
+                  // Danger Front-Right -> Reverse + Turn Left
+                  Motor_SetSpeed(&hMotor1, -30.0f); // Right Motor Back
+                  Motor_SetSpeed(&hMotor2, -10.0f); // Left Motor Back (slower) -> Turn Left (or pivot)
+              }
+              else if (void_fwd_left) {
+                  // Danger Front-Left -> Reverse + Turn Right
+                  Motor_SetSpeed(&hMotor1, -10.0f);
+                  Motor_SetSpeed(&hMotor2, -30.0f);
+              }
+              else if (void_rear_right || void_rear_left) {
+                  // Danger Rear -> Forward
+                   Motor_SetSpeed(&hMotor1, 30.0f);
+                   Motor_SetSpeed(&hMotor2, 30.0f);
+              }
+
+              vTaskDelay(pdMS_TO_TICKS(500)); // Execute maneuver for 500ms
+              
+              // Stop after maneuver (or return to control loop control)
+              Motor_SetSpeed(&hMotor1, 0.0f);
+              Motor_SetSpeed(&hMotor2, 0.0f);
+              HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin, GPIO_PIN_RESET);
+          }
+      }
+
+      vTaskDelay(pdMS_TO_TICKS(50)); // Check every 50ms
+  }
+}
 /* USER CODE END Application */
