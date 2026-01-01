@@ -32,6 +32,9 @@ extern volatile float rad_s_motor2;
 // Initialise et démarre les timers encodeurs et le timer d'échantillonnage
 void ENCODER_Init(void);
 
+// Réinitialise les compteurs et variables internes
+void ENCODER_Reset(void);
+
 // Fonction de Callback qui doit être appelée par le système HAL dans main.c
 void ENCODER_Speed_Calculation(TIM_HandleTypeDef *htim);
 

@@ -23,7 +23,8 @@
 /* USER CODE BEGIN Includes */
 #include "motor.h"
 #include "encoder.h"
-
+#include "pid.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,8 +48,19 @@ TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim6;
 
-/* USER CODE BEGIN PV */
+UART_HandleTypeDef huart1;
 
+/* USER CODE BEGIN PV */
+// --- PARAMÈTRES DE TUNING PID (Modifiables en Live Watch) ---
+// Mise à jour pour l'échelle PWM 0-1000
+volatile float TUNING_Kp = 50.0f;   // Gain Proportionnel (Augmenté x25)
+volatile float TUNING_Ki = 200.0f;  // Gain Intégral (Augmenté x20) -> Passé à 200 pour réduire l'erreur statique
+volatile float TUNING_Kd = 0.0f;    // Gain Dérivé
+volatile float TUNING_TARGET = 5.0f; // Consigne réduite à 5 rad/s pour éviter la saturation (Max mesuré ~9 rad/s)
+
+// Instances PID
+PID_Controller_t hPID_Mot1; // Asservi sur rad_s_motor2 (Moteur A)
+PID_Controller_t hPID_Mot2; // Asservi sur rad_s_motor1 (Moteur B)
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -58,12 +70,18 @@ static void MX_TIM4_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM6_Init(void);
 static void MX_TIM3_Init(void);
+static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int __io_putchar(int ch)
+{
+	HAL_UART_Transmit(&huart1, (uint8_t*)&ch, 1, HAL_MAX_DELAY);
+	return ch;
+}
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
@@ -105,47 +123,62 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM6_Init();
   MX_TIM3_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
    //Initialisation des modules
  MOTOR_Init();   // Initialise et démarre le PWM (TIM3)
  ENCODER_Init(); // Initialise et démarre les encodeurs (TIM2, TIM4) et la base de temps (TIM6)
 
+ // Initialisation du PID
+ // PWM Max = 1000 (selon motor.c/h), dt = 0.01s (10ms)
+ PID_Init(&hPID_Mot1, TUNING_Kp, TUNING_Ki, TUNING_Kd, 0.01f, -1000.0f, 1000.0f);
+ PID_Init(&hPID_Mot2, TUNING_Kp, TUNING_Ki, TUNING_Kd, 0.01f, -1000.0f, 1000.0f);
+
+ printf("Demarrage Tuning PID (Ki=200)...\r\n");
+ HAL_Delay(2000);
+ 
+ // Reset complet des encodeurs et PIDs
+ ENCODER_Reset();
+ PID_Reset(&hPID_Mot1);
+ PID_Reset(&hPID_Mot2);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  uint32_t last_tick = HAL_GetTick();
+
   while (1)
-  {// Contrôle moteur dans la boucle principale
-	    // Exemple de mouvement : Vitesse progressive de 0 à 1000
-	    for (int i = 0 ; i <= 1000 ; i+=50)
-	    {
-	        MOTOR_Set_Speed_A(i);
-	        MOTOR_Set_Speed_B(i);
-	        HAL_Delay(50);
-	    }
+  {
+      // Boucle cadencée à 10ms (100Hz)
+      if ((HAL_GetTick() - last_tick) >= 10)
+      {
+          last_tick = HAL_GetTick();
 
-	    // Arrêt
-	    MOTOR_Set_Speed_A(0);
-	    MOTOR_Set_Speed_B(0);
-	    HAL_Delay(1000);
+          // 1. Mise à jour des gains (si modifiés en Live Watch)
+          hPID_Mot1.Kp = TUNING_Kp;
+          hPID_Mot1.Ki = TUNING_Ki;
+          hPID_Mot1.Kd = TUNING_Kd;
 
-	    // Mouvement inverse : Vitesse progressive de 0 à -1000
-	    for (int i = 0 ; i >= -1000 ; i-=50)
-	    {
-	        MOTOR_Set_Speed_A(i);
-	        MOTOR_Set_Speed_B(i);
-	        HAL_Delay(50);
-	    }
+          hPID_Mot2.Kp = TUNING_Kp;
+          hPID_Mot2.Ki = TUNING_Ki;
+          hPID_Mot2.Kd = TUNING_Kd;
 
-	    // Arrêt
-	    MOTOR_Set_Speed_A(0);
-	    MOTOR_Set_Speed_B(0);
-	    HAL_Delay(1000);
+          // 2. Calcul PID
+          // Moteur A (Droit) asservi sur rad_s_motor2
+          float pwm_cmd_A = PID_Compute(&hPID_Mot1, TUNING_TARGET, rad_s_motor2);
+          // Moteur B (Gauche) asservi sur rad_s_motor1
+          float pwm_cmd_B = PID_Compute(&hPID_Mot2, TUNING_TARGET, rad_s_motor1);
 
+          // 3. Application aux moteurs
+          MOTOR_Set_Speed_A((int16_t)pwm_cmd_A);
+          MOTOR_Set_Speed_B((int16_t)pwm_cmd_B);
 
-
-
-
+          // 4. Sortie Série pour Traceur
+          // Ajout de l'affichage de l'Intégrale PID A pour comprendre la saturation
+          // Format: Target, Mes A, Mes B, Pwm A, Integral A
+          printf("%.2f,%.2f,%.2f,%.0f,%.2f\r\n", TUNING_TARGET, rad_s_motor2, rad_s_motor1, pwm_cmd_A, hPID_Mot1.integral);
+      }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -223,7 +256,7 @@ static void MX_TIM2_Init(void)
   htim2.Init.Period = 65535;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
@@ -333,7 +366,7 @@ static void MX_TIM4_Init(void)
   htim4.Init.Period = 65535;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
@@ -397,6 +430,54 @@ static void MX_TIM6_Init(void)
 }
 
 /**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart1.Init.ClockPrescaler = UART_PRESCALER_DIV1;
+  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetTxFifoThreshold(&huart1, UART_TXFIFO_THRESHOLD_1_8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetRxFifoThreshold(&huart1, UART_RXFIFO_THRESHOLD_1_8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_DisableFifoMode(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -411,16 +492,6 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : PA15 */
-  GPIO_InitStruct.Pin = GPIO_PIN_15;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PB8 PB9 */
   GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;

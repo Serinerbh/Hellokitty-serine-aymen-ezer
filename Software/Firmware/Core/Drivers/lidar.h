@@ -33,10 +33,14 @@ typedef struct {
 #define DETECT_THRESHOLD 50 // Seuil de discontinuité en mm
 #define MAX_DETECTION_DISTANCE_MM 2000 // Objets au-delà de 2 mètres seront ignorés
 
+#define MIN_OBJECT_WIDTH_MM        50.0f   // Un robot fait au moins 5cm
+#define MAX_OBJECT_WIDTH_MM        300.0f  // Un robot fait moins de 30cm
+
 typedef struct {
     float angle;        // Angle moyen de l'objet (degrés)
     float distance;     // Distance moyenne (mm)
-    int size;           // Largeur angulaire (nombre de points)
+    float width_mm;     // Largeur physique en mm
+    int size;           // Nombre de points
 } LidarObject_t;
 
 #define LIDAR_DMA_BUFFER_SIZE 1024

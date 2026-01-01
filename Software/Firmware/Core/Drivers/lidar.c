@@ -175,58 +175,57 @@ void ydlidar_detect_objects(LidarObject_t* objects, uint8_t* object_count) {
     *object_count = 0;
     int points_in_object = 0;
     float sum_dist = 0;
-    float sum_angle = 0; // Warning: Simple average works for small objects not crossing 0/360
+    float start_angle = -1;
+    float end_angle = -1;
 
-    for (int i = 1; i < NB_DEGRES; i++) {
-        uint16_t dist_prev = g_scan_distances_mm[i - 1];
+    for (int i = 0; i < NB_DEGRES; i++) {
         uint16_t dist_curr = g_scan_distances_mm[i];
 
-        if (dist_curr == 0) continue;
-        if (dist_prev == 0) {
-            sum_dist = dist_curr;
-            sum_angle = i;
-            points_in_object = 1;
+        if (dist_curr == 0) {
+            // No data at this angle, treat as potential break
+            if (points_in_object > 0) {
+                // Object ended by lack of data
+                goto finalize_object;
+            }
             continue;
         }
 
-        // Check discontinuity
-        if (fabsf((float)dist_curr - (float)dist_prev) > DETECT_THRESHOLD) {
-            // End of an object, save it if valid
-            if (points_in_object > 1 && *object_count < MAX_LIDAR_OBJECTS) {
-                objects[*object_count].distance = sum_dist / points_in_object;
-                objects[*object_count].angle = sum_angle / points_in_object;
-                objects[*object_count].size = points_in_object;
+        uint16_t dist_prev = (i > 0) ? g_scan_distances_mm[i - 1] : 0;
 
-                // Filter by distance
-                if (objects[*object_count].distance <= MAX_DETECTION_DISTANCE_MM) {
-                	printf("Detected Object %d: Angle=%.2f, Dist=%.2f, Size=%d\r\n", *object_count, objects[*object_count].angle, objects[*object_count].distance, objects[*object_count].size);
+        // Discontinuity check
+        if (points_in_object > 0 && fabsf((float)dist_curr - (float)dist_prev) > DETECT_THRESHOLD) {
+            finalize_object: ;
+            // Calculate width and filter
+            float avg_dist = sum_dist / points_in_object;
+            float angular_width = (float)points_in_object; // Simplified as 1 point approx 1 deg
+            float width_mm = 2.0f * avg_dist * tanf((angular_width * M_PI / 180.0f) / 2.0f);
+
+            if (width_mm >= MIN_OBJECT_WIDTH_MM && width_mm <= MAX_OBJECT_WIDTH_MM &&
+                avg_dist <= MAX_DETECTION_DISTANCE_MM && points_in_object >= 2) {
+                
+                if (*object_count < MAX_LIDAR_OBJECTS) {
+                    objects[*object_count].distance = avg_dist;
+                    // Angle average (simplified, doesn't handle 0/360 wrap here)
+                    objects[*object_count].angle = (start_angle + (float)(i-1)) / 2.0f;
+                    objects[*object_count].width_mm = width_mm;
+                    objects[*object_count].size = points_in_object;
+                    
+                    printf("Detected Robot %d: Ang=%.1f, Dist=%.1f, Width=%.1f\r\n", 
+                            *object_count, objects[*object_count].angle, 
+                            objects[*object_count].distance, objects[*object_count].width_mm);
                     (*object_count)++;
                 }
             }
-
-            // Start new object
-            sum_dist = dist_curr;
-            sum_angle = i;
-            points_in_object = 1;
-        } else {
-            // Continue object
-            sum_dist += dist_curr;
-            sum_angle += i;
-            points_in_object++;
+            // Reset for next object
+            points_in_object = 0;
+            sum_dist = 0;
+            if (dist_curr == 0) continue; 
         }
-    }
 
-    // Check last segment
-    if (points_in_object > 1 && *object_count < MAX_LIDAR_OBJECTS) {
-         objects[*object_count].distance = sum_dist / points_in_object;
-         objects[*object_count].angle = sum_angle / points_in_object;
-         objects[*object_count].size = points_in_object;
-
-         // Filter by distance
-         if (objects[*object_count].distance <= MAX_DETECTION_DISTANCE_MM) {
-        	 printf("Detected Object %d: Angle=%.2f, Dist=%.2f, Size=%d\r\n", *object_count, objects[*object_count].angle, objects[*object_count].distance, objects[*object_count].size);
-            (*object_count)++;
-         }
+        // Start or continue object
+        if (points_in_object == 0) start_angle = (float)i;
+        sum_dist += (float)dist_curr;
+        points_in_object++;
     }
-    printf("Total Objects Detected: %d\r\n", *object_count);
+    printf("Total Potential Targets: %d\r\n", *object_count);
 }

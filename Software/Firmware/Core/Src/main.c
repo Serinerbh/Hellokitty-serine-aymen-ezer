@@ -27,7 +27,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "../Drivers/tof.h"
+#include "tof.h"
 #include <stdio.h>
 /* USER CODE END Includes */
 
@@ -110,12 +110,10 @@ int main(void)
   TOF_Init_All();
   printf("TOF Init Done.\r\n");
   /* USER CODE END 2 */
-
-  /* Call init function for freertos objects (in cmsis_os2.c) */
   MX_FREERTOS_Init();
 
   /* Start scheduler */
-  vTaskStartScheduler();
+  osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
 

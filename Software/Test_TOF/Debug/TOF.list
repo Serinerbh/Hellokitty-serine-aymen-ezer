@@ -3765,6 +3765,7 @@ bool performSingleRefCalibration(VL53L0X_Dev_t *dev, uint8_t vhv_init_byte)
 
   return true;
  8001d96:	2301      	movs	r3, #1
+}
  8001d98:	4618      	mov	r0, r3
  8001d9a:	3708      	adds	r7, #8
  8001d9c:	46bd      	mov	sp, r7

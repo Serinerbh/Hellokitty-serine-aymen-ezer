@@ -1,4 +1,5 @@
 ../Core/Drivers/motor.c:5:6:Motor_Init	2
-../Core/Drivers/motor.c:27:6:Motor_SetSpeed	4
-../Core/Drivers/motor.c:37:6:Motor_UpdatePWM	36
-../Core/Drivers/motor.c:67:6:Motor_UpdateSpeed	4
+../Core/Drivers/motor.c:26:6:Motor_SetSpeed	4
+../Core/Drivers/motor.c:36:6:Motor_UpdatePWM	36
+../Core/Drivers/motor.c:66:6:Motor_UpdateSpeed	4
+../Core/Drivers/motor.c:86:6:Motor_ResetEncoder	2

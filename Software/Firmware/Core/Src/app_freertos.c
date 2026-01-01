@@ -17,14 +17,13 @@
   */
 /* USER CODE END Header */
 
-/* Includes ------------------------------------------------------------------ */
+/* Includes ------------------------------------------------------------------*/
 #include "FreeRTOS.h"
 #include "task.h"
-#include "semphr.h"
 #include "main.h"
 #include "cmsis_os.h"
 
-/* Private includes ---------------------------------------------------------- */
+/* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "usart.h"
 #include "i2c.h"
@@ -34,23 +33,25 @@
 #include "imu.h"
 #include "tof.h"
 #include "motor.h"
+#include "pid.h"
+#include "odometry.h"
 /* USER CODE END Includes */
 
-/* Private typedef ----------------------------------------------------------- */
+/* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
 
-/* Private define ------------------------------------------------------------ */
+/* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 /* USER CODE END PD */
 
-/* Private macro ------------------------------------------------------------- */
+/* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 
 /* USER CODE END PM */
 
-/* Private variables --------------------------------------------------------- */
+/* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 // Task Handles
 TaskHandle_t xLidarTaskHandle = NULL;
@@ -68,9 +69,23 @@ uint8_t lidar_dma_buffer[LIDAR_DMA_BUFFER_SIZE];
 // Motor Handles
 Motor_Handle_t hMotor1;
 Motor_Handle_t hMotor2;
-/* USER CODE END Variables */
 
-/* Private function prototypes ----------------------------------------------- */
+// Control & Navigation
+PID_Controller_t pid_vel_left;  // PID Vitesse Moteur Gauche (Motor 2)
+PID_Controller_t pid_vel_right; // PID Vitesse Moteur Droit (Motor 1)
+Odometry_t robot_odom;          // Position du robot (X, Y, Theta)
+
+// Consignes de vitesse (en mm/s) - Modifiables par d'autres tâches
+volatile float target_speed_lin_x = 0.0f; // Vitesse linéaire cible
+volatile float target_speed_ang_z = 0.0f; // Vitesse de rotation cible
+
+// Flag de priorité pour la sécurité (0 = PID Control, 1 = Safety Override)
+volatile uint8_t g_safety_override = 0;
+
+/* USER CODE END Variables */
+osThreadId defaultTaskHandle;
+
+/* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 void vLidarTask(void *pvParameters);
 void vImuTask(void *pvParameters);
@@ -78,6 +93,8 @@ void vSafetyTask(void *pvParameters);
 void vControlTask(void *pvParameters);
 void MX_Motor_Init(void);
 /* USER CODE END FunctionPrototypes */
+
+void StartDefaultTask(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -114,69 +131,113 @@ void MX_FREERTOS_Init(void) {
 	  Error_Handler();
   }
 
-  // Create Control Task (High Priority for Motor Control)
-  if (xTaskCreate(vControlTask, "ControlTask", 256, NULL, 4, &xControlTaskHandle) != pdPASS)
+  if (xTaskCreate(vControlTask, "ControlTask", 512, NULL, 4, &xControlTaskHandle) != pdPASS)
   {
       printf("Control Task Creation Failed\r\n");
       Error_Handler();
   }
-
-  /* USER CODE END Init */
 }
 
-/* Private application code -------------------------------------------------- */
+/* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
 
 void MX_Motor_Init(void)
 {
   /* Initialize Motors */
-  // Motor 1 (Right): TIM3 CH1/CH2, Encoder TIM2
+  // Motor 1 (Right): TIM3 CH1/CH2, Encoder TIM2 (32-bit)
   hMotor1.pwm_timer = &htim3;
-  hMotor1.channel_fwd = TIM_CHANNEL_1;
-  hMotor1.channel_rev = TIM_CHANNEL_2;
+  hMotor1.channel_fwd = TIM_CHANNEL_1; // PA6
+  hMotor1.channel_rev = TIM_CHANNEL_2; // PA7
   hMotor1.enc_timer = &htim2;
-  hMotor1.enc_resolution = 2000;
+  hMotor1.enc_resolution = 2048; // Validé (Mode TI1/TI2)
   Motor_Init(&hMotor1);
+  hMotor1.pwm_ramp_step = 100.0f; // Désactive la rampe pour laisser le PID gérer
 
-  // Motor 2 (Left): TIM3 CH3/CH4, Encoder TIM4
+  // Motor 2 (Left): TIM3 CH3/CH4, Encoder TIM4 (16-bit)
   hMotor2.pwm_timer = &htim3;
-  hMotor2.channel_fwd = TIM_CHANNEL_3;
-  hMotor2.channel_rev = TIM_CHANNEL_4;
+  hMotor2.channel_fwd = TIM_CHANNEL_3; // PB0
+  hMotor2.channel_rev = TIM_CHANNEL_4; // PB1
   hMotor2.enc_timer = &htim4;
-  hMotor2.enc_resolution = 2000;
+  hMotor2.enc_resolution = 2048; // Validé
   Motor_Init(&hMotor2);
+  hMotor2.pwm_ramp_step = 100.0f; // Désactive la rampe
+
+  hMotor1.enc_timer->Instance->SMCR &= ~TIM_SMCR_ETF;
+  hMotor1.enc_timer->Instance->SMCR |= (0x08 << TIM_SMCR_ETF_Pos);
+  hMotor2.enc_timer->Instance->SMCR &= ~TIM_SMCR_ETF;
+  hMotor2.enc_timer->Instance->SMCR |= (0x08 << TIM_SMCR_ETF_Pos);
 }
 
 void vControlTask(void *pvParameters)
 {
-    const float dt = 0.01f; // 10ms loop time
+    const float dt = 0.01f;
 
-    for(;;)
+    PID_Init(&pid_vel_left,  5.0f, 20.0f, 0.0f, dt, -100.0f, 100.0f);
+    PID_Init(&pid_vel_right, 5.0f, 20.0f, 0.0f, dt, -100.0f, 100.0f);
+
+    Odom_Init(&robot_odom);
+    Odom_SetPosition(&robot_odom, 0.0f, 0.0f, 0.0f);
+
+    vTaskDelay(pdMS_TO_TICKS(500));
+    
+    Motor_ResetEncoder(&hMotor1);
+    Motor_ResetEncoder(&hMotor2);
+    
+    PID_Reset(&pid_vel_left);
+    PID_Reset(&pid_vel_right);
+
+    // --- MARCHE AVANT AUTOMATIQUE ---
+    target_speed_lin_x = 120.0f; // mm/s
+    target_speed_ang_z = 0.0f;
+
+    TickType_t xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
+
+    for(;;) 
     {
-        // 1. Update Encoders (Speed Calculation)
-        Motor_UpdateSpeed(&hMotor1, dt);
-        Motor_UpdateSpeed(&hMotor2, dt);
+        // --- A. ACQUISITION ---
+        Motor_UpdateSpeed(&hMotor1, dt); // Droit
+        Motor_UpdateSpeed(&hMotor2, dt); // Gauche
 
-        // 2. Update PWM (Ramping Logic)
-        Motor_UpdatePWM(&hMotor1);
-        Motor_UpdatePWM(&hMotor2);
+        // --- B. ODOMÉTRIE ---
+        float speed_L = -hMotor2.speed_rad_s; 
+        float speed_R = hMotor1.speed_rad_s;
+        Odom_Update(&robot_odom, speed_L, speed_R, dt);
 
-        // 3. Loop Delay (100Hz)
-        vTaskDelay(pdMS_TO_TICKS(10));
+        // --- C. CONTROLE ---
+        if (g_safety_override == 0)
+        {
+            float v_lin = target_speed_lin_x;
+            float v_ang = target_speed_ang_z;
+            float half_track = WHEEL_TRACK / 2.0f;
+            float radius = WHEEL_DIAMETER / 2.0f;
+
+            float target_rad_L = (v_lin - (v_ang * half_track)) / radius;
+            float target_rad_R = (v_lin + (v_ang * half_track)) / radius;
+
+            // Calcul PID
+            float pwm_L = PID_Compute(&pid_vel_left,  target_rad_L, speed_L);
+            float pwm_R = PID_Compute(&pid_vel_right, target_rad_R, speed_R);
+
+            Motor_SetSpeed(&hMotor2, -pwm_L); 
+            Motor_SetSpeed(&hMotor1, pwm_R);
+            
+            Motor_UpdatePWM(&hMotor2);
+            Motor_UpdatePWM(&hMotor1);
+        }
+        vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(10));
     }
 }
 
 void vLidarTask(void *pvParameters)
 {
-  /* USER CODE BEGIN vLidarTask */
-    ydlidar_init(lidar_dma_buffer, LIDAR_DMA_BUFFER_SIZE);
+  ydlidar_init(lidar_dma_buffer, LIDAR_DMA_BUFFER_SIZE);
 
   uint16_t old_pos = 0;
   static uint32_t last_check = 0;
 
   for(;;)
   {
-    // 1. Process Incoming Data from DMA
     uint16_t pos = LIDAR_DMA_BUFFER_SIZE - __HAL_DMA_GET_COUNTER(huart2.hdmarx);
 
     if (pos != old_pos) {
@@ -191,12 +252,10 @@ void vLidarTask(void *pvParameters)
       old_pos = pos;
     }
 
-    // 2. Object Detection (every 0.5s)
     if ((HAL_GetTick() - last_check) > 500) {
         LidarObject_t objects[MAX_LIDAR_OBJECTS];
         uint8_t count = 0;
 
-        // Wait for the UART to be free (Priority to Lidar)
         if (xSemaphoreTake(xUARTMutex, portMAX_DELAY) == pdTRUE) {
             ydlidar_detect_objects(objects, &count);
             xSemaphoreGive(xUARTMutex);
@@ -239,7 +298,6 @@ void vImuTask(void *pvParameters)
             error_count++;
         } else {
             error_count = 0;
-            // Only check shock if bus is healthy
             if (ADXL343_CheckShock(&hi2c1)) {
                 shock_detected = 1;
             }
@@ -249,7 +307,7 @@ void vImuTask(void *pvParameters)
             printf("IMU I2C Error. Resetting...\r\n");
             HAL_I2C_DeInit(&hi2c1);
             MX_I2C1_Init();
-            HAL_Delay(10); // Short hardware delay
+            HAL_Delay(10);
             ADXL343_Init(&hi2c1);
             ADXL343_ConfigShock(&hi2c1, 3.5f, 10.0f);
             error_count = 0;
@@ -271,58 +329,73 @@ void vImuTask(void *pvParameters)
 
 void vSafetyTask(void *pvParameters)
 {
-  /* USER CODE BEGIN vSafetyTask */
-  uint16_t distances[4];
-  const uint16_t VOID_THRESHOLD = 200; // mm
+  for(;;) {
+      ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
-  for(;;)
-  {
-      if (xSemaphoreTake(xI2C1Mutex, portMAX_DELAY) == pdTRUE) {
-          TOF_Read_All(distances);
-          xSemaphoreGive(xI2C1Mutex);
+      vTaskDelay(pdMS_TO_TICKS(20));
 
-          // TOF Placement (Motor Axis = 0°):
-          // 0: TOF1 (Front-Right, 45°)
-          // 1: TOF2 (Rear-Right, 135°)
-          // 2: TOF3 (Rear-Left, 225°)
-          // 3: TOF4 (Front-Left, 315°)
+      int void_fwd_right  = (HAL_GPIO_ReadPin(TOF1_GPIO_GPIO_Port, TOF1_GPIO_Pin) == GPIO_PIN_RESET);
+      int void_fwd_left   = (HAL_GPIO_ReadPin(TOF2_GPIO_GPIO_Port, TOF2_GPIO_Pin) == GPIO_PIN_RESET);
+      int void_rear_left  = (HAL_GPIO_ReadPin(TOF3_GPIO_GPIO_Port, TOF3_GPIO_Pin) == GPIO_PIN_RESET);
+      int void_rear_right = (HAL_GPIO_ReadPin(TOF4_GPIO_GPIO_Port, TOF4_GPIO_Pin) == GPIO_PIN_RESET);
 
-          int void_fwd_right = (distances[0] > VOID_THRESHOLD);
-          int void_rear_right = (distances[1] > VOID_THRESHOLD);
-          int void_rear_left = (distances[2] > VOID_THRESHOLD);
-          int void_fwd_left = (distances[3] > VOID_THRESHOLD);
+      if (void_fwd_right || void_fwd_left || void_rear_left || void_rear_right) {
+          
+          g_safety_override = 1;
+          HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin, GPIO_PIN_SET);
 
-          if (void_fwd_right || void_fwd_left || void_rear_right || void_rear_left) {
-              printf("VOID DETECTED! AVOIDING...\r\n");
-              HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin, GPIO_PIN_SET); // LED ON indicating reflex
+          Motor_SetSpeed(&hMotor1, 0.0f);
+          Motor_SetSpeed(&hMotor2, 0.0f);
+          Motor_UpdatePWM(&hMotor1);
+          Motor_UpdatePWM(&hMotor2);
+          vTaskDelay(pdMS_TO_TICKS(200));
 
-              // Reflex Logic
-              if (void_fwd_right) {
-                  // Danger Front-Right -> Reverse + Turn Left
-                  Motor_SetSpeed(&hMotor1, -30.0f); // Right Motor Back
-                  Motor_SetSpeed(&hMotor2, -10.0f); // Left Motor Back (slower) -> Turn Left (or pivot)
-              }
-              else if (void_fwd_left) {
-                  // Danger Front-Left -> Reverse + Turn Right
-                  Motor_SetSpeed(&hMotor1, -10.0f);
-                  Motor_SetSpeed(&hMotor2, -30.0f);
-              }
-              else if (void_rear_right || void_rear_left) {
-                  // Danger Rear -> Forward
-                   Motor_SetSpeed(&hMotor1, 30.0f);
-                   Motor_SetSpeed(&hMotor2, 30.0f);
-              }
-
-              vTaskDelay(pdMS_TO_TICKS(500)); // Execute maneuver for 500ms
-              
-              // Stop after maneuver (or return to control loop control)
-              Motor_SetSpeed(&hMotor1, 0.0f);
-              Motor_SetSpeed(&hMotor2, 0.0f);
-              HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin, GPIO_PIN_RESET);
+          if (void_fwd_right || void_fwd_left) {
+              Motor_SetSpeed(&hMotor1, -35.0f); 
+              Motor_SetSpeed(&hMotor2, -35.0f);
+          } else {
+              Motor_SetSpeed(&hMotor1, 35.0f); 
+              Motor_SetSpeed(&hMotor2, 35.0f);
           }
-      }
 
-      vTaskDelay(pdMS_TO_TICKS(50)); // Check every 50ms
+          Motor_UpdatePWM(&hMotor1);
+          Motor_UpdatePWM(&hMotor2);
+          vTaskDelay(pdMS_TO_TICKS(800));
+
+          Motor_SetSpeed(&hMotor1, 40.0f);
+          Motor_SetSpeed(&hMotor2, -40.0f);
+          Motor_UpdatePWM(&hMotor1);
+          Motor_UpdatePWM(&hMotor2);
+          vTaskDelay(pdMS_TO_TICKS(1000)); 
+
+          if (xSemaphoreTake(xI2C1Mutex, portMAX_DELAY) == pdTRUE) {
+              TOF_Clear_Interrupt(&tof1);
+              TOF_Clear_Interrupt(&tof2);
+              TOF_Clear_Interrupt(&tof3);
+              TOF_Clear_Interrupt(&tof4);
+              xSemaphoreGive(xI2C1Mutex);
+          }
+          
+          PID_Reset(&pid_vel_left);
+          PID_Reset(&pid_vel_right);
+          HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin, GPIO_PIN_RESET);
+          g_safety_override = 0;
+      }
   }
 }
+
+// Callback for TOF Interrupts (EXTI)
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+    if (GPIO_Pin == TOF1_GPIO_Pin || GPIO_Pin == TOF2_GPIO_Pin || 
+        GPIO_Pin == TOF3_GPIO_Pin || GPIO_Pin == TOF4_GPIO_Pin) 
+    {
+        BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+        if (xSafetyTaskHandle != NULL) {
+            vTaskNotifyGiveFromISR(xSafetyTaskHandle, &xHigherPriorityTaskWoken);
+            portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+        }
+    }
+}
 /* USER CODE END Application */
+

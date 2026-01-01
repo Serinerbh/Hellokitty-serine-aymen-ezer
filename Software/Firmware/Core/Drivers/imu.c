@@ -6,7 +6,7 @@
 #include "imu.h"
 #include <math.h>
 
-// Fonction utilitaire d'écriture I2C (Interne)
+// Fonction d'écriture I2C (Interne)
 static HAL_StatusTypeDef adxl_write(I2C_HandleTypeDef *hi2c, uint8_t reg, uint8_t value)
 {
 	return HAL_I2C_Mem_Write(hi2c,
@@ -18,7 +18,7 @@ static HAL_StatusTypeDef adxl_write(I2C_HandleTypeDef *hi2c, uint8_t reg, uint8_
 			ADXL_I2C_TIMEOUT);
 }
 
-// Fonction utilitaire de lecture I2C (Interne)
+// Fonction de lecture I2C (Interne)
 static HAL_StatusTypeDef adxl_read(I2C_HandleTypeDef *hi2c, uint8_t reg, uint8_t *value)
 {
 	return HAL_I2C_Mem_Read(hi2c,

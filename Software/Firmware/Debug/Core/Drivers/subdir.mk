@@ -5,33 +5,30 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Drivers/btn.c \
-../Core/Drivers/encoder.c \
 ../Core/Drivers/hc-05_bluetooth.c \
 ../Core/Drivers/imu.c \
-../Core/Drivers/led.c \
 ../Core/Drivers/lidar.c \
 ../Core/Drivers/motor.c \
+../Core/Drivers/odometry.c \
+../Core/Drivers/pid.c \
 ../Core/Drivers/tof.c 
 
 OBJS += \
-./Core/Drivers/btn.o \
-./Core/Drivers/encoder.o \
 ./Core/Drivers/hc-05_bluetooth.o \
 ./Core/Drivers/imu.o \
-./Core/Drivers/led.o \
 ./Core/Drivers/lidar.o \
 ./Core/Drivers/motor.o \
+./Core/Drivers/odometry.o \
+./Core/Drivers/pid.o \
 ./Core/Drivers/tof.o 
 
 C_DEPS += \
-./Core/Drivers/btn.d \
-./Core/Drivers/encoder.d \
 ./Core/Drivers/hc-05_bluetooth.d \
 ./Core/Drivers/imu.d \
-./Core/Drivers/led.d \
 ./Core/Drivers/lidar.d \
 ./Core/Drivers/motor.d \
+./Core/Drivers/odometry.d \
+./Core/Drivers/pid.d \
 ./Core/Drivers/tof.d 
 
 
@@ -42,7 +39,7 @@ Core/Drivers/%.o Core/Drivers/%.su Core/Drivers/%.cyclo: ../Core/Drivers/%.c Cor
 clean: clean-Core-2f-Drivers
 
 clean-Core-2f-Drivers:
-	-$(RM) ./Core/Drivers/btn.cyclo ./Core/Drivers/btn.d ./Core/Drivers/btn.o ./Core/Drivers/btn.su ./Core/Drivers/encoder.cyclo ./Core/Drivers/encoder.d ./Core/Drivers/encoder.o ./Core/Drivers/encoder.su ./Core/Drivers/hc-05_bluetooth.cyclo ./Core/Drivers/hc-05_bluetooth.d ./Core/Drivers/hc-05_bluetooth.o ./Core/Drivers/hc-05_bluetooth.su ./Core/Drivers/imu.cyclo ./Core/Drivers/imu.d ./Core/Drivers/imu.o ./Core/Drivers/imu.su ./Core/Drivers/led.cyclo ./Core/Drivers/led.d ./Core/Drivers/led.o ./Core/Drivers/led.su ./Core/Drivers/lidar.cyclo ./Core/Drivers/lidar.d ./Core/Drivers/lidar.o ./Core/Drivers/lidar.su ./Core/Drivers/motor.cyclo ./Core/Drivers/motor.d ./Core/Drivers/motor.o ./Core/Drivers/motor.su ./Core/Drivers/tof.cyclo ./Core/Drivers/tof.d ./Core/Drivers/tof.o ./Core/Drivers/tof.su
+	-$(RM) ./Core/Drivers/hc-05_bluetooth.cyclo ./Core/Drivers/hc-05_bluetooth.d ./Core/Drivers/hc-05_bluetooth.o ./Core/Drivers/hc-05_bluetooth.su ./Core/Drivers/imu.cyclo ./Core/Drivers/imu.d ./Core/Drivers/imu.o ./Core/Drivers/imu.su ./Core/Drivers/lidar.cyclo ./Core/Drivers/lidar.d ./Core/Drivers/lidar.o ./Core/Drivers/lidar.su ./Core/Drivers/motor.cyclo ./Core/Drivers/motor.d ./Core/Drivers/motor.o ./Core/Drivers/motor.su ./Core/Drivers/odometry.cyclo ./Core/Drivers/odometry.d ./Core/Drivers/odometry.o ./Core/Drivers/odometry.su ./Core/Drivers/pid.cyclo ./Core/Drivers/pid.d ./Core/Drivers/pid.o ./Core/Drivers/pid.su ./Core/Drivers/tof.cyclo ./Core/Drivers/tof.d ./Core/Drivers/tof.o ./Core/Drivers/tof.su
 
 .PHONY: clean-Core-2f-Drivers
 

@@ -85,8 +85,6 @@ void Error_Handler(void);
 #define ACC_INT2_GPIO_Port GPIOB
 #define ACC_INT1_Pin GPIO_PIN_13
 #define ACC_INT1_GPIO_Port GPIOB
-#define BOUTON_Chat_Souris_Pin GPIO_PIN_6
-#define BOUTON_Chat_Souris_GPIO_Port GPIOC
 #define LIDAR_M_CTR_Pin GPIO_PIN_8
 #define LIDAR_M_CTR_GPIO_Port GPIOA
 #define VCP_TX_Pin GPIO_PIN_9
@@ -107,12 +105,16 @@ void Error_Handler(void);
 #define TOF4_XSHUT_GPIO_Port GPIOB
 #define TOF1_GPIO_Pin GPIO_PIN_4
 #define TOF1_GPIO_GPIO_Port GPIOB
+#define TOF1_GPIO_EXTI_IRQn EXTI4_IRQn
 #define TOF2_GPIO_Pin GPIO_PIN_5
 #define TOF2_GPIO_GPIO_Port GPIOB
+#define TOF2_GPIO_EXTI_IRQn EXTI9_5_IRQn
 #define TOF3_GPIO_Pin GPIO_PIN_6
 #define TOF3_GPIO_GPIO_Port GPIOB
+#define TOF3_GPIO_EXTI_IRQn EXTI9_5_IRQn
 #define TOF4_GPIO_Pin GPIO_PIN_7
 #define TOF4_GPIO_GPIO_Port GPIOB
+#define TOF4_GPIO_EXTI_IRQn EXTI9_5_IRQn
 
 /* USER CODE BEGIN Private defines */
 

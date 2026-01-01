@@ -73,6 +73,20 @@ void TOF_Init_All(void);
  */
 uint8_t TOF_Read_All(uint16_t* distances);
 
+/**
+ * @brief  Configures the interrupt threshold for a sensor.
+ * @param  dev: Pointer to the VL53L0X device.
+ * @param  threshold_mm: Distance in mm above which an interrupt is fired.
+ */
+void TOF_Set_Interrupt_Threshold(VL53L0X_Dev_t *dev, uint16_t threshold_mm);
+
+/**
+ * @brief  Clears the interrupt flag on the sensor (via I2C).
+ * @param  dev: Pointer to the VL53L0X device.
+ */
+void TOF_Clear_Interrupt(VL53L0X_Dev_t *dev);
+
+
 
 //------------------------------------------------------------
 // LOW LEVEL API (ST VL53L0X Driver)

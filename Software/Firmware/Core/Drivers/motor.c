@@ -12,7 +12,6 @@ void Motor_Init(Motor_Handle_t* hmotor) {
     // Start encoder timer
     HAL_TIM_Encoder_Start(hmotor->enc_timer, TIM_CHANNEL_ALL);
 
-    // Initialize previous counter value and total ticks
     hmotor->enc_prev_counter = __HAL_TIM_GET_COUNTER(hmotor->enc_timer);
     hmotor->total_ticks = 0;
     hmotor->speed_rpm = 0.0f;
@@ -21,7 +20,7 @@ void Motor_Init(Motor_Handle_t* hmotor) {
     // Ramp Init
     hmotor->current_pwm = 0.0f;
     hmotor->target_pwm = 0.0f;
-    hmotor->pwm_ramp_step = 5.0f; // Default: 5% per tick. At 100Hz -> 0 to 100% in 0.2s
+    hmotor->pwm_ramp_step = 5.0f;
 }
 
 void Motor_SetSpeed(Motor_Handle_t* hmotor, float pwm_percent) {
@@ -82,4 +81,17 @@ void Motor_UpdateSpeed(Motor_Handle_t* hmotor, float delta_time_s) {
     float revolutions_per_second = (float)delta_ticks / (float)hmotor->enc_resolution / delta_time_s;
     hmotor->speed_rpm = revolutions_per_second * 60.0f;
     hmotor->speed_rad_s = revolutions_per_second * 2.0f * M_PI;
+}
+
+void Motor_ResetEncoder(Motor_Handle_t* hmotor) {
+    if (hmotor == NULL) return;
+
+    // Reset Hardware Counter
+    __HAL_TIM_SET_COUNTER(hmotor->enc_timer, 0);
+
+    // Reset Internal Variables
+    hmotor->enc_prev_counter = 0;
+    hmotor->total_ticks = 0;
+    hmotor->speed_rpm = 0.0f;
+    hmotor->speed_rad_s = 0.0f;
 }

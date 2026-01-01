@@ -8,9 +8,6 @@ Core/Src/app_freertos.o: ../Core/Src/app_freertos.c \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  ../Core/Inc/main.h ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
  ../Core/Inc/stm32g4xx_hal_conf.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h \
@@ -44,6 +41,9 @@ Core/Src/app_freertos.o: ../Core/Src/app_freertos.c \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
@@ -52,7 +52,9 @@ Core/Src/app_freertos.o: ../Core/Src/app_freertos.c \
  D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/lidar.h \
  D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/imu.h \
  D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/tof.h \
- D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/motor.h
+ D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/motor.h \
+ D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/pid.h \
+ D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/odometry.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -62,9 +64,6 @@ Core/Src/app_freertos.o: ../Core/Src/app_freertos.c \
 ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
-../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h:
-../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
-../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
 ../Core/Inc/stm32g4xx_hal_conf.h:
@@ -99,6 +98,9 @@ Core/Src/app_freertos.o: ../Core/Src/app_freertos.c \
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
+../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
+../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
@@ -110,3 +112,5 @@ D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/D
 D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/imu.h:
 D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/tof.h:
 D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/motor.h:
+D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/pid.h:
+D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/odometry.h:

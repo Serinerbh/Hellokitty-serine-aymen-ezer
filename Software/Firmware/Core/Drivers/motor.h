@@ -6,23 +6,20 @@
 typedef struct {
     // PWM
     TIM_HandleTypeDef* pwm_timer;
-    uint32_t           channel_fwd; // Canal PWM Avant (e.g., TIM_CHANNEL_1)
-    uint32_t           channel_rev; // Canal PWM Arrière (e.g., TIM_CHANNEL_2)
-
+    uint32_t           channel_fwd; // Canal PWM Avant
+    uint32_t           channel_rev; // Canal PWM Arrière
     // Encodeur
     TIM_HandleTypeDef* enc_timer;
-    int32_t            enc_prev_counter; // Stockage précédent pour delta
-    uint32_t           enc_resolution;   // PPR * 4 (Mode TI1+TI2 si utilisé)
-
-    // Données Physiques
+    int32_t            enc_prev_counter;
+    uint32_t           enc_resolution;
+    // Données
     float              speed_rpm;
     float              speed_rad_s;
-    int32_t            total_ticks;      // Odométrie absolue
-
+    int32_t            total_ticks;
     // Ramp Control
-    float              current_pwm;      // Vitesse actuelle appliquée (-100.0 à 100.0)
-    float              target_pwm;       // Vitesse cible demandée
-    float              pwm_ramp_step;    // Incrément max par appel de UpdatePWM (ex: 1.0)
+    float              current_pwm;
+    float              target_pwm;
+    float              pwm_ramp_step;
 } Motor_Handle_t;
 
 /**
@@ -54,5 +51,12 @@ void Motor_UpdatePWM(Motor_Handle_t* hmotor);
  * @param delta_time_s Time elapsed since the last update in seconds.
  */
 void Motor_UpdateSpeed(Motor_Handle_t* hmotor, float delta_time_s);
+
+/**
+ * @brief Resets the encoder counters and internal speed variables.
+ *        Useful to avoid integral windup at startup.
+ * @param hmotor Pointer to the Motor_Handle_t structure.
+ */
+void Motor_ResetEncoder(Motor_Handle_t* hmotor);
 
 #endif /* INC_MOTOR_H_ */

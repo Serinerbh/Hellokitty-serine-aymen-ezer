@@ -50,6 +50,27 @@ void ENCODER_Init(void)
 }
 
 /**
+  * @brief  Réinitialise les compteurs encodeurs et les variables internes.
+  * @param  None
+  * @retval None
+  */
+void ENCODER_Reset(void)
+{
+    __HAL_TIM_SET_COUNTER(&htim4, 0);
+    __HAL_TIM_SET_COUNTER(&htim2, 0);
+    
+    prev_count_4 = 0;
+    prev_count_2 = 0;
+    delta_ticks_4 = 0;
+    delta_ticks_2 = 0;
+    
+    rpm_motor1 = 0.0f;
+    rad_s_motor1 = 0.0f;
+    rpm_motor2 = 0.0f;
+    rad_s_motor2 = 0.0f;
+}
+
+/**
   * @brief  Effectue les calculs de vitesse pour les deux moteurs.
   * Cette fonction est appelée par HAL_TIM_PeriodElapsedCallback.
   * @param  htim: Handle du Timer déclencheur (doit être TIM6)

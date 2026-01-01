@@ -136,8 +136,43 @@ void TOF_Init_All(void) {
     HAL_GPIO_WritePin(TOF4_XSHUT_GPIO_Port, TOF4_XSHUT_Pin, GPIO_PIN_SET);
     HAL_Delay(10);
     initVL53L0X(&tof4, 1, &hi2c1);
-    setAddress_VL53L0X(&tof4, 0x66);
+            setAddress_VL53L0X(&tof4, 0x66);
+            
+            // Configure Interrupts for VOID detection (> 500mm)
+            // On augmente le seuil à 500mm pour ignorer la table (mesurée à ~115mm)
+            uint16_t threshold = 500; 
+            
+            TOF_Set_Interrupt_Threshold(&tof1, threshold);    TOF_Set_Interrupt_Threshold(&tof2, threshold);
+    TOF_Set_Interrupt_Threshold(&tof3, threshold);
+    TOF_Set_Interrupt_Threshold(&tof4, threshold);
+
+    // Start Continuous Mode
+    startContinuous(&tof1, 0);
+    startContinuous(&tof2, 0);
+    startContinuous(&tof3, 0);
     startContinuous(&tof4, 0);
+}
+
+void TOF_Set_Interrupt_Threshold(VL53L0X_Dev_t *dev, uint16_t threshold_mm) {
+    // 1. Set Threshold High
+    writeReg16Bit(dev, SYSTEM_THRESH_HIGH, threshold_mm);
+    writeReg16Bit(dev, SYSTEM_THRESH_LOW, 0); 
+
+    // 2. Configure GPIO for "Level High" (Value > Thresh_High)
+    // 0x02 = Level High (Active when distance > High Threshold)
+    writeReg(dev, SYSTEM_INTERRUPT_CONFIG_GPIO, 0x02);
+    
+    // 3. Ensure Polarity is Active Low (bit 4 = 0)
+    // This matches STM32 GPIO_MODE_IT_FALLING
+    uint8_t gpio_mux = readReg(dev, GPIO_HV_MUX_ACTIVE_HIGH);
+    writeReg(dev, GPIO_HV_MUX_ACTIVE_HIGH, gpio_mux & ~0x10); 
+    
+    // 4. Clear any pending interrupt
+    writeReg(dev, SYSTEM_INTERRUPT_CLEAR, 0x01);
+}
+
+void TOF_Clear_Interrupt(VL53L0X_Dev_t *dev) {
+    writeReg(dev, SYSTEM_INTERRUPT_CLEAR, 0x01);
 }
 
 uint8_t TOF_Read_All(uint16_t* distances) {
