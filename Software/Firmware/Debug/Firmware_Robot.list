@@ -27,9 +27,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  000161dc  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00023493  00000000  00000000  0001620c  2**0
+ 12 .debug_info   00023495  00000000  00000000  0001620c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00005411  00000000  00000000  0003969f  2**0
+ 13 .debug_abbrev 0000540f  00000000  00000000  000396a1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  14 .debug_aranges 00001c20  00000000  00000000  0003eab0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -2630,10 +2630,6 @@ void ydlidar_detect_objects(LidarObject_t* objects, uint8_t* object_count) {
     float start_angle = -1;
  8001966:	4b92      	ldr	r3, [pc, #584]	@ (8001bb0 <ydlidar_detect_objects+0x268>)
  8001968:	61fb      	str	r3, [r7, #28]
-    
-    // To handle wrap-around, we can do a second pass or just double the buffer conceptually
-    // Simpler: just detect normally, and at the end, if there's an object starting at 0 
-    // and one ending at 359, merge them.
 
     for (int i = 0; i < NB_DEGRES; i++) {
  800196a:	2300      	movs	r3, #0
@@ -2880,18 +2876,14 @@ void ydlidar_detect_objects(LidarObject_t* objects, uint8_t* object_count) {
  8001b90:	69bb      	ldr	r3, [r7, #24]
  8001b92:	f5b3 7fb4 	cmp.w	r3, #360	@ 0x168
  8001b96:	f6ff aeeb 	blt.w	8001970 <ydlidar_detect_objects+0x28>
-    if (*object_count >= 2) {
-        // If first object starts at 0 and last object ends at 359
-        // This logic is a bit complex for a simple replace, let's keep it simple for now
-        // and just focus on tracking.
     }
 }
  8001b9a:	bf00      	nop
- 8001b9c:	3728      	adds	r7, #40	@ 0x28
- 8001b9e:	46bd      	mov	sp, r7
- 8001ba0:	ecbd 8b02 	vpop	{d8}
- 8001ba4:	bd80      	pop	{r7, pc}
- 8001ba6:	bf00      	nop
+ 8001b9c:	bf00      	nop
+ 8001b9e:	3728      	adds	r7, #40	@ 0x28
+ 8001ba0:	46bd      	mov	sp, r7
+ 8001ba2:	ecbd 8b02 	vpop	{d8}
+ 8001ba6:	bd80      	pop	{r7, pc}
  8001ba8:	54442d18 	.word	0x54442d18
  8001bac:	400921fb 	.word	0x400921fb
  8001bb0:	bf800000 	.word	0xbf800000
@@ -2957,7 +2949,6 @@ void ydlidar_update_tracking(LidarObject_t* objects, uint8_t count) {
  8001c18:	7b1b      	ldrb	r3, [r3, #12]
  8001c1a:	2b00      	cmp	r3, #0
  8001c1c:	d03d      	beq.n	8001c9a <ydlidar_update_tracking+0xce>
-            // Distance in polar-ish space
             float d_ang = fabsf(objects[i].angle - g_target.angle);
  8001c1e:	69fb      	ldr	r3, [r7, #28]
  8001c20:	011b      	lsls	r3, r3, #4
@@ -2990,7 +2981,7 @@ void ydlidar_update_tracking(LidarObject_t* objects, uint8_t count) {
  8001c70:	ee77 7a67 	vsub.f32	s15, s14, s15
  8001c74:	eef0 7ae7 	vabs.f32	s15, s15
  8001c78:	edc7 7a02 	vstr	s15, [r7, #8]
-            score = d_ang * 2.0f + d_dist * 0.1f; // Heuristic
+            score = d_ang * 2.0f + d_dist * 0.1f;
  8001c7c:	edd7 7a05 	vldr	s15, [r7, #20]
  8001c80:	ee37 7aa7 	vadd.f32	s14, s15, s15
  8001c84:	edd7 7a02 	vldr	s15, [r7, #8]
@@ -3000,7 +2991,6 @@ void ydlidar_update_tracking(LidarObject_t* objects, uint8_t count) {
  8001c94:	edc7 7a06 	vstr	s15, [r7, #24]
  8001c98:	e005      	b.n	8001ca6 <ydlidar_update_tracking+0xda>
         } else {
-            // If no target, pick closest one
             score = objects[i].distance;
  8001c9a:	69fb      	ldr	r3, [r7, #28]
  8001c9c:	011b      	lsls	r3, r3, #4
@@ -4042,7 +4032,7 @@ void Odom_Update(Odometry_t *odom, float v_left, float v_right, float dt) {
  80024c4:	eec7 7a26 	vdiv.f32	s15, s14, s13
  80024c8:	edc7 7a07 	vstr	s15, [r7, #28]
 
-    // 3. Intégration de la position (Méthode de Runge-Kutta d'ordre 1)
+    // 3. Intégration de la position
     // On utilise l'angle moyen pendant le déplacement pour plus de précision
     float delta_theta = v_angular * dt;
  80024cc:	ed97 7a07 	vldr	s14, [r7, #28]
@@ -4202,8 +4192,7 @@ void PID_Init(PID_Controller_t *pid, float kp, float ki, float kd, float dt, flo
  8002656:	69fb      	ldr	r3, [r7, #28]
  8002658:	687a      	ldr	r2, [r7, #4]
  800265a:	619a      	str	r2, [r3, #24]
-    
-    // On limite l'intégrale à la même valeur que la sortie max par défaut
+
     pid->integral_max = out_max; 
  800265c:	69fb      	ldr	r3, [r7, #28]
  800265e:	687a      	ldr	r2, [r7, #4]
@@ -7220,7 +7209,6 @@ void vControlTask(void *pvParameters)
 
     for(;;) 
     {
-        // --- A. ACQUISITION ---
         Motor_UpdateSpeed(&hMotor1, dt); // Droit
  8003b90:	ed97 0a0d 	vldr	s0, [r7, #52]	@ 0x34
  8003b94:	484c      	ldr	r0, [pc, #304]	@ (8003cc8 <vControlTask+0x1c0>)
@@ -7230,7 +7218,6 @@ void vControlTask(void *pvParameters)
  8003b9e:	484b      	ldr	r0, [pc, #300]	@ (8003ccc <vControlTask+0x1c4>)
  8003ba0:	f7fe fb9a 	bl	80022d8 <Motor_UpdateSpeed>
 
-        // --- B. STRATEGY ---
         if (g_safety_override == 0) {
  8003ba4:	4b4a      	ldr	r3, [pc, #296]	@ (8003cd0 <vControlTask+0x1c8>)
  8003ba6:	781b      	ldrb	r3, [r3, #0]
@@ -7257,7 +7244,6 @@ void vControlTask(void *pvParameters)
             }
         }
 
-        // --- C. ODOMÉTRIE ---
         float speed_L = -hMotor2.speed_rad_s; 
  8003bce:	4b3f      	ldr	r3, [pc, #252]	@ (8003ccc <vControlTask+0x1c4>)
  8003bd0:	edd3 7a07 	vldr	s15, [r3, #28]
@@ -7274,7 +7260,6 @@ void vControlTask(void *pvParameters)
  8003bee:	4835      	ldr	r0, [pc, #212]	@ (8003cc4 <vControlTask+0x1bc>)
  8003bf0:	f7fe fc36 	bl	8002460 <Odom_Update>
 
-        // --- C. CONTROLE ---
         if (g_safety_override == 0)
  8003bf4:	4b36      	ldr	r3, [pc, #216]	@ (8003cd0 <vControlTask+0x1c8>)
  8003bf6:	781b      	ldrb	r3, [r3, #0]
@@ -7316,7 +7301,6 @@ void vControlTask(void *pvParameters)
  8003c4a:	eec6 7a87 	vdiv.f32	s15, s13, s14
  8003c4e:	edc7 7a05 	vstr	s15, [r7, #20]
 
-            // Calcul PID
             float pwm_L = PID_Compute(&pid_vel_left,  target_rad_L, speed_L);
  8003c52:	edd7 0a0c 	vldr	s1, [r7, #48]	@ 0x30
  8003c56:	ed97 0a06 	vldr	s0, [r7, #24]
@@ -7673,7 +7657,7 @@ void vImuTask(void *pvParameters)
  8003f04:	6013      	str	r3, [r2, #0]
         }
     }
-    vTaskDelay(pdMS_TO_TICKS(50)); // Augmenter fréquence polling à 20Hz pour chocs
+    vTaskDelay(pdMS_TO_TICKS(50));
  8003f06:	2032      	movs	r0, #50	@ 0x32
  8003f08:	f008 fd6e 	bl	800c9e8 <vTaskDelay>
     if (xSemaphoreTake(xI2C1Mutex, portMAX_DELAY) == pdTRUE) {

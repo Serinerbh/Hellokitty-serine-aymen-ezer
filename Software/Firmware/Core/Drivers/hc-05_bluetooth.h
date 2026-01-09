@@ -5,6 +5,6 @@
 #include <stdint.h>
 
 void HC05_Init(void);
-void HC05_RxCallback(void); // À appeler dans HAL_UART_RxCpltCallback
+void HC05_RxCallback(void);
 
 #endif /* HC05_BLUETOOTH_H */

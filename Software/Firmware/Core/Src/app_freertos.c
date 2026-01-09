@@ -194,11 +194,9 @@ void vControlTask(void *pvParameters)
 
     for(;;) 
     {
-        // --- A. ACQUISITION ---
         Motor_UpdateSpeed(&hMotor1, dt); // Droit
         Motor_UpdateSpeed(&hMotor2, dt); // Gauche
 
-        // --- B. STRATEGY ---
         if (g_safety_override == 0) {
             if (Strategy_IsEnabled()) {
                 Strategy_Update();
@@ -208,12 +206,10 @@ void vControlTask(void *pvParameters)
             }
         }
 
-        // --- C. ODOMÉTRIE ---
         float speed_L = -hMotor2.speed_rad_s; 
         float speed_R = hMotor1.speed_rad_s;
         Odom_Update(&robot_odom, speed_L, speed_R, dt);
 
-        // --- C. CONTROLE ---
         if (g_safety_override == 0)
         {
             float v_lin = target_speed_lin_x;
@@ -224,7 +220,6 @@ void vControlTask(void *pvParameters)
             float target_rad_L = (v_lin - (v_ang * half_track)) / radius;
             float target_rad_R = (v_lin + (v_ang * half_track)) / radius;
 
-            // Calcul PID
             float pwm_L = PID_Compute(&pid_vel_left,  target_rad_L, speed_L);
             float pwm_R = PID_Compute(&pid_vel_right, target_rad_R, speed_R);
 
@@ -331,7 +326,7 @@ void vImuTask(void *pvParameters)
             last_shock_time = HAL_GetTick();
         }
     }
-    vTaskDelay(pdMS_TO_TICKS(50)); // Augmenter fréquence polling à 20Hz pour chocs
+    vTaskDelay(pdMS_TO_TICKS(50));
   }
 }
 

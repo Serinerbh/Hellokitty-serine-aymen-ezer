@@ -180,10 +180,6 @@ void ydlidar_detect_objects(LidarObject_t* objects, uint8_t* object_count) {
     int points_in_object = 0;
     float sum_dist = 0;
     float start_angle = -1;
-    
-    // To handle wrap-around, we can do a second pass or just double the buffer conceptually
-    // Simpler: just detect normally, and at the end, if there's an object starting at 0 
-    // and one ending at 359, merge them.
 
     for (int i = 0; i < NB_DEGRES; i++) {
         uint16_t dist_curr = g_scan_distances_mm[i];
@@ -225,13 +221,6 @@ void ydlidar_detect_objects(LidarObject_t* objects, uint8_t* object_count) {
         sum_dist += (float)dist_curr;
         points_in_object++;
     }
-
-    // Merge wrap-around objects
-    if (*object_count >= 2) {
-        // If first object starts at 0 and last object ends at 359
-        // This logic is a bit complex for a simple replace, let's keep it simple for now
-        // and just focus on tracking.
-    }
 }
 
 void ydlidar_update_tracking(LidarObject_t* objects, uint8_t count) {
@@ -251,13 +240,11 @@ void ydlidar_update_tracking(LidarObject_t* objects, uint8_t count) {
     for (int i = 0; i < count; i++) {
         float score;
         if (g_target.is_valid) {
-            // Distance in polar-ish space
             float d_ang = fabsf(objects[i].angle - g_target.angle);
             if (d_ang > 180.0f) d_ang = 360.0f - d_ang;
             float d_dist = fabsf(objects[i].distance - g_target.distance);
-            score = d_ang * 2.0f + d_dist * 0.1f; // Heuristic
+            score = d_ang * 2.0f + d_dist * 0.1f;
         } else {
-            // If no target, pick closest one
             score = objects[i].distance;
         }
 

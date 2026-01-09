@@ -33,8 +33,8 @@ typedef struct {
 #define DETECT_THRESHOLD 50 // Seuil de discontinuité en mm
 #define MAX_DETECTION_DISTANCE_MM 2000 // Objets au-delà de 2 mètres seront ignorés
 
-#define MIN_OBJECT_WIDTH_MM        50.0f   // Un robot fait au moins 5cm
-#define MAX_OBJECT_WIDTH_MM        300.0f  // Un robot fait moins de 30cm
+#define MIN_OBJECT_WIDTH_MM        50.0f
+#define MAX_OBJECT_WIDTH_MM        300.0f
 
 typedef struct {
     float angle;        // Angle moyen de l'objet (degrés)

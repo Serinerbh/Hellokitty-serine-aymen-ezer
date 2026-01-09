@@ -3,5 +3,5 @@
 ../Core/Drivers/lidar.c:96:13:decode_packet	16
 ../Core/Drivers/lidar.c:169:10:ydlidar_get_distance	2
 ../Core/Drivers/lidar.c:178:6:ydlidar_detect_objects	16
-../Core/Drivers/lidar.c:237:6:ydlidar_update_tracking	14
-../Core/Drivers/lidar.c:291:15:ydlidar_get_target	1
+../Core/Drivers/lidar.c:226:6:ydlidar_update_tracking	14
+../Core/Drivers/lidar.c:278:15:ydlidar_get_target	1

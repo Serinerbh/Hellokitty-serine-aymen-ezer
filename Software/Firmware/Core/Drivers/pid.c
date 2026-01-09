@@ -7,8 +7,7 @@ void PID_Init(PID_Controller_t *pid, float kp, float ki, float kd, float dt, flo
     pid->dt = dt;
     pid->out_min = out_min;
     pid->out_max = out_max;
-    
-    // On limite l'intégrale à la même valeur que la sortie max par défaut
+
     pid->integral_max = out_max; 
     
     PID_Reset(pid);
