@@ -13,6 +13,7 @@
 "./Core/Src/stm32g4xx_hal_msp.o"
 "./Core/Src/stm32g4xx_hal_timebase_tim.o"
 "./Core/Src/stm32g4xx_it.o"
+"./Core/Src/strategy.o"
 "./Core/Src/syscalls.o"
 "./Core/Src/sysmem.o"
 "./Core/Src/system_stm32g4xx.o"

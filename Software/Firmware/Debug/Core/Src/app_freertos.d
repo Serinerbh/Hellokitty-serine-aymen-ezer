@@ -54,7 +54,9 @@ Core/Src/app_freertos.o: ../Core/Src/app_freertos.c \
  D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/tof.h \
  D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/motor.h \
  D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/pid.h \
- D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/odometry.h
+ D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/odometry.h \
+ ../Core/Inc/strategy.h \
+ D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/hc-05_bluetooth.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -114,3 +116,5 @@ D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/D
 D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/motor.h:
 D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/pid.h:
 D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/odometry.h:
+../Core/Inc/strategy.h:
+D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/hc-05_bluetooth.h:

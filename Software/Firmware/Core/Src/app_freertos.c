@@ -35,6 +35,8 @@
 #include "motor.h"
 #include "pid.h"
 #include "odometry.h"
+#include "strategy.h"
+#include "hc-05_bluetooth.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -105,37 +107,38 @@ void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-    
+  
   /* Create Mutexes */
   xI2C1Mutex = xSemaphoreCreateMutex();
   xUARTMutex = xSemaphoreCreateMutex();
 
+  /* Initialize Drivers */
   MX_Motor_Init();
+  Strategy_Init();
+  HC05_Init();
 
   /* Create Tasks */
-  if (xTaskCreate(vImuTask, "ImuTask", 256, NULL, 1, &xImuTaskHandle) != pdPASS)
-  {
-	  printf("IMU Task Creation Failed\r\n");
-	  Error_Handler();
+  if (xTaskCreate(vImuTask, "ImuTask", 256, NULL, 1, &xImuTaskHandle) != pdPASS) {
+      printf("IMU Task Creation Failed\r\n");
+      Error_Handler();
   }
 
-  if (xTaskCreate(vLidarTask, "LidarTask", 512, NULL, 2, &xLidarTaskHandle) != pdPASS)
-  {
-	  printf("Lidar Task Creation Failed\r\n");
-	  Error_Handler();
+  if (xTaskCreate(vLidarTask, "LidarTask", 512, NULL, 2, &xLidarTaskHandle) != pdPASS) {
+      printf("Lidar Task Creation Failed\r\n");
+      Error_Handler();
   }
 
-  if (xTaskCreate(vSafetyTask, "SafetyTask", 256, NULL, 3, &xSafetyTaskHandle) != pdPASS)
-  {
-	  printf("Safety Task Creation Failed\r\n");
-	  Error_Handler();
+  if (xTaskCreate(vSafetyTask, "SafetyTask", 256, NULL, 3, &xSafetyTaskHandle) != pdPASS) {
+      printf("Safety Task Creation Failed\r\n");
+      Error_Handler();
   }
 
-  if (xTaskCreate(vControlTask, "ControlTask", 512, NULL, 4, &xControlTaskHandle) != pdPASS)
-  {
+  if (xTaskCreate(vControlTask, "ControlTask", 512, NULL, 4, &xControlTaskHandle) != pdPASS) {
       printf("Control Task Creation Failed\r\n");
       Error_Handler();
   }
+  
+  /* USER CODE END Init */
 }
 
 /* Private application code --------------------------------------------------*/
@@ -149,18 +152,18 @@ void MX_Motor_Init(void)
   hMotor1.channel_fwd = TIM_CHANNEL_1; // PA6
   hMotor1.channel_rev = TIM_CHANNEL_2; // PA7
   hMotor1.enc_timer = &htim2;
-  hMotor1.enc_resolution = 2048; // Validé (Mode TI1/TI2)
+  hMotor1.enc_resolution = 2048; //(Mode TI1/TI2)
   Motor_Init(&hMotor1);
-  hMotor1.pwm_ramp_step = 100.0f; // Désactive la rampe pour laisser le PID gérer
+  hMotor1.pwm_ramp_step = 100.0f;
 
   // Motor 2 (Left): TIM3 CH3/CH4, Encoder TIM4 (16-bit)
   hMotor2.pwm_timer = &htim3;
   hMotor2.channel_fwd = TIM_CHANNEL_3; // PB0
   hMotor2.channel_rev = TIM_CHANNEL_4; // PB1
   hMotor2.enc_timer = &htim4;
-  hMotor2.enc_resolution = 2048; // Validé
+  hMotor2.enc_resolution = 2048;
   Motor_Init(&hMotor2);
-  hMotor2.pwm_ramp_step = 100.0f; // Désactive la rampe
+  hMotor2.pwm_ramp_step = 100.0f;
 
   hMotor1.enc_timer->Instance->SMCR &= ~TIM_SMCR_ETF;
   hMotor1.enc_timer->Instance->SMCR |= (0x08 << TIM_SMCR_ETF_Pos);
@@ -186,10 +189,6 @@ void vControlTask(void *pvParameters)
     PID_Reset(&pid_vel_left);
     PID_Reset(&pid_vel_right);
 
-    // --- MARCHE AVANT AUTOMATIQUE ---
-    target_speed_lin_x = 120.0f; // mm/s
-    target_speed_ang_z = 0.0f;
-
     TickType_t xLastWakeTime;
     xLastWakeTime = xTaskGetTickCount();
 
@@ -199,7 +198,17 @@ void vControlTask(void *pvParameters)
         Motor_UpdateSpeed(&hMotor1, dt); // Droit
         Motor_UpdateSpeed(&hMotor2, dt); // Gauche
 
-        // --- B. ODOMÉTRIE ---
+        // --- B. STRATEGY ---
+        if (g_safety_override == 0) {
+            if (Strategy_IsEnabled()) {
+                Strategy_Update();
+            } else {
+                target_speed_lin_x = 0;
+                target_speed_ang_z = 0;
+            }
+        }
+
+        // --- C. ODOMÉTRIE ---
         float speed_L = -hMotor2.speed_rad_s; 
         float speed_R = hMotor1.speed_rad_s;
         Odom_Update(&robot_odom, speed_L, speed_R, dt);
@@ -252,19 +261,19 @@ void vLidarTask(void *pvParameters)
       old_pos = pos;
     }
 
-    if ((HAL_GetTick() - last_check) > 500) {
+    if ((HAL_GetTick() - last_check) > 100) {
         LidarObject_t objects[MAX_LIDAR_OBJECTS];
         uint8_t count = 0;
 
         if (xSemaphoreTake(xUARTMutex, portMAX_DELAY) == pdTRUE) {
             ydlidar_detect_objects(objects, &count);
+            ydlidar_update_tracking(objects, count);
             xSemaphoreGive(xUARTMutex);
         }
 
         last_check = HAL_GetTick();
     }
 
-    // Yield
     vTaskDelay(pdMS_TO_TICKS(10));
   }
 }
@@ -289,6 +298,7 @@ void vImuTask(void *pvParameters)
     if (xSemaphoreTake(xI2C1Mutex, portMAX_DELAY) == pdTRUE) {
 
         uint8_t shock_detected = 0;
+        static uint32_t last_shock_time = 0;
         HAL_StatusTypeDef status_read;
 
         // Read Axes
@@ -315,15 +325,13 @@ void vImuTask(void *pvParameters)
 
         xSemaphoreGive(xI2C1Mutex);
 
-        if (shock_detected) {
-            for(int i=0; i<4; i++) {
-                HAL_GPIO_TogglePin(GPIOC, STATUS_SOURIS_LED_Pin | STATUS_CHAT_LED_Pin);
-                vTaskDelay(pdMS_TO_TICKS(100));
-            }
-            HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin | STATUS_CHAT_LED_Pin, GPIO_PIN_RESET);
+        if (shock_detected && (HAL_GetTick() - last_shock_time > 2000)) {
+            printf("IMU: SHOCK DETECTED! Toggling Role.\r\n");
+            Strategy_ToggleRole();
+            last_shock_time = HAL_GetTick();
         }
     }
-    vTaskDelay(pdMS_TO_TICKS(100));
+    vTaskDelay(pdMS_TO_TICKS(50)); // Augmenter fréquence polling à 20Hz pour chocs
   }
 }
 
@@ -341,6 +349,7 @@ void vSafetyTask(void *pvParameters)
 
       if (void_fwd_right || void_fwd_left || void_rear_left || void_rear_right) {
           
+          printf("Safety: VOID DETECTED! Evacuating...\r\n");
           g_safety_override = 1;
           HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin, GPIO_PIN_SET);
 
@@ -395,6 +404,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
             vTaskNotifyGiveFromISR(xSafetyTaskHandle, &xHigherPriorityTaskWoken);
             portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
         }
+    }
+}
+
+// Callback pour la réception Bluetooth
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART3) {
+        HC05_RxCallback();
     }
 }
 /* USER CODE END Application */

@@ -43,6 +43,13 @@ typedef struct {
     int size;           // Nombre de points
 } LidarObject_t;
 
+typedef struct {
+    float angle;
+    float distance;
+    uint32_t last_seen_ms;
+    uint8_t is_valid;
+} LidarTarget_t;
+
 #define LIDAR_DMA_BUFFER_SIZE 1024
 
 void ydlidar_init(uint8_t *buffer, uint16_t size);
@@ -51,6 +58,11 @@ void ydlidar_process_data(const uint8_t* data, size_t len);
 
 // Nouvelle fonction de segmentation
 void ydlidar_detect_objects(LidarObject_t* objects, uint8_t* object_count);
+
+// Tracking
+void ydlidar_update_tracking(LidarObject_t* objects, uint8_t count);
+LidarTarget_t ydlidar_get_target(void);
+
 // Accès aux données brutes pour debug
 uint16_t ydlidar_get_distance(uint16_t angle_deg);
 

@@ -1,0 +1,9 @@
+../Core/Src/strategy.c:26:6:Strategy_SetLEDS	8	static
+../Core/Src/strategy.c:36:6:Strategy_Init	8	static
+../Core/Src/strategy.c:42:6:Strategy_ToggleRole	8	static
+../Core/Src/strategy.c:56:6:Strategy_Update	40	static
+../Core/Src/strategy.c:142:18:Strategy_GetCurrentState	4	static
+../Core/Src/strategy.c:146:13:Strategy_GetCurrentRole	4	static
+../Core/Src/strategy.c:150:6:Strategy_SetRole	16	static
+../Core/Src/strategy.c:156:6:Strategy_SetEnabled	16	static
+../Core/Src/strategy.c:167:9:Strategy_IsEnabled	4	static

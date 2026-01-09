@@ -1,6 +1,6 @@
-Core/Drivers/hc-05_bluetooth.o: ../Core/Drivers/hc-05_bluetooth.c \
- ../Core/Drivers/hc-05_bluetooth.h ../Core/Inc/usart.h ../Core/Inc/main.h \
- ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
+Core/Src/strategy.o: ../Core/Src/strategy.c ../Core/Inc/strategy.h \
+ D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/lidar.h \
+ ../Core/Inc/main.h ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
  ../Core/Inc/stm32g4xx_hal_conf.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h \
@@ -30,10 +30,9 @@ Core/Drivers/hc-05_bluetooth.o: ../Core/Drivers/hc-05_bluetooth.c \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
- ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
- ../Core/Inc/strategy.h
-../Core/Drivers/hc-05_bluetooth.h:
-../Core/Inc/usart.h:
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h
+../Core/Inc/strategy.h:
+D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/lidar.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
 ../Core/Inc/stm32g4xx_hal_conf.h:
@@ -66,4 +65,3 @@ Core/Drivers/hc-05_bluetooth.o: ../Core/Drivers/hc-05_bluetooth.c \
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h:
-../Core/Inc/strategy.h:

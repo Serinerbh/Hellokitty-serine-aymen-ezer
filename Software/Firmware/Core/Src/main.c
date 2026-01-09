@@ -63,7 +63,7 @@ void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN 0 */
 int __io_putchar(int ch)
 {
-	HAL_UART_Transmit(&huart1, (uint8_t*)&ch, 1, HAL_MAX_DELAY);
+	HAL_UART_Transmit(&huart3, (uint8_t*)&ch, 1, HAL_MAX_DELAY);
 	return ch;
 }
 /* USER CODE END 0 */
@@ -110,6 +110,8 @@ int main(void)
   TOF_Init_All();
   printf("TOF Init Done.\r\n");
   /* USER CODE END 2 */
+
+  /* Call init function for freertos objects (in cmsis_os2.c) */
   MX_FREERTOS_Init();
 
   /* Start scheduler */
