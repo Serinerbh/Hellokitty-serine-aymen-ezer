@@ -3,8 +3,8 @@
 
 #include "stm32g4xx_hal.h"
 
-#define WHEEL_DIAMETER    65.0f   // Diamètre des roues en mm
-#define WHEEL_TRACK       161.0f  // Distance entre les deux roues en mm
+#define WHEEL_DIAMETER    65.0f
+#define WHEEL_TRACK       161.0f
 #define WHEEL_CIRC        (WHEEL_DIAMETER * 3.14159f)
 
 typedef struct {

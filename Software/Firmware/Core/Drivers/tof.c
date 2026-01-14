@@ -104,53 +104,64 @@ static void readMulti(VL53L0X_Dev_t *dev, uint8_t reg, uint8_t * dst, uint8_t co
 //=============================================================================
 
 void TOF_Init_All(void) {
+    // 0. Reconfigure TOF Interrupt Pins as Input (Disable EXTI)
+    // All TOF GPIOs are on GPIOB (Checked in gpio.c)
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    GPIO_InitStruct.Pin = TOF1_GPIO_Pin | TOF2_GPIO_Pin | TOF3_GPIO_Pin | TOF4_GPIO_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
     // 1. Reset all sensors (XSHUT Low)
     HAL_GPIO_WritePin(TOF1_XSHUT_GPIO_Port, TOF1_XSHUT_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(TOF2_XSHUT_GPIO_Port, TOF2_XSHUT_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(TOF3_XSHUT_GPIO_Port, TOF3_XSHUT_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(TOF4_XSHUT_GPIO_Port, TOF4_XSHUT_Pin, GPIO_PIN_RESET);
-    HAL_Delay(10);
+    HAL_Delay(20);
 
-    // 2. Initialize TOF1 (Addr 0x60)
+    // 2. Initialize TOF1 (Addr 0x54 from Test_TOF)
     HAL_GPIO_WritePin(TOF1_XSHUT_GPIO_Port, TOF1_XSHUT_Pin, GPIO_PIN_SET);
-    HAL_Delay(10);
+    HAL_Delay(20);
     initVL53L0X(&tof1, 1, &hi2c1);
-    setAddress_VL53L0X(&tof1, 0x60);
+    setAddress_VL53L0X(&tof1, 0x54);
+    setSignalRateLimit(&tof1, 0.1);
+    setVcselPulsePeriod(&tof1, VcselPeriodPreRange, 18);
+    setVcselPulsePeriod(&tof1, VcselPeriodFinalRange, 14);
+    setMeasurementTimingBudget(&tof1, 200000);
     startContinuous(&tof1, 0);
 
-    // 3. Initialize TOF2 (Addr 0x62)
+    // 3. Initialize TOF2 (Addr 0x56 from Test_TOF)
     HAL_GPIO_WritePin(TOF2_XSHUT_GPIO_Port, TOF2_XSHUT_Pin, GPIO_PIN_SET);
-    HAL_Delay(10);
+    HAL_Delay(20);
     initVL53L0X(&tof2, 1, &hi2c1);
-    setAddress_VL53L0X(&tof2, 0x62);
+    setAddress_VL53L0X(&tof2, 0x56);
+    setSignalRateLimit(&tof2, 0.1);
+    setVcselPulsePeriod(&tof2, VcselPeriodPreRange, 18);
+    setVcselPulsePeriod(&tof2, VcselPeriodFinalRange, 14);
+    setMeasurementTimingBudget(&tof2, 200000);
     startContinuous(&tof2, 0);
 
-    // 4. Initialize TOF3 (Addr 0x64)
+    // 4. Initialize TOF3 (Addr 0x58 from Test_TOF)
     HAL_GPIO_WritePin(TOF3_XSHUT_GPIO_Port, TOF3_XSHUT_Pin, GPIO_PIN_SET);
-    HAL_Delay(10);
+    HAL_Delay(20);
     initVL53L0X(&tof3, 1, &hi2c1);
-    setAddress_VL53L0X(&tof3, 0x64);
+    setAddress_VL53L0X(&tof3, 0x58);
+    setSignalRateLimit(&tof3, 0.1);
+    setVcselPulsePeriod(&tof3, VcselPeriodPreRange, 18);
+    setVcselPulsePeriod(&tof3, VcselPeriodFinalRange, 14);
+    setMeasurementTimingBudget(&tof3, 200000);
     startContinuous(&tof3, 0);
 
-    // 5. Initialize TOF4 (Addr 0x66)
+    // 5. Initialize TOF4 (Addr 0x5A from Test_TOF)
     HAL_GPIO_WritePin(TOF4_XSHUT_GPIO_Port, TOF4_XSHUT_Pin, GPIO_PIN_SET);
-    HAL_Delay(10);
+    HAL_Delay(20);
     initVL53L0X(&tof4, 1, &hi2c1);
-            setAddress_VL53L0X(&tof4, 0x66);
-            
-            // Configure Interrupts for VOID detection (> 500mm)
-            // On augmente le seuil à 500mm pour ignorer la table (mesurée à ~115mm)
-            uint16_t threshold = 500; 
-            
-            TOF_Set_Interrupt_Threshold(&tof1, threshold);    TOF_Set_Interrupt_Threshold(&tof2, threshold);
-    TOF_Set_Interrupt_Threshold(&tof3, threshold);
-    TOF_Set_Interrupt_Threshold(&tof4, threshold);
-
-    // Start Continuous Mode
-    startContinuous(&tof1, 0);
-    startContinuous(&tof2, 0);
-    startContinuous(&tof3, 0);
-    startContinuous(&tof4, 0);
+            setAddress_VL53L0X(&tof4, 0x5A);
+            setSignalRateLimit(&tof4, 0.1);
+            setVcselPulsePeriod(&tof4, VcselPeriodPreRange, 18);
+            setVcselPulsePeriod(&tof4, VcselPeriodFinalRange, 14);
+            setMeasurementTimingBudget(&tof4, 200000);
+            startContinuous(&tof4, 0);
 }
 
 void TOF_Set_Interrupt_Threshold(VL53L0X_Dev_t *dev, uint16_t threshold_mm) {

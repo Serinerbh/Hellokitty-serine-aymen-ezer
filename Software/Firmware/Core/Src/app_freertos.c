@@ -198,12 +198,18 @@ void vControlTask(void *pvParameters)
         Motor_UpdateSpeed(&hMotor2, dt); // Gauche
 
         if (g_safety_override == 0) {
+            // Force Forward Motion (Low Speed Test)
+            target_speed_lin_x = 150.0f; // 150 mm/s
+            target_speed_ang_z = 0.0f;   // Straight
+            
+            /* Strategy Disabled for Test
             if (Strategy_IsEnabled()) {
                 Strategy_Update();
             } else {
                 target_speed_lin_x = 0;
                 target_speed_ang_z = 0;
             }
+            */
         }
 
         float speed_L = -hMotor2.speed_rad_s; 
@@ -332,19 +338,28 @@ void vImuTask(void *pvParameters)
 
 void vSafetyTask(void *pvParameters)
 {
+  uint16_t dist[4] = {0};
+
+  // Delay start to allow sensors to boot
+  vTaskDelay(pdMS_TO_TICKS(500));
+
   for(;;) {
-      ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+      // Poll sensors (Blocking call - up to 200ms per sensor if not ready)
+      if (xSemaphoreTake(xI2C1Mutex, portMAX_DELAY) == pdTRUE) {
+          TOF_Read_All(dist);
+          xSemaphoreGive(xI2C1Mutex);
+      }
 
-      vTaskDelay(pdMS_TO_TICKS(20));
-
-      int void_fwd_right  = (HAL_GPIO_ReadPin(TOF1_GPIO_GPIO_Port, TOF1_GPIO_Pin) == GPIO_PIN_RESET);
-      int void_fwd_left   = (HAL_GPIO_ReadPin(TOF2_GPIO_GPIO_Port, TOF2_GPIO_Pin) == GPIO_PIN_RESET);
-      int void_rear_left  = (HAL_GPIO_ReadPin(TOF3_GPIO_GPIO_Port, TOF3_GPIO_Pin) == GPIO_PIN_RESET);
-      int void_rear_right = (HAL_GPIO_ReadPin(TOF4_GPIO_GPIO_Port, TOF4_GPIO_Pin) == GPIO_PIN_RESET);
+      // Check for Void (> 500mm)
+      // TOF1: Fwd Right, TOF2: Fwd Left, TOF3: Rear Left, TOF4: Rear Right
+      int void_fwd_right  = (dist[0] > 500 && dist[0] < 8000); // Check valid range
+      int void_fwd_left   = (dist[1] > 500 && dist[1] < 8000);
+      int void_rear_left  = (dist[2] > 500 && dist[2] < 8000);
+      int void_rear_right = (dist[3] > 500 && dist[3] < 8000);
 
       if (void_fwd_right || void_fwd_left || void_rear_left || void_rear_right) {
           
-          printf("Safety: VOID DETECTED! Evacuating...\r\n");
+          printf("Safety: VOID DETECTED! (D1:%d D2:%d D3:%d D4:%d)\r\n", dist[0], dist[1], dist[2], dist[3]);
           g_safety_override = 1;
           HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin, GPIO_PIN_SET);
 
@@ -371,26 +386,22 @@ void vSafetyTask(void *pvParameters)
           Motor_UpdatePWM(&hMotor1);
           Motor_UpdatePWM(&hMotor2);
           vTaskDelay(pdMS_TO_TICKS(1000)); 
-
-          if (xSemaphoreTake(xI2C1Mutex, portMAX_DELAY) == pdTRUE) {
-              TOF_Clear_Interrupt(&tof1);
-              TOF_Clear_Interrupt(&tof2);
-              TOF_Clear_Interrupt(&tof3);
-              TOF_Clear_Interrupt(&tof4);
-              xSemaphoreGive(xI2C1Mutex);
-          }
           
           PID_Reset(&pid_vel_left);
           PID_Reset(&pid_vel_right);
           HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin, GPIO_PIN_RESET);
           g_safety_override = 0;
       }
+      
+      vTaskDelay(pdMS_TO_TICKS(220)); // Polling period > Timing Budget (200ms)
   }
 }
 
 // Callback for TOF Interrupts (EXTI)
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
+    // TOF Interrupts disabled (Polling Mode)
+    /*
     if (GPIO_Pin == TOF1_GPIO_Pin || GPIO_Pin == TOF2_GPIO_Pin || 
         GPIO_Pin == TOF3_GPIO_Pin || GPIO_Pin == TOF4_GPIO_Pin) 
     {
@@ -400,6 +411,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
             portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
         }
     }
+    */
 }
 
 // Callback pour la réception Bluetooth
