@@ -3,6 +3,5 @@
 ../Core/Src/app_freertos.c:174:6:vControlTask	3
 ../Core/Src/app_freertos.c:242:6:vLidarTask	6
 ../Core/Src/app_freertos.c:282:6:vImuTask	9
-../Core/Src/app_freertos.c:339:6:vSafetyTask	16
-../Core/Src/app_freertos.c:401:6:HAL_GPIO_EXTI_Callback	1
-../Core/Src/app_freertos.c:418:6:HAL_UART_RxCpltCallback	2
+../Core/Src/app_freertos.c:339:6:vSafetyTask	14
+../Core/Src/app_freertos.c:391:6:HAL_UART_RxCpltCallback	2

@@ -4,5 +4,4 @@
 ../Core/Src/app_freertos.c:242:6:vLidarTask	344	static
 ../Core/Src/app_freertos.c:282:6:vImuTask	32	static
 ../Core/Src/app_freertos.c:339:6:vSafetyTask	48	static
-../Core/Src/app_freertos.c:401:6:HAL_GPIO_EXTI_Callback	16	static
-../Core/Src/app_freertos.c:418:6:HAL_UART_RxCpltCallback	16	static
+../Core/Src/app_freertos.c:391:6:HAL_UART_RxCpltCallback	16	static

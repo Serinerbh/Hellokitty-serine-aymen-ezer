@@ -340,11 +340,7 @@ void vSafetyTask(void *pvParameters)
 {
   uint16_t dist[4] = {0};
 
-  // Delay start to allow sensors to boot
-  vTaskDelay(pdMS_TO_TICKS(500));
-
   for(;;) {
-      // Poll sensors (Blocking call - up to 200ms per sensor if not ready)
       if (xSemaphoreTake(xI2C1Mutex, portMAX_DELAY) == pdTRUE) {
           TOF_Read_All(dist);
           xSemaphoreGive(xI2C1Mutex);
@@ -367,22 +363,16 @@ void vSafetyTask(void *pvParameters)
           Motor_SetSpeed(&hMotor2, 0.0f);
           Motor_UpdatePWM(&hMotor1);
           Motor_UpdatePWM(&hMotor2);
-          vTaskDelay(pdMS_TO_TICKS(200));
+          vTaskDelay(pdMS_TO_TICKS(500));
 
-          if (void_fwd_right || void_fwd_left) {
-              Motor_SetSpeed(&hMotor1, -35.0f); 
-              Motor_SetSpeed(&hMotor2, -35.0f);
-          } else {
-              Motor_SetSpeed(&hMotor1, 35.0f); 
-              Motor_SetSpeed(&hMotor2, 35.0f);
-          }
-
+          Motor_SetSpeed(&hMotor1, -50.0f);
+          Motor_SetSpeed(&hMotor2, 50.0f);
           Motor_UpdatePWM(&hMotor1);
           Motor_UpdatePWM(&hMotor2);
-          vTaskDelay(pdMS_TO_TICKS(800));
+          vTaskDelay(pdMS_TO_TICKS(100));
 
-          Motor_SetSpeed(&hMotor1, 40.0f);
-          Motor_SetSpeed(&hMotor2, -40.0f);
+          Motor_SetSpeed(&hMotor1, 50.0f);
+          Motor_SetSpeed(&hMotor2, 50.0f);
           Motor_UpdatePWM(&hMotor1);
           Motor_UpdatePWM(&hMotor2);
           vTaskDelay(pdMS_TO_TICKS(1000)); 
@@ -393,25 +383,8 @@ void vSafetyTask(void *pvParameters)
           g_safety_override = 0;
       }
       
-      vTaskDelay(pdMS_TO_TICKS(220)); // Polling period > Timing Budget (200ms)
+      vTaskDelay(pdMS_TO_TICKS(100)); // Polling period > Timing Budget (200ms)
   }
-}
-
-// Callback for TOF Interrupts (EXTI)
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-    // TOF Interrupts disabled (Polling Mode)
-    /*
-    if (GPIO_Pin == TOF1_GPIO_Pin || GPIO_Pin == TOF2_GPIO_Pin || 
-        GPIO_Pin == TOF3_GPIO_Pin || GPIO_Pin == TOF4_GPIO_Pin) 
-    {
-        BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-        if (xSafetyTaskHandle != NULL) {
-            vTaskNotifyGiveFromISR(xSafetyTaskHandle, &xHigherPriorityTaskWoken);
-            portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-        }
-    }
-    */
 }
 
 // Callback pour la réception Bluetooth
