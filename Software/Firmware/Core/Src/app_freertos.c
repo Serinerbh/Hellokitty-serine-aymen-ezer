@@ -340,7 +340,11 @@ void vSafetyTask(void *pvParameters)
 {
   uint16_t dist[4] = {0};
 
+  // Delay start to allow sensors to boot
+  vTaskDelay(pdMS_TO_TICKS(500));
+
   for(;;) {
+      // Poll sensors (Blocking call - up to 20ms per sensor if not ready)
       if (xSemaphoreTake(xI2C1Mutex, portMAX_DELAY) == pdTRUE) {
           TOF_Read_All(dist);
           xSemaphoreGive(xI2C1Mutex);
@@ -348,10 +352,10 @@ void vSafetyTask(void *pvParameters)
 
       // Check for Void (> 500mm)
       // TOF1: Fwd Right, TOF2: Fwd Left, TOF3: Rear Left, TOF4: Rear Right
-      int void_fwd_right  = (dist[0] > 500 && dist[0] < 8000); // Check valid range
-      int void_fwd_left   = (dist[1] > 500 && dist[1] < 8000);
-      int void_rear_left  = (dist[2] > 500 && dist[2] < 8000);
-      int void_rear_right = (dist[3] > 500 && dist[3] < 8000);
+      int void_fwd_right  = (dist[0] > 200);
+      int void_fwd_left   = (dist[1] > 200);
+      int void_rear_left  = (dist[2] > 200);
+      int void_rear_right = (dist[3] > 200);
 
       if (void_fwd_right || void_fwd_left || void_rear_left || void_rear_right) {
           
@@ -369,13 +373,13 @@ void vSafetyTask(void *pvParameters)
           Motor_SetSpeed(&hMotor2, 50.0f);
           Motor_UpdatePWM(&hMotor1);
           Motor_UpdatePWM(&hMotor2);
-          vTaskDelay(pdMS_TO_TICKS(100));
+          vTaskDelay(pdMS_TO_TICKS(600));
 
           Motor_SetSpeed(&hMotor1, 50.0f);
           Motor_SetSpeed(&hMotor2, 50.0f);
           Motor_UpdatePWM(&hMotor1);
           Motor_UpdatePWM(&hMotor2);
-          vTaskDelay(pdMS_TO_TICKS(1000)); 
+          vTaskDelay(pdMS_TO_TICKS(800));
           
           PID_Reset(&pid_vel_left);
           PID_Reset(&pid_vel_right);
@@ -383,7 +387,7 @@ void vSafetyTask(void *pvParameters)
           g_safety_override = 0;
       }
       
-      vTaskDelay(pdMS_TO_TICKS(100)); // Polling period > Timing Budget (200ms)
+      vTaskDelay(pdMS_TO_TICKS(10));
   }
 }
 

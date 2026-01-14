@@ -127,7 +127,7 @@ void TOF_Init_All(void) {
     setSignalRateLimit(&tof1, 0.1);
     setVcselPulsePeriod(&tof1, VcselPeriodPreRange, 18);
     setVcselPulsePeriod(&tof1, VcselPeriodFinalRange, 14);
-    setMeasurementTimingBudget(&tof1, 200000);
+    setMeasurementTimingBudget(&tof1, 20000);
     startContinuous(&tof1, 0);
 
     // 3. Initialize TOF2 (Addr 0x56 from Test_TOF)
@@ -138,7 +138,7 @@ void TOF_Init_All(void) {
     setSignalRateLimit(&tof2, 0.1);
     setVcselPulsePeriod(&tof2, VcselPeriodPreRange, 18);
     setVcselPulsePeriod(&tof2, VcselPeriodFinalRange, 14);
-    setMeasurementTimingBudget(&tof2, 200000);
+    setMeasurementTimingBudget(&tof2, 20000);
     startContinuous(&tof2, 0);
 
     // 4. Initialize TOF3 (Addr 0x58 from Test_TOF)
@@ -149,7 +149,7 @@ void TOF_Init_All(void) {
     setSignalRateLimit(&tof3, 0.1);
     setVcselPulsePeriod(&tof3, VcselPeriodPreRange, 18);
     setVcselPulsePeriod(&tof3, VcselPeriodFinalRange, 14);
-    setMeasurementTimingBudget(&tof3, 200000);
+    setMeasurementTimingBudget(&tof3, 20000);
     startContinuous(&tof3, 0);
 
     // 5. Initialize TOF4 (Addr 0x5A from Test_TOF)
@@ -160,7 +160,7 @@ void TOF_Init_All(void) {
             setSignalRateLimit(&tof4, 0.1);
             setVcselPulsePeriod(&tof4, VcselPeriodPreRange, 18);
             setVcselPulsePeriod(&tof4, VcselPeriodFinalRange, 14);
-            setMeasurementTimingBudget(&tof4, 200000);
+            setMeasurementTimingBudget(&tof4, 20000);
             startContinuous(&tof4, 0);
 }
 
