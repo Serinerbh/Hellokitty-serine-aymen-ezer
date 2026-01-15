@@ -198,18 +198,12 @@ void vControlTask(void *pvParameters)
         Motor_UpdateSpeed(&hMotor2, dt); // Gauche
 
         if (g_safety_override == 0) {
-            // Force Forward Motion (Low Speed Test)
-            target_speed_lin_x = 150.0f; // 150 mm/s
-            target_speed_ang_z = 0.0f;   // Straight
-            
-            /* Strategy Disabled for Test
             if (Strategy_IsEnabled()) {
                 Strategy_Update();
             } else {
                 target_speed_lin_x = 0;
                 target_speed_ang_z = 0;
             }
-            */
         }
 
         float speed_L = -hMotor2.speed_rad_s; 

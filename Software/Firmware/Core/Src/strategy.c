@@ -17,10 +17,10 @@ static Game_Role_t current_role = ROLE_CHAT;
 static uint8_t robot_enabled = 0; // Robot arrêté par défaut
 
 #define SEARCH_ROT_SPEED 3.0f     // rad/s
-#define ATTACK_LIN_SPEED 200.0f   // mm/s
+#define ATTACK_LIN_SPEED 150.0f   // mm/s
 #define ATTACK_MAX_ANG_SPEED 5.0f // rad/s
 
-#define FLEE_LIN_SPEED 250.0f     // Fuite rapide !
+#define FLEE_LIN_SPEED 150.0f     // Fuite rapide !
 #define FLEE_MAX_ANG_SPEED 6.0f   // Virage serré
 
 void Strategy_SetLEDS(void) {
