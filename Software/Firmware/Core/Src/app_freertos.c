@@ -198,12 +198,17 @@ void vControlTask(void *pvParameters)
         Motor_UpdateSpeed(&hMotor2, dt); // Gauche
 
         if (g_safety_override == 0) {
+            // Force Forward Motion (Low Speed Test)
+            /*target_speed_lin_x = 150.0f; // 150 mm/s
+            target_speed_ang_z = 0.0f;   // Straight
+            */
             if (Strategy_IsEnabled()) {
                 Strategy_Update();
             } else {
                 target_speed_lin_x = 0;
                 target_speed_ang_z = 0;
             }
+
         }
 
         float speed_L = -hMotor2.speed_rad_s; 
@@ -351,7 +356,7 @@ void vSafetyTask(void *pvParameters)
       int void_rear_left  = (dist[2] > 200);
       int void_rear_right = (dist[3] > 200);
 
-      if (void_fwd_right || void_fwd_left || void_rear_left || void_rear_right) {
+      if (void_fwd_left || void_fwd_right) {
           
           printf("Safety: VOID DETECTED! (D1:%d D2:%d D3:%d D4:%d)\r\n", dist[0], dist[1], dist[2], dist[3]);
           g_safety_override = 1;
@@ -380,6 +385,34 @@ void vSafetyTask(void *pvParameters)
           HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin, GPIO_PIN_RESET);
           g_safety_override = 0;
       }
+      if (void_rear_left || void_rear_right){
+    	  printf("Safety: VOID DETECTED! (D1:%d D2:%d D3:%d D4:%d)\r\n", dist[0], dist[1], dist[2], dist[3]);
+      g_safety_override = 1;
+      HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin, GPIO_PIN_SET);
+
+      Motor_SetSpeed(&hMotor1, 0.0f);
+      Motor_SetSpeed(&hMotor2, 0.0f);
+      Motor_UpdatePWM(&hMotor1);
+      Motor_UpdatePWM(&hMotor2);
+      vTaskDelay(pdMS_TO_TICKS(500));
+
+      Motor_SetSpeed(&hMotor1, 50.0f);
+      Motor_SetSpeed(&hMotor2, -50.0f);
+      Motor_UpdatePWM(&hMotor1);
+      Motor_UpdatePWM(&hMotor2);
+      vTaskDelay(pdMS_TO_TICKS(600));
+
+      Motor_SetSpeed(&hMotor1, 50.0f);
+      Motor_SetSpeed(&hMotor2, 50.0f);
+      Motor_UpdatePWM(&hMotor1);
+      Motor_UpdatePWM(&hMotor2);
+      vTaskDelay(pdMS_TO_TICKS(800));
+
+      PID_Reset(&pid_vel_left);
+      PID_Reset(&pid_vel_right);
+      HAL_GPIO_WritePin(GPIOC, STATUS_SOURIS_LED_Pin, GPIO_PIN_RESET);
+      g_safety_override = 0;
+  }
       
       vTaskDelay(pdMS_TO_TICKS(10));
   }
