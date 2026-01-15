@@ -2,7 +2,7 @@
 
 ### **Les contributeurs :**
 -BENJEMAA Aymen
--SOLTANIT Ezer
+-SOLTANI Ezer
 -ROUABAH Serine
 
 ## 📚 Table des matières
