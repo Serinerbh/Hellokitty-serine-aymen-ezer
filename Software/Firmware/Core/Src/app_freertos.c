@@ -37,6 +37,9 @@
 #include "odometry.h"
 #include "strategy.h"
 #include "hc-05_bluetooth.h"
+
+extern UART_HandleTypeDef huart1;
+extern UART_HandleTypeDef huart3;
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -268,7 +271,14 @@ void vLidarTask(void *pvParameters)
         if (xSemaphoreTake(xUARTMutex, portMAX_DELAY) == pdTRUE) {
             ydlidar_detect_objects(objects, &count);
             ydlidar_update_tracking(objects, count);
+
             xSemaphoreGive(xUARTMutex);
+
+            // Get the closest tracked object and print its details
+            LidarTarget_t closest_object = ydlidar_get_target();
+            if (closest_object.is_valid) {
+                printf("Closest Object -> Angle: %.2f, Distance: %.2f\r\n", closest_object.angle, closest_object.distance);
+            }
         }
 
         last_check = HAL_GetTick();

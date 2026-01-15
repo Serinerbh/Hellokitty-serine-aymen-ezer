@@ -233,45 +233,28 @@ void ydlidar_update_tracking(LidarObject_t* objects, uint8_t count) {
         return;
     }
 
-    // Find best match
-    int best_idx = -1;
-    float min_score = 1000000.0f;
+    // Find the closest object among the current detections.
+    int closest_idx = -1;
+    float min_dist = 1000000.0f;
 
     for (int i = 0; i < count; i++) {
-        float score;
-        if (g_target.is_valid) {
-            float d_ang = fabsf(objects[i].angle - g_target.angle);
-            if (d_ang > 180.0f) d_ang = 360.0f - d_ang;
-            float d_dist = fabsf(objects[i].distance - g_target.distance);
-            score = d_ang * 2.0f + d_dist * 0.1f;
-        } else {
-            score = objects[i].distance;
-        }
-
-        if (score < min_score) {
-            min_score = score;
-            best_idx = i;
+        if (objects[i].distance < min_dist) {
+            min_dist = objects[i].distance;
+            closest_idx = i;
         }
     }
 
-    if (best_idx != -1) {
-        if (!g_target.is_valid) {
-            g_target.angle = objects[best_idx].angle;
-            g_target.distance = objects[best_idx].distance;
-            g_target.is_valid = 1;
-        } else {
-            // Alpha filter
-            float d_ang = objects[best_idx].angle - g_target.angle;
-            if (d_ang > 180.0f) d_ang -= 360.0f;
-            if (d_ang < -180.0f) d_ang += 360.0f;
-            
-            g_target.angle += TRACKING_ALPHA * d_ang;
-            if (g_target.angle >= 360.0f) g_target.angle -= 360.0f;
-            if (g_target.angle < 0.0f) g_target.angle += 360.0f;
-            
-            g_target.distance = g_target.distance * (1.0f - TRACKING_ALPHA) + objects[best_idx].distance * TRACKING_ALPHA;
-        }
+    if (closest_idx != -1) {
+        // The closest object is now the only target.
+        g_target.angle = objects[closest_idx].angle;
+        g_target.distance = objects[closest_idx].distance;
+        g_target.is_valid = 1;
         g_target.last_seen_ms = now;
+    } else {
+        // No objects found, invalidate target after timeout.
+         if (g_target.is_valid && (now - g_target.last_seen_ms > TRACKING_TIMEOUT_MS)) {
+            g_target.is_valid = 0;
+        }
     }
 }
 
