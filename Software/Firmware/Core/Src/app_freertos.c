@@ -80,11 +80,9 @@ PID_Controller_t pid_vel_left;  // PID Vitesse Moteur Gauche (Motor 2)
 PID_Controller_t pid_vel_right; // PID Vitesse Moteur Droit (Motor 1)
 Odometry_t robot_odom;          // Position du robot (X, Y, Theta)
 
-// Consignes de vitesse (en mm/s) - Modifiables par d'autres tâches
 volatile float target_speed_lin_x = 0.0f; // Vitesse linéaire cible
 volatile float target_speed_ang_z = 0.0f; // Vitesse de rotation cible
 
-// Flag de priorité pour la sécurité (0 = PID Control, 1 = Safety Override)
 volatile uint8_t g_safety_override = 0;
 
 /* USER CODE END Variables */
@@ -319,7 +317,10 @@ void vImuTask(void *pvParameters)
         } else {
             error_count = 0;
             if (ADXL343_CheckShock(&hi2c1)) {
-                shock_detected = 1;
+                // Ignorer le choc si la manoeuvre de sécurité est en cours
+                if (g_safety_override == 0) {
+                    shock_detected = 1;
+                }
             }
         }
 

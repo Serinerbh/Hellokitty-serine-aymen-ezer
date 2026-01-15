@@ -105,8 +105,6 @@ void Strategy_Update(void) {
             if (current_role == ROLE_CHAT) { current_state = STATE_SEARCH; break; } // Sécurité
 
             if (!target.is_valid) {
-                // Si on a perdu la menace de vue, on s'arrête de fuir et on scanne
-                // Ou alors on continue un peu tout droit ? Pour l'instant : SEARCH.
                 current_state = STATE_SEARCH;
                 break;
             }
@@ -127,7 +125,6 @@ void Strategy_Update(void) {
             if (fabsf(flee_angle_deg) < 45.0f) {
                 target_speed_lin_x = FLEE_LIN_SPEED;
             } else {
-                // Si on doit faire un gros demi-tour, on avance moins vite
                 target_speed_lin_x = 50.0f; 
             }
             break;
