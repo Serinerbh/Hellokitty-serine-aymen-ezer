@@ -48,15 +48,13 @@ Core/Src/app_freertos.o: ../Core/Src/app_freertos.c \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
  ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/i2c.h \
- ../Core/Inc/tim.h \
- D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/lidar.h \
- D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/imu.h \
- D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/tof.h \
- D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/motor.h \
- D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/pid.h \
- D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/odometry.h \
- ../Core/Inc/strategy.h \
- D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/hc-05_bluetooth.h
+ ../Core/Inc/tim.h C:/Users/Aymen/Firmware/Core/Drivers/lidar.h \
+ C:/Users/Aymen/Firmware/Core/Drivers/imu.h \
+ C:/Users/Aymen/Firmware/Core/Drivers/tof.h \
+ C:/Users/Aymen/Firmware/Core/Drivers/motor.h \
+ C:/Users/Aymen/Firmware/Core/Drivers/pid.h \
+ C:/Users/Aymen/Firmware/Core/Drivers/odometry.h ../Core/Inc/strategy.h \
+ C:/Users/Aymen/Firmware/Core/Drivers/hc-05_bluetooth.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -110,11 +108,11 @@ Core/Src/app_freertos.o: ../Core/Src/app_freertos.c \
 ../Core/Inc/main.h:
 ../Core/Inc/i2c.h:
 ../Core/Inc/tim.h:
-D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/lidar.h:
-D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/imu.h:
-D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/tof.h:
-D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/motor.h:
-D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/pid.h:
-D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/odometry.h:
+C:/Users/Aymen/Firmware/Core/Drivers/lidar.h:
+C:/Users/Aymen/Firmware/Core/Drivers/imu.h:
+C:/Users/Aymen/Firmware/Core/Drivers/tof.h:
+C:/Users/Aymen/Firmware/Core/Drivers/motor.h:
+C:/Users/Aymen/Firmware/Core/Drivers/pid.h:
+C:/Users/Aymen/Firmware/Core/Drivers/odometry.h:
 ../Core/Inc/strategy.h:
-D:/ENSEA/hellkitty_project/Hellokitty-serine-aymen-ezer/Software/Firmware/Core/Drivers/hc-05_bluetooth.h:
+C:/Users/Aymen/Firmware/Core/Drivers/hc-05_bluetooth.h:

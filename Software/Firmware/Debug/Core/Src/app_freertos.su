@@ -1,7 +1,7 @@
-../Core/Src/app_freertos.c:111:6:MX_FREERTOS_Init	16	static
-../Core/Src/app_freertos.c:150:6:MX_Motor_Init	8	static
-../Core/Src/app_freertos.c:177:6:vControlTask	64	static
-../Core/Src/app_freertos.c:244:6:vLidarTask	376	static
-../Core/Src/app_freertos.c:291:6:vImuTask	32	static
-../Core/Src/app_freertos.c:351:6:vSafetyTask	48	static
-../Core/Src/app_freertos.c:435:6:HAL_UART_RxCpltCallback	16	static
+../Core/Src/app_freertos.c:109:6:MX_FREERTOS_Init	16	static
+../Core/Src/app_freertos.c:148:6:MX_Motor_Init	8	static
+../Core/Src/app_freertos.c:175:6:vControlTask	64	static
+../Core/Src/app_freertos.c:242:6:vLidarTask	376	static
+../Core/Src/app_freertos.c:289:6:vImuTask	32	static
+../Core/Src/app_freertos.c:349:6:vSafetyTask	48	static
+../Core/Src/app_freertos.c:433:6:HAL_UART_RxCpltCallback	16	static

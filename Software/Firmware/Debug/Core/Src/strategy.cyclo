@@ -2,8 +2,8 @@
 ../Core/Src/strategy.c:36:6:Strategy_Init	1
 ../Core/Src/strategy.c:42:6:Strategy_ToggleRole	2
 ../Core/Src/strategy.c:56:6:Strategy_Update	20
-../Core/Src/strategy.c:142:18:Strategy_GetCurrentState	1
-../Core/Src/strategy.c:146:13:Strategy_GetCurrentRole	1
-../Core/Src/strategy.c:150:6:Strategy_SetRole	2
-../Core/Src/strategy.c:156:6:Strategy_SetEnabled	2
-../Core/Src/strategy.c:167:9:Strategy_IsEnabled	1
+../Core/Src/strategy.c:139:18:Strategy_GetCurrentState	1
+../Core/Src/strategy.c:143:13:Strategy_GetCurrentRole	1
+../Core/Src/strategy.c:147:6:Strategy_SetRole	2
+../Core/Src/strategy.c:153:6:Strategy_SetEnabled	2
+../Core/Src/strategy.c:164:9:Strategy_IsEnabled	1

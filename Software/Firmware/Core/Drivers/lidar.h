@@ -31,10 +31,10 @@ typedef struct {
 #define NB_DEGRES 360
 #define MAX_LIDAR_OBJECTS 20
 #define DETECT_THRESHOLD 50
-#define MAX_DETECTION_DISTANCE_MM 1000
+#define MAX_DETECTION_DISTANCE_MM 1500
 
-#define MIN_OBJECT_WIDTH_MM        50.0f
-#define MAX_OBJECT_WIDTH_MM        100.0f
+#define MIN_OBJECT_WIDTH_MM        40.0f
+#define MAX_OBJECT_WIDTH_MM        80.0f
 
 typedef struct {
     float angle;        // Angle moyen de l'objet (degrés)
