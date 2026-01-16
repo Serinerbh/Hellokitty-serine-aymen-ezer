@@ -145,7 +145,6 @@ Cette section décrit l’architecture matérielle du robot, ses composants éle
 ### 🔌 Schéma global du système
 Le système repose sur un microcontrôleur **STM32G431CBU6** qui coordonne les capteurs, les moteurs, les régulateurs et les interfaces utilisateur.
 
-![Schéma global](https://github.com/user-attachments/assets/0f7c4c1b-3890-4360-bbe3-213a3acfd5ad)
 
 ---
 
