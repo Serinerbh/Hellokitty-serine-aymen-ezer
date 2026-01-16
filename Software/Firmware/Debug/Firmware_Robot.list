@@ -2891,8 +2891,8 @@ void ydlidar_detect_objects(LidarObject_t* objects, uint8_t* object_count) {
  8001bb8:	42480000 	.word	0x42480000
  8001bbc:	40668000 	.word	0x40668000
  8001bc0:	42200000 	.word	0x42200000
- 8001bc4:	42a00000 	.word	0x42a00000
- 8001bc8:	44bb8000 	.word	0x44bb8000
+ 8001bc4:	42b40000 	.word	0x42b40000
+ 8001bc8:	447a0000 	.word	0x447a0000
  8001bcc:	43b40000 	.word	0x43b40000
 
 08001bd0 <ydlidar_update_tracking>:
