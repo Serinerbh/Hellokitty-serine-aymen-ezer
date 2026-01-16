@@ -1,4 +1,6 @@
 # 🐱 HelloKitty – Projet Robot Chat
+<img width="810" height="1080" alt="image" src="https://github.com/user-attachments/assets/7b001b46-020f-4a15-b75d-87ee0aa59870" />
+
 
 ### **Les contributeurs :**
 -BENJEMAA Aymen
@@ -54,6 +56,7 @@ Ce projet repose sur un microcontrôleur **STM32G431CBU6**, intégrant divers ca
 ## Horloge et programmation
 - **Quartz 16MHz** : fournit une horloge stable au microcontrôleur.
 - **STLink SWD** : interface de programmation et débogage.
+- **Hclk** : 170Mhz.
 
 ## Moteurs et contrôle
 - **2 pilotes de moteur ZXBM5210** : reçoivent des signaux **PWM** pour contrôler les moteurs gauche et droit.
@@ -138,9 +141,11 @@ Les interruptions matérielles assurent la prise en charge immédiate des évén
 Cette architecture logicielle permet au robot d’être autonome, réactif et capable de s’adapter en temps réel à son environnement.
 
 
-## 🧰 Partie Hardware
+##  Partie Hardware
 
 Cette section décrit l’architecture matérielle du robot, ses composants électroniques, et les schémas associés.
+<img width="983" height="564" alt="image" src="https://github.com/user-attachments/assets/481b72ed-1033-43fa-afc0-7f35f21c6596" />
+
 
 ### 🔌 Schéma global du système
 Le système repose sur un microcontrôleur **STM32G431CBU6** qui coordonne les capteurs, les moteurs, les régulateurs et les interfaces utilisateur.
@@ -154,7 +159,8 @@ Le microcontrôleur est au cœur du système. Il est connecté :
 - aux capteurs via **UART**, **I2C**, et **GPIO**,
 - à un **STLink/SWD** pour la programmation et le débogage.
 
-##im
+<img width="1078" height="742" alt="image" src="https://github.com/user-attachments/assets/20eed7e6-8ec8-43f0-a155-ee942acf7542" />
+
 
 ---
 
@@ -165,7 +171,8 @@ Le robot est alimenté par une batterie **NiMH 7.2V**, régulée en deux tension
 
 Ces tensions alimentent les moteurs, le microcontrôleur et les capteurs sensibles.
 
-##im
+<img width="1013" height="592" alt="image" src="https://github.com/user-attachments/assets/fa8be56d-729b-44cd-a620-70aa3347fee2" />
+
 
 ---
 
@@ -177,7 +184,8 @@ Chaque moteur est contrôlé par un circuit **ZXBM5210-SP**, avec :
 
 Chaque moteur dispose de son propre driver et de ses propres signaux.
 
-##im
+<img width="570" height="256" alt="image" src="https://github.com/user-attachments/assets/a448f5a5-3051-4683-b620-6901f1f0ada8" />
+
 ---
 
 ### 📡 Capteurs
@@ -188,6 +196,7 @@ Le système intègre :
 - **1 module Bluetooth** pour la communication sans fil.
 
 Tous ces capteurs sont connectés au microcontrôleur via **I2C**, **SPI**, **UART** ou **GPIO**.
+<img width="1062" height="625" alt="image" src="https://github.com/user-attachments/assets/a634e98e-761b-432a-a299-bae5318e2d9d" />
 
 ---
 
@@ -210,5 +219,9 @@ Les schémas sont répartis en plusieurs fichiers :
 ---
 
 Cette architecture matérielle permet au robot d’être autonome, réactif et modulaire. Chaque composant est interconnecté pour assurer un fonctionnement fluide et sécurisé.
+
+
+
+https://github.com/user-attachments/assets/3a07851f-27b0-4f3c-a773-fe1d66b704f5
 
 
